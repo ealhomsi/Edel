@@ -20,7 +20,7 @@ CREATE TABLE Users(
 	UNIQUE(user_id)
 );
 
-#creating an index based on the email address
+#creating an index based on the email address only the first 60 characters
 CREATE INDEX UserIndexEmail ON Users(user_email(60));
  
 CREATE TABLE Posts(

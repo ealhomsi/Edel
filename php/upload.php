@@ -5,7 +5,6 @@ include  "functions.php";
 
 if(!isset($_SESSION['partID'])) 
     die("LOGIN / REGISTER FIRST!!!");
-
 ?>
 
 <?php

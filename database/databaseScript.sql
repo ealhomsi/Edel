@@ -68,5 +68,12 @@ CREATE TABLE TagPosts(
 	tagpost_id int not null auto_increment primary key,
 	tag_id int not null,
 	post_id int not null,
-
+	FOREIGN KEY (tag_id)
+   	REFERENCES Tags(tag_id)
+   	ON UPDATE CASCADE
+   	ON DELETE RESTRICT,
+   	FOREIGN KEY (post_id)
+   	REFERENCES Posts(post_id)
+   	ON UPDATE CASCADE
+   	ON DELETE RESTRICT
 );

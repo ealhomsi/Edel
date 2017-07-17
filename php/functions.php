@@ -58,12 +58,12 @@ function signFile($fileContent, $privKey) {
 }
 
 //getting something from database
-function querrySomethingFromUsers($id, $column) {
+function querrySomethingFromUsers($search, $which, $column) {
 	//connecting to the database
 	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
 
 	// making the querry
-	$dbQuery = "SELECT * FROM Users WHERE user_id='".$id. "'";
+	$dbQuery = "SELECT * FROM Users WHERE ". $which ." = '".$search. "'";
 	$result = $conn->query($dbQuery);
 
 	// checking for errors
@@ -76,7 +76,7 @@ function querrySomethingFromUsers($id, $column) {
 	$row = $result->fetch_array();  //by now they should have the same email address
 
 	if(!$row) {
-		die('user was not found');
+		die('FATAL: user was not found');
 	}
 
 	// free the results array

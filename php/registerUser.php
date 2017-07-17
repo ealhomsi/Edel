@@ -42,8 +42,8 @@ function main() {
 	}
 
 	// making the querry
-	$dbQuery = "INSERT INTO Users (user_name, user_imei, user_email, user_hashed_password, user_salt, user_private_key, user_public_key)
-VALUES ('" . $name . "', '" . $imei ."', '" . $user ."', '" . $hash ."', '" . $salt ."', '" . $keys['pri'] ."', '" . $keys['pub'] ."')";
+	$dbQuery = "INSERT INTO Users (user_name, user_imei, user_email, user_hashed_password, user_salt, user_private_key, user_public_key, user_karma)
+VALUES ('" . $name . "', '" . $imei ."', '" . $user ."', '" . $hash ."', '" . $salt ."', '" . $keys['pri'] ."', '" . $keys['pub'] ."' , 1)";
 	$result = $conn->query($dbQuery);
 
 	// checking for errors
@@ -51,33 +51,18 @@ VALUES ('" . $name . "', '" . $imei ."', '" . $user ."', '" . $hash ."', '" . $s
 		echo "Error: " . $dbQuery . "<br>" . $conn->error;
 	}
 
+	//close connection
+	$conn->close();
+
+	
 	// clear the session
 	unset($_SESSION["userName"]);
 	unset($_SESSION["userID"]);
 
-	
-	//finding out the user id
-	$dbQuery = "SELECT * FROM Users WHERE user_email='".$user. "' AND user_name='".$name . "'";
-	$result = $conn->query($dbQuery);
-
-	//error in the querry
- 	if(!$result) {
- 		die($conn->error);
- 	}
-
-	//if $result is successful
-	$row = $result->fetch_array();  //by now they should have the same email address
-
-	if(!$row) {
-		die('FATAL: User was not found');
-	}
-
+	echo "<br>" . $user . "<br>";
 	//set things
-	$_SESSION['userID'] = $row['user_id'];
+	$_SESSION['userID'] =  querrySomethingFromUsers($user, "user_email", "user_id");
 	$_SESSION['userName'] = $name;
-
-	// free the results array
-	$result->close();
 
 	//forward back to the index page
 	header("Location: https://localhost/new/index.php"); /* Redirect browser */

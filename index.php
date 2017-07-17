@@ -37,7 +37,7 @@
             <?php
                 if(isset($_SESSION['userName'])) {
                     echo '<div  style="width:auto; position:relative; float:right; display:inline-block" >
-                            <p> hello ' . $_SESSION['userName'] . '</p>
+                            <p> hello ' . $_SESSION['userName'] . ' id = ' . $_SESSION['userID'] . '</p>
                           </div>';
                     echo "<a href=\"php/logout.php\" > <button href style=\"width:auto; position:relative; float:right; display:inline-block; \">Logout</button> </a>";
 

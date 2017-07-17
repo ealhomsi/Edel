@@ -27,3 +27,8 @@ d) the home page (without login) is exactly like reddit
 e) the posting should include functionalities of attaching documnets and images and stuff (everything)
 f) up voting down voting ofcourse
 g) ignore the bump me feature
+
+
+
+# WHATS DONE
+a) uploading posts seperately

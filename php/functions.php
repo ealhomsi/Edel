@@ -85,6 +85,34 @@ function querrySomethingFromUsers($search, $which, $column) {
 	return $row[$column];
 }
 
+//getting something from database
+function querryLastPost($column) {
+	//connecting to the database
+	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+
+	// making the querry
+	$dbQuery = "SELECT * FROM Posts ORDER BY post_id DESC LIMIT 1";
+	$result = $conn->query($dbQuery);
+
+	// checking for errors
+	if(!$result) {
+		echo "Error: " . $dbQuery . "<br>" . $conn->error;
+		die();
+	}
+
+	//if $result is successful
+	$row = $result->fetch_array();  //by now they should have the same email address
+
+	if(!$row) {
+		die('FATAL: user was not found');
+	}
+
+	// free the results array
+	$result->close();
+	
+	return $row[$column];
+}
+
 //getting all Posts related to a specific post id
 //input $id is really the father post id gotton from the relation ship
 function listChildrenPosts($id) {

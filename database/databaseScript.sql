@@ -45,9 +45,9 @@ CREATE TABLE ChildrenPosts(
 	father_post_id int,
 	child_post_id int not null,
 	FOREIGN KEY (father_post_id)
-   	REFERENCES Posts(post_id),
-   	FOREIGN KEY (child_post_id)
-   	REFERENCES Posts(post_id)
+	REFERENCES Posts(post_id),
+	FOREIGN KEY (child_post_id)
+	REFERENCES Posts(post_id)
 );
 
 #creating an index for the post rating

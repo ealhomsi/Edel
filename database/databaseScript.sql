@@ -17,6 +17,7 @@ CREATE TABLE Users(
 	user_salt varchar(255) not null,
 	user_hashed_password varchar(255) not null,
 	user_karma int,
+   user_profile_picture MEDIUMBLOB,
 	UNIQUE(user_email)
 );
 

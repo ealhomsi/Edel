@@ -85,37 +85,6 @@ function querrySomethingFromUsers($search, $which, $column) {
 	return $row[$column];
 }
 
-//getting all uploaded posts
-function listPostsUser($id) {
-	//connecting to the database
-	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
-
-	// making the querry
-	$dbQuery = "SELECT * FROM Posts WHERE user_id='".$id. "'";
-	$result = $conn->query($dbQuery);
-
-	$row = $result->fetch_array();
-    $i = 0;
-    while($row) {
-    	$i++;
-    	$postID = $row['post_id'];
-    	$name = $row['post_text'];
-
-    	echo "Post number " . $i . "<br>";
-    	echo "post id " . $row['post_id'] . "<br>";
-    	echo "post type " . $row['post_type'] . "<br>";
-    	echo "post date uploaded " . $row['post_date_uploaded'] . "<br>";
-    	echo "user id " . $row['user_id'] . "<br>";
-    	echo '<a href="php/download.php?id=' . $postID . '">'. $name . '</a> <br>';
-    	echo "post text " . $row['post_text'] . "<br>";
-    	echo "<br> <br>";
-    	$row = $result->fetch_array();
-    }
-
-    //closing the connection 
-    $conn->close();
-}
-
 //getting all Posts related to a specific post id
 //input $id is really the father post id gotton from the relation ship
 function listChildrenPosts($id) {
@@ -152,6 +121,29 @@ function formatPost($row, $level) {
 	#echo "<br>";
 	echo $level . "  " . $row['post_text'];
 	echo "<br>";
+}
+
+//getting all uploaded posts
+function listPostsUser($id) {
+	//connecting to the database
+	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+
+	// making the querry
+	$dbQuery = "SELECT * FROM Posts WHERE user_id='".$id. "'";
+	$result = $conn->query($dbQuery);
+
+	$row = $result->fetch_array();
+    $i = 0;
+    $listing = array();
+    while($row) {
+    	$listing[$i] = $row;
+    	$i++;
+    	$row = $result->fetch_array();
+    }
+    //closing the connection 
+    $conn->close();
+
+    return $listing;
 }
 
 ?>

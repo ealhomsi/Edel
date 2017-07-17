@@ -41,7 +41,7 @@
                           </div>';
                     echo "<a href=\"php/logout.php\" > <button href style=\"width:auto; position:relative; float:right; display:inline-block; \">Logout</button> </a>";
 
-                    echo "<a href=\"profile.php\" > <button href style=\"width:auto; position:relative; float:right; display:inline-block; \">Profile</button> </a>";
+                    echo "<a href=\"pages/profile.php\" > <button href style=\"width:auto; position:relative; float:right; display:inline-block; \">Profile</button> </a>";
                 } else {
                     echo "<button onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Login</button>";
                 }

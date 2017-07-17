@@ -17,7 +17,7 @@ function main() {
 		$email = $_POST["userEmail"];
 	}
 	if(isset($_POST["userPassword"])) {
-		$password = $_POST["userEmail"];
+		$password = $_POST["userPassword"];
 	}
 
 	// Check connection
@@ -27,7 +27,7 @@ function main() {
 
 
 	// making the querry
-	$dbQuery = "SELECT * FROM Users WHERE user_email='".$email. "'";
+	$dbQuery = "SELECT user_hashed_password, user_salt, user_email, user_name, user_id FROM Users WHERE user_email='".$email. "'";
 	$result = $conn->query($dbQuery);
 
 	// checking for errors

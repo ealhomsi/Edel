@@ -1,7 +1,7 @@
 <?php
-//init
-session_start(); 
-include  "functions.php";
+	//init
+	session_start(); 
+	include  "functions.php";
 ?>
 
 
@@ -20,7 +20,7 @@ function main() {
 		$user = $_POST["userEmail"];
 	}
 	if(isset($_POST["userPassword"])) {
-		$password = $_POST["userEmail"];
+		$password = $_POST["userPassword"];
 	}
 	if(isset($_POST["userImei"])) {
 		$imei = $_POST["userImei"];
@@ -42,7 +42,7 @@ function main() {
 	}
 
 	// making the querry
-	$dbQuery = "INSERT INTO Partners (part_name, part_imei, part_email, part_hashed_password, part_salt, part_private_key, part_public_key)
+	$dbQuery = "INSERT INTO Users (user_name, user_imei, user_email, user_hashed_password, user_salt, user_private_key, user_public_key)
 VALUES ('" . $name . "', '" . $imei ."', '" . $user ."', '" . $hash ."', '" . $salt ."', '" . $keys['pri'] ."', '" . $keys['pub'] ."')";
 	$result = $conn->query($dbQuery);
 
@@ -52,12 +52,12 @@ VALUES ('" . $name . "', '" . $imei ."', '" . $user ."', '" . $hash ."', '" . $s
 	}
 
 	// clear the session
-	unset($_SESSION["partName"]);
-	unset($_SESSION["partID"]);
+	unset($_SESSION["userName"]);
+	unset($_SESSION["userID"]);
 
 	
-	//finding out the part id
-	$dbQuery = "SELECT * FROM Partners WHERE part_email='".$user. "' AND part_name='".$name . "'";
+	//finding out the user id
+	$dbQuery = "SELECT * FROM Users WHERE user_email='".$user. "' AND user_name='".$name . "'";
 	$result = $conn->query($dbQuery);
 
 	//error in the querry
@@ -69,12 +69,12 @@ VALUES ('" . $name . "', '" . $imei ."', '" . $user ."', '" . $hash ."', '" . $s
 	$row = $result->fetch_array();  //by now they should have the same email address
 
 	if(!$row) {
-		die('FATAL: Partner was not found');
+		die('FATAL: User was not found');
 	}
 
 	//set things
-	$_SESSION['partID'] = $row['part_id'];
-	$_SESSION['partName'] = $name;
+	$_SESSION['userID'] = $row['user_id'];
+	$_SESSION['userName'] = $name;
 
 	// free the results array
 	$result->close();

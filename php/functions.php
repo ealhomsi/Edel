@@ -43,6 +43,7 @@ function hashPassword($password, $salt) {
 
 //function thatverifies passwords
 function verifyPassword($password, $hash, $salt) {
+	//verify a password
 	return password_verify($password . $salt, $hash);
 }
 
@@ -57,12 +58,12 @@ function signFile($fileContent, $privKey) {
 }
 
 //getting something from database
-function querrySomething($id, $column) {
+function querrySomethingFromUsers($id, $column) {
 	//connecting to the database
 	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
 
 	// making the querry
-	$dbQuery = "SELECT * FROM Partners WHERE part_id='".$id. "'";
+	$dbQuery = "SELECT * FROM Users WHERE user_id='".$id. "'";
 	$result = $conn->query($dbQuery);
 
 	// checking for errors
@@ -84,13 +85,13 @@ function querrySomething($id, $column) {
 	return $row[$column];
 }
 
-//getting all uploaded documents
+//getting all uploaded posts
 function listPosts($id) {
 	//connecting to the database
 	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
 
 	// making the querry
-	$dbQuery = "SELECT * FROM Posts WHERE part_id='".$id. "'";
+	$dbQuery = "SELECT * FROM Posts WHERE user_id='".$id. "'";
 	$result = $conn->query($dbQuery);
 
 	$row = $result->fetch_array();
@@ -104,7 +105,7 @@ function listPosts($id) {
     	echo "post id " . $row['post_id'] . "<br>";
     	echo "post type " . $row['post_type'] . "<br>";
     	echo "post date uploaded " . $row['post_date_uploaded'] . "<br>";
-    	echo "part id " . $row['part_id'] . "<br>";
+    	echo "user id " . $row['user_id'] . "<br>";
     	echo '<a href="php/download.php?id=' . $postID . '">'. $name . '</a> <br>';
     	echo "post text " . $row['post_text'] . "<br>";
     	echo "<br> <br>";

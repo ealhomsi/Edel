@@ -3,17 +3,16 @@
 session_start(); 
 include  "functions.php";
 
-if(!isset($_SESSION['partID'])) 
+if(!isset($_SESSION['userID'])) 
     die("LOGIN / REGISTER FIRST!!!");
 ?>
 
 <?php
-
 //this file does just the uploading routine
 //upload routine and listing files of some organiztion.
 function main() {
-     //error non login
-    if(!isset($_SESSION["partName"])){
+     //error no login
+    if(!isset($_SESSION["userName"])){
         die("please login or register first");
     }
 
@@ -40,7 +39,7 @@ function main() {
                 $fileSize = filesize($targetFile);
                 $fileContent = fread($fileHandle, $fileSize);
                 $fileContent = addslashes($fileContent);
-                $fileContent = signFile($fileContent, querrySomething($_SESSION['partID'], 'part_private_key'));
+                $fileContent = signFile($fileContent, querrySomething($_SESSION['userID'], 'user_private_key'));
                 fclose($fileHandle);
 
                 //things that has to be done
@@ -50,7 +49,7 @@ function main() {
                 }
 
                 //building querry to the database
-                $dbQuery = "INSERT INTO Posts (part_id, post_type, post_date_uploaded, post_document_content, post_text, post_document_type, post_document_size, post_document_name) VALUES ('" . $_SESSION['partID'] . "', '" . $type ."', '" . $mysqltime ."', '" . $fileContent ."', '" . $_POST['docDescription'] ."', '" . $_FILES["fileToUpload"]["type"] . "', '" . $fileSize . "', '" . $fileName  ."')";
+                $dbQuery = "INSERT INTO Posts (user_id, post_type, post_date_uploaded, post_document_content, post_text, post_document_type, post_document_size, post_document_name) VALUES ('" . $_SESSION['userID'] . "', '" . $type ."', '" . $mysqltime ."', '" . $fileContent ."', '" . $_POST['docDescription'] ."', '" . $_FILES["fileToUpload"]["type"] . "', '" . $fileSize . "', '" . $fileName  ."')";
             
 
                 //inserting

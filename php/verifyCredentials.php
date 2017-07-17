@@ -27,7 +27,7 @@ function main() {
 
 
 	// making the querry
-	$dbQuery = "SELECT * FROM Partners WHERE part_email='".$email. "'";
+	$dbQuery = "SELECT * FROM Users WHERE user_email='".$email. "'";
 	$result = $conn->query($dbQuery);
 
 	// checking for errors
@@ -36,8 +36,8 @@ function main() {
 	}
 
 	// clear the session
-	unset($_SESSION["partName"]);
-	unset($_SESSION["partID"]);
+	unset($_SESSION["userName"]);
+	unset($_SESSION["userID"]);
 
 	//if $result is successful
 	$row = $result->fetch_array();  //by now they should have the same email address
@@ -46,16 +46,15 @@ function main() {
 		die('user was not found');
 	}
 
-	if(verifyPassword($password, $row['part_hashed_password'], $row['part_salt'])) {
-		echo 'welcome partner ' . $row['part_name'] . ' your email is: ' . $row['part_email'] . '<br>';
-		$_SESSION['partName'] = $row['part_name'];
-		$_SESSION['partID'] = $row['part_id'];
-		sleep(3);
+	if(verifyPassword($password, $row['user_hashed_password'], $row['user_salt'])) {
+		echo 'welcome ' . $row['user_name'] . ' your email is: ' . $row['user_email'] . '<br>';
+		$_SESSION['userName'] = $row['user_name'];
+		$_SESSION['userID'] = $row['user_id'];
 		header("Location: https://localhost/new/index.php"); /* Redirect browser */
 		exit();
 
 	} else {
-		echo 'password mismtach for partner: ' . $row['part_name'] . '<br>';
+		echo 'password mismtach for users: ' . $row['user_name'] . '<br>';
 	}
 	
 	// free the results array

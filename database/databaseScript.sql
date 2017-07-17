@@ -17,28 +17,47 @@ CREATE TABLE Users(
 	user_salt varchar(255) not null,
 	user_hashed_password varchar(255) not null,
 	user_karma int,
-	UNIQUE(user_id)
+	UNIQUE(user_email)
 );
 
 #creating an index based on the email address only the first 60 characters
 CREATE INDEX UserIndexEmail ON Users(user_email(60));
  
+
+#CREATE THE POST TABLE
 CREATE TABLE Posts(
    post_id int not null auto_increment primary key,
+   father_post_id int,
    post_type varchar(255),
-   post_document_type varchar(255),
-   post_document_size int,
-   post_document_name varchar(255),
    post_date Date,
    user_id int not null,
    post_rating int,
-   post_document_content MEDIUMBLOB,
    post_text varchar(255),
    FOREIGN KEY (user_id)
    REFERENCES Users(user_id)
    ON UPDATE CASCADE
    ON DELETE RESTRICT
 );
+
+#creating an index for the post rating
+CREATE INDEX PostIndexRating ON Posts(post_rating);
+
+#CREATE THE DOCUMENTS TABLE
+CREATE TABLE Documents(
+   document_id int not null auto_increment primary key,
+   document_type varchar(255),
+   document_size int,
+   document_name varchar(255),
+   post_document_content MEDIUMBLOB,
+   post_id int not null,
+   FOREIGN KEY (post_id)
+   REFERENCES Posts(post_id)
+   ON UPDATE CASCADE
+   ON DELETE RESTRICT
+);
+
+#creating an index for the post id
+CREATE INDEX DocumentIndexPostID ON Documents(post_id);
 
 #creating a voting system
 CREATE TABLE Votes(
@@ -57,10 +76,13 @@ CREATE TABLE Votes(
    ON DELETE RESTRICT
 );
 
+#creating an index for the post id
+CREATE INDEX VoteIndexPostID ON Votes(post_id);
+
 #create tags
 CREATE TABLE Tags(
 	tag_id int not null auto_increment primary key,
-	tag_name varchar(255),
+	tag_name varchar(255)
 );
 
 #create a tagpost table
@@ -69,11 +91,14 @@ CREATE TABLE TagPosts(
 	tag_id int not null,
 	post_id int not null,
 	FOREIGN KEY (tag_id)
-   	REFERENCES Tags(tag_id)
-   	ON UPDATE CASCADE
-   	ON DELETE RESTRICT,
-   	FOREIGN KEY (post_id)
-   	REFERENCES Posts(post_id)
-   	ON UPDATE CASCADE
-   	ON DELETE RESTRICT
+	REFERENCES Tags(tag_id)
+	ON UPDATE CASCADE
+	ON DELETE RESTRICT,
+	FOREIGN KEY (post_id)
+	REFERENCES Posts(post_id)
+	ON UPDATE CASCADE
+	ON DELETE RESTRICT
 );
+
+#creating an index for the post id
+CREATE INDEX TagPostIndexPostID ON TagPosts(post_id);

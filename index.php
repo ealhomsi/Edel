@@ -1,7 +1,7 @@
 <?php 
-//init
-session_start(); 
-include  "php/functions.php";
+	//init
+	session_start(); 
+	include  "php/functions.php";
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,6 @@ include  "php/functions.php";
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   
 </head>
 
 <body>
@@ -23,9 +22,9 @@ include  "php/functions.php";
         <div class="w3-bar w3-black w3-card-2">
             <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
             <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
-            <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hide-small">UPLOAD</a>
-            <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hide-small">LOGIN</a>
-            <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hide-small">REGISTER</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hide-small">SOME</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hide-small">THING</a>
+            <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hide-small">INTERESSING</a>
             <div class="w3-dropdown-hover w3-hide-small">
                 <button class="w3-padding-large w3-button" title="More">MORE <i class="fa fa-caret-down"></i></button>
                 <div class="w3-dropdown-content w3-bar-block w3-card-4">
@@ -36,9 +35,9 @@ include  "php/functions.php";
             </div>
 
             <?php
-                if(isset($_SESSION['partName'])) {
+                if(isset($_SESSION['userName'])) {
                     echo '<div  style="width:auto; position:relative; float:right; display:inline-block" >
-                            <p> hello ' . $_SESSION['partName'] . '</p>
+                            <p> hello ' . $_SESSION['userName'] . '</p>
                           </div>';
                     echo "<a href=\"php/logout.php\" > <button href style=\"width:auto; position:relative; float:right; display:inline-block; \">Logout</button> </a>";
 
@@ -84,7 +83,7 @@ include  "php/functions.php";
     </div>
     <!-- Register -->
     <div id="id02" class="modal">
-        <form class="modal-content animate" action="php/registerPartner.php" method="post">
+        <form class="modal-content animate" action="php/registerUser.php" method="post">
             <div class="imgcontainer">
                 <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
                 <img src="images/img_avatar2.png" alt="Avatar" class="avatar">

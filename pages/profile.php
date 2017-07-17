@@ -79,7 +79,7 @@ if(!isset($_SESSION['userID']))
                         echo "<br> you have " . sizeof($result) . " posts: <br>";
                         //getting all posts
                         foreach ($result as $value) {
-                            formatPost($value, "");
+                            printPost($value, "");
                         }
                     }
                     listingUserPostsGivenID($_SESSION['userID']);

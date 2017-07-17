@@ -145,9 +145,35 @@ function listChildrenPosts($id) {
 
 //format post
 function formatPost($row, $level) {
-	#echo $level . "  " . $row['post_id'];
-	#echo "<br>";
-	echo $level . "  " . $row['post_text'];
+	//printing the title and by which user
+	echo "<strong>";
+	echo $level . "<h4 style='display:inline;'>" . $row['post_type'] . "</h4> by <i> user id " . $row['user_id'] . " </i> <br>"; 
+	echo "</strong>";
+
+	//printing the text
+	echo $level . "" . $row['post_text'];
+	echo "<br>";
+
+	$currentPostID = $row['post_id'];
+	//printing the reply to this button
+	echo '<form method=post action="../php/createSubPost.php">';
+	echo $level . "<input style='display:inline;' type=text name='reply". $currentPostID ."'><br>";
+	echo '<input type=text value=' .$currentPostID . ' name="fatherPostID" style="display:none;">';
+	echo $level . "<input style='display:inline;' type='submit' value='reply'>";
+	echo "<br>";
+	echo '</form>';	
+}
+
+//print normal post
+function printPost($row) {
+	$level = "";
+	//printing the title and by which user
+	echo "<strong>";
+	echo $level . "<h4 style='display:inline;'>" . $row['post_type'] . "</h4> by <i> user id " . $row['user_id'] . " </i> <br>"; 
+	echo "</strong>";
+
+	//printing the text
+	echo $level . "" . $row['post_text'];
 	echo "<br>";
 }
 

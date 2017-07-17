@@ -27,7 +27,6 @@ CREATE INDEX UserIndexEmail ON Users(user_email(60));
 #CREATE THE POST TABLE
 CREATE TABLE Posts(
    post_id int not null auto_increment primary key,
-   father_post_id int,
    post_type varchar(255),
    post_date Date,
    user_id int not null,
@@ -39,8 +38,22 @@ CREATE TABLE Posts(
    ON DELETE RESTRICT
 );
 
+#CREATE Father children relationship
+CREATE TABLE ChildrenPosts(
+	relationship_id int not null auto_increment primary key,
+	father_post_id int,
+	child_post_id int not null,
+	FOREIGN KEY (father_post_id)
+   	REFERENCES Posts(post_id),
+   	FOREIGN KEY (child_post_id)
+   	REFERENCES Posts(post_id)
+);
+
 #creating an index for the post rating
 CREATE INDEX PostIndexRating ON Posts(post_rating);
+
+#creating an index for the post rating
+CREATE INDEX PostIndexPostID ON Posts(post_id);
 
 #CREATE THE DOCUMENTS TABLE
 CREATE TABLE Documents(
@@ -102,3 +115,26 @@ CREATE TABLE TagPosts(
 
 #creating an index for the post id
 CREATE INDEX TagPostIndexPostID ON TagPosts(post_id);
+
+#testing
+INSERT INTO Users (user_email, user_private_key, user_public_key, user_salt, user_hashed_password) VALUES ('elias@elias.com', '123', '123', '123', '123');
+
+INSERT INTO Posts (user_id, post_text) VALUES (1, "HELLO 1");   #1
+INSERT INTO Posts (user_id, post_text) VALUES (1, "HELLO 1.1"); #2
+
+INSERT INTO Posts (user_id, post_text) VALUES (1, "HELLO 2"); 	#3
+INSERT INTO Posts (user_id, post_text) VALUES (1, "HELLO 2.1");	#4
+INSERT INTO Posts (user_id, post_text) VALUES (1, "HELLO 2.2"); #5
+
+INSERT INTO Posts (user_id, post_text) VALUES (1, "HELLO 2.2.1"); #6
+
+INSERT INTO ChildrenPosts (father_post_id, child_post_id) VALUES (null,1);
+INSERT INTO ChildrenPosts (father_post_id, child_post_id) VALUES (null,3);
+
+INSERT INTO ChildrenPosts (father_post_id, child_post_id) VALUES (1,2);
+
+
+INSERT INTO ChildrenPosts (father_post_id, child_post_id) VALUES (3,4);
+INSERT INTO ChildrenPosts (father_post_id, child_post_id) VALUES (3,5);
+
+INSERT INTO ChildrenPosts (father_post_id, child_post_id) VALUES (5,6);

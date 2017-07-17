@@ -86,7 +86,7 @@ function querrySomethingFromUsers($id, $column) {
 }
 
 //getting all uploaded posts
-function listPosts($id) {
+function listPostsUser($id) {
 	//connecting to the database
 	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
 
@@ -111,7 +111,47 @@ function listPosts($id) {
     	echo "<br> <br>";
     	$row = $result->fetch_array();
     }
+
+    //closing the connection 
+    $conn->close();
 }
 
-//test
+//getting all Posts related to a specific post id
+//input $id is really the father post id gotton from the relation ship
+function listChildrenPosts($id) {
+	//connecting to the database
+	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+
+	// making the querry
+	$dbQuery = "SELECT post_id, post_type, post_date, user_id, post_rating, post_text FROM Posts INNER JOIN ChildrenPosts ON ChildrenPosts.child_post_id = Posts.post_id WHERE father_post_id='".$id. "'";
+
+	if($id == "null") {
+		$dbQuery = "SELECT post_id, post_type, post_date, user_id, post_rating, post_text FROM Posts INNER JOIN ChildrenPosts ON ChildrenPosts.child_post_id = Posts.post_id WHERE father_post_id is null";
+	}
+	$result = $conn->query($dbQuery);
+	
+	// filling up the listing array
+	$listing = array();
+	$i = 0;
+	$row = $result->fetch_array();
+    while($row) {
+    	$listing[$i] = $row;
+    	$i++;
+    	$row = $result->fetch_array();
+    }
+
+    //closing the connection 
+    $conn->close();
+
+    return $listing;
+}
+
+//format post
+function formatPost($row, $level) {
+	#echo $level . "  " . $row['post_id'];
+	#echo "<br>";
+	echo $level . "  " . $row['post_text'];
+	echo "<br>";
+}
+
 ?>

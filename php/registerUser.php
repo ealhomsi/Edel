@@ -43,7 +43,7 @@ function main() {
 
 	// making the querry
 	$dbQuery = "INSERT INTO Users (user_name, user_imei, user_email, user_hashed_password, user_salt, user_private_key, user_public_key, user_karma)
-VALUES ('" . $name . "', '" . $imei ."', '" . $user ."', '" . $hash ."', '" . $salt ."', '" . $keys['pri'] ."', '" . $keys['pub'] ."' , 1)";
+VALUES ('" . mysqli_real_escape_string($conn,$name) . "', '" . mysqli_real_escape_string($conn,$imei) ."', '" . mysqli_real_escape_string($conn,$user) ."', '" . mysqli_real_escape_string($conn,$hash) ."', '" . mysqli_real_escape_string($conn,$salt) ."', '" . mysqli_real_escape_string($conn,$keys['pri']) ."', '" . mysqli_real_escape_string($conn,$keys['pub']) ."' , 1)";
 	$result = $conn->query($dbQuery);
 
 	// checking for errors

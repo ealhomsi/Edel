@@ -63,7 +63,7 @@ function querrySomethingFromUsers($search, $which, $column) {
 	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
 
 	// making the querry
-	$dbQuery = "SELECT * FROM Users WHERE ". $which ." = '".$search. "'";
+	$dbQuery = "SELECT * FROM Users WHERE ". mysqli_real_escape_string($conn,$which) ." = '".mysqli_real_escape_string($conn,$search). "'";
 	$result = $conn->query($dbQuery);
 
 	// checking for errors
@@ -91,7 +91,7 @@ function querrySomethingFromPosts($search, $which, $column) {
 	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
 
 	// making the querry
-	$dbQuery = "SELECT * FROM Posts WHERE ". $which ." = '".$search. "'";
+	$dbQuery = "SELECT * FROM Posts WHERE ". mysqli_real_escape_string($conn,$which) ." = '".mysqli_real_escape_string($conn,$search) . "'";
 	$result = $conn->query($dbQuery);
 
 	// checking for errors
@@ -148,7 +148,7 @@ function listChildrenPosts($id) {
 	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
 
 	// making the querry
-	$dbQuery = "SELECT post_id, post_type, post_date, user_id, post_rating, post_text FROM Posts INNER JOIN ChildrenPosts ON ChildrenPosts.child_post_id = Posts.post_id WHERE father_post_id='".$id. "'";
+	$dbQuery = "SELECT post_id, post_type, post_date, user_id, post_rating, post_text FROM Posts INNER JOIN ChildrenPosts ON ChildrenPosts.child_post_id = Posts.post_id WHERE father_post_id='".mysqli_real_escape_string($conn,$id). "'";
 
 	if($id == "null") {
 		$dbQuery = "SELECT post_id, post_type, post_date, user_id, post_rating, post_text FROM Posts INNER JOIN ChildrenPosts ON ChildrenPosts.child_post_id = Posts.post_id WHERE father_post_id is null";
@@ -169,6 +169,73 @@ function listChildrenPosts($id) {
     $conn->close();
 
     return $listing;
+}
+
+//this function would return the last result
+// 0 means that the user did nothing yet to the post
+// 1 means that the user did upvote the post
+//-1 means that the user down vote the post
+function checkUserStatus($postID, $userID) {
+	//connecting to the database
+	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+
+	// querry the 
+	// making the querry
+	$dbQuery = "SELECT * From Votes WHERE post_id=".mysqli_real_escape_string($conn,$postID). " AND user_id=". mysqli_real_escape_string($conn,$userID);
+
+	$result = $conn->query($dbQuery);
+	
+	$row = $result->fetch_array();
+
+    //closing the connection 
+    $conn->close();
+
+    if($row) {
+    	//the vote was already registered
+    	return $row['vote_value'];
+    }
+    return 0;
+}
+
+//delete the user pariticpation on a specific post
+function deleteUserParticipation($postID, $userID, $value) {
+	//connecting to the database
+	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+
+	// making the querry
+	$dbQuery = "DELETE From Votes WHERE post_id=".mysqli_real_escape_string($conn,$postID). " AND user_id=". mysqli_real_escape_string($conn,$userID);
+
+	$result = $conn->query($dbQuery);
+	
+	// checking for errors
+	if(!$result) {
+		echo "Error: " . $dbQuery . "<br>" . $conn->error;
+		die();
+	}
+
+    //closing the connection 
+    $conn->close();
+
+    //get the rating
+   	$rating = querrySomethingFromPosts($postID, 'post_id', 'post_rating');
+   	$rating = $rating + $value;
+
+   	//connecting to the database
+	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+
+	// making the querry
+    $dbQuery = 'UPDATE  Posts SET post_rating='. mysqli_real_escape_string($conn,$rating) .  ' WHERE post_id=' . mysqli_real_escape_string($conn,$postID) ;
+
+	$result = $conn->query($dbQuery);
+	
+	// checking for errors
+	if(!$result) {
+		echo "Error: " . $dbQuery . "<br>" . $conn->error;
+		die();
+	}
+
+    //closing the connection 
+    $conn->close();
 }
 
 //format post
@@ -215,7 +282,7 @@ function listPostsUser($id) {
 	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
 
 	// making the querry
-	$dbQuery = "SELECT * FROM Posts WHERE user_id='".$id. "'";
+	$dbQuery = "SELECT * FROM Posts WHERE user_id='".mysqli_real_escape_string($conn,$id). "'";
 	$result = $conn->query($dbQuery);
 
 	$row = $result->fetch_array();

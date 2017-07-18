@@ -27,17 +27,33 @@ function main() {
     }
 
 
+    //checking the current user participation
+    $status = checkUserStatus($postID, $_SESSION['userID']);
+    if($status == -1) {
+        //if the case is downvote
+        deleteUserParticipation($postID, $_SESSION['userID'], 1);
+        header("Location: https://192.168.1.116/new/pages/newsfeed.php"); /* Redirect browser */
+        exit();
+    } else if ($status == 1) {
+        //just forget the user
+        header("Location: https://192.168.1.116/new/pages/newsfeed.php"); /* Redirect browser */
+        exit();
+    }
+
+    //$status here is zero
+
     //create mysql time
     $phptime = date( 'Y-m-d H:i:s');
     echo $phptime . "<br>";
     echo $postID;
     $voteValue = 1;
-    //building querry to the database
-    $dbQuery = "INSERT INTO Votes (user_id, post_id, vote_date, vote_value) VALUES ('" . $_SESSION['userID'] . "', '" . $postID ."', FROM_UNIXTIME('" . $phptime ."'), ". $voteValue  .")";
-            
 
     //inserting
     $conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+
+    //building querry to the database
+    $dbQuery = "INSERT INTO Votes (user_id, post_id, vote_date, vote_value) VALUES ('" . mysqli_real_escape_string($conn,$_SESSION['userID']) . "', '" . mysqli_real_escape_string($conn,$postID) ."', FROM_UNIXTIME('" . mysqli_real_escape_string($conn,$phptime) ."'), ". mysqli_real_escape_string($conn,$voteValue)  .")";
+
     $result = $conn->query($dbQuery);
 
     if(!$result) {
@@ -53,12 +69,14 @@ function main() {
     $rating = $rating + $voteValue;
 
     echo "<br>" . $rating . "<br>";
-    //update the rating on the post
-    $dbQuery = 'UPDATE  Posts SET post_rating='. $rating .  ' WHERE post_id=' . $postID ;
             
 
     //updating
     $conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+
+    //update the rating on the post
+    $dbQuery = 'UPDATE  Posts SET post_rating='. mysqli_real_escape_string($conn,$rating) .  ' WHERE post_id=' . mysqli_real_escape_string($conn,$postID) ;
+    
     $result = $conn->query($dbQuery);
 
     if(!$result) {
@@ -70,7 +88,7 @@ function main() {
 
 
     header("Location: https://192.168.1.116/new/pages/newsfeed.php"); /* Redirect browser */
-        
+    exit();
 }
 
 //calling main()

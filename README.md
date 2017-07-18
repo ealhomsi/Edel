@@ -23,10 +23,10 @@ The website sepcification is the following:
 a) it should include login ability (done)
 b) it should include sign up ability(done)
 c) it should include posting after singing in (done)
-c') change the display thing like reddit
+c') change the display thing like reddit what the fuck is this
 d) the home page (without login) is exactly like reddit (done)
 e) the posting should include functionalities of attaching documnets and images and stuff (everything)
-f) up voting down voting ofcourse
+f) up voting down voting ofcourse (done)
 z) news feed better organized based on trending.
 z') fix sql injection problems.
 z'') tag things and show tags.

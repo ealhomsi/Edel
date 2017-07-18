@@ -49,7 +49,7 @@ function main() {
                 }
 
                 //building querry to the database
-                $dbQuery = "INSERT INTO Posts (user_id, post_type, post_date_uploaded, post_document_content, post_text, post_document_type, post_document_size, post_document_name) VALUES ('" . $_SESSION['userID'] . "', '" . $type ."', '" . $mysqltime ."', '" . $fileContent ."', '" . $_POST['docDescription'] ."', '" . $_FILES["fileToUpload"]["type"] . "', '" . $fileSize . "', '" . $fileName  ."')";
+                $dbQuery = "INSERT INTO Posts (user_id, post_type, post_date_uploaded, post_document_content, post_text, post_document_type, post_document_size, post_document_name) VALUES ('" . mysqli_real_escape_string($conn,$_SESSION['userID']) . "', '" . mysqli_real_escape_string($conn,$type) ."', '" . mysqli_real_escape_string($conn,$mysqltime) ."', '" . mysqli_real_escape_string($conn,$fileContent) ."', '" . mysqli_real_escape_string($conn,$_POST['docDescription']) ."', '" . mysqli_real_escape_string($conn,$_FILES["fileToUpload"]["type"]) . "', '" . mysqli_real_escape_string($conn,$fileSize) . "', '" . mysqli_real_escape_string($conn,$fileName)  ."')";
             
 
                 //inserting

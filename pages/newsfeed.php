@@ -72,33 +72,6 @@ include  "../php/functions.php";
    		}
 
    		listPosts("null", "");
-
-   		/*
-   		function listResults($id , $level) {
-   			$result = listChildrenPosts($id, $level);
-
-   			$i = 0;
-   			$row = $result->fetch_array();
-   			while($row){
-   				echo $level . "Post number " . $i . "<br>";
-    			echo $level . "post id " . $row['post_id'] . "<br>";
-		    	echo $level . "post type " . $row['post_type'] . "<br>";
-		    	echo $level . "post date uploaded " . $row['post_date_uploaded'] . "<br>";
-		    	echo $level . "user id " . $row['user_id'] . "<br>";
-		    	echo $level . '<a href="php/download.php?id=' . $postID . '">'. $name . '</a> <br>';
-		    	echo $level . "post text " . $row['post_text'] . "<br>";
-
-		    	if($row['father_post_id']) {
-		    		listResults($row['father_post_id'], "--". $level);
-		    	}
-
-		    	$i++;
-		    	$row = $result->fetch_array();
-   			}
-   		}
-
-   		listResults(-1, "");
-   		*/
    	?>
 </body>
 

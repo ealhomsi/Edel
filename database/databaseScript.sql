@@ -87,7 +87,8 @@ CREATE TABLE Votes(
    FOREIGN KEY (post_id)
    REFERENCES Posts(post_id)
    ON UPDATE CASCADE
-   ON DELETE RESTRICT
+   ON DELETE RESTRICT,
+   UNIQUE(user_id, post_id);
 );
 
 #creating an index for the post id

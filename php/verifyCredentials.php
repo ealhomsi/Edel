@@ -27,7 +27,7 @@ function main() {
 
 
 	// making the querry
-	$dbQuery = "SELECT user_hashed_password, user_salt, user_email, user_name, user_id FROM Users WHERE user_email='".$email. "'";
+	$dbQuery = "SELECT user_hashed_password, user_salt, user_email, user_name, user_id FROM Users WHERE user_email='".mysqli_real_escape_string($conn,$email) . "'";
 	$result = $conn->query($dbQuery);
 
 	// checking for errors

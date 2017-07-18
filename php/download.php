@@ -9,7 +9,7 @@ if(isset($_GET['id']))
 	$id = $_GET['id'];
 
 	// making the querry
-	$dbQuery = "SELECT post_document_name, post_document_type, post_document_size, post_document_content FROM Posts WHERE post_id='".$id. "'";
+	$dbQuery = "SELECT post_document_name, post_document_type, post_document_size, post_document_content FROM Posts WHERE post_id='".mysqli_real_escape_string($conn,$id). "'";
 	$result = $conn->query($dbQuery);
 	
 	// checking for errors

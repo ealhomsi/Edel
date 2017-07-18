@@ -50,7 +50,7 @@ function main() {
 		echo 'welcome ' . $row['user_name'] . ' your email is: ' . $row['user_email'] . '<br>';
 		$_SESSION['userName'] = $row['user_name'];
 		$_SESSION['userID'] = $row['user_id'];
-		header("Location: https://localhost/new/index.php"); /* Redirect browser */
+		header("Location: https://192.168.1.116/new/index.php"); /* Redirect browser */
 		exit();
 
 	} else {

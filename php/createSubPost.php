@@ -31,7 +31,7 @@ function main() {
     $phptime = date( 'Y-m-d H:i:s');
     echo $phptime;
     //building querry to the database
-    $dbQuery = "INSERT INTO Posts (user_id, post_type, post_date, post_text) VALUES ('" . $_SESSION['userID'] . "', '" . $postType ."', FROM_UNIXTIME('" . $phptime ."'), '". $postText  ."')";
+    $dbQuery = "INSERT INTO Posts (user_id, post_type, post_date, post_text, post_rating) VALUES ('" . $_SESSION['userID'] . "', '" . $postType ."', FROM_UNIXTIME('" . $phptime ."'), '". $postText  ."', 1)";
             
 
     //inserting
@@ -48,7 +48,7 @@ function main() {
 
     //building querry to the database
     $lastID = querryLastPost('post_id');
-    echo "<br> " . $lastID ."<br>" . $fatherPostID . "<br>"; 
+    echo "<br> " . $lastID ."<br>" . $postFatherID . "<br>"; 
     $dbQuery = 'INSERT INTO ChildrenPosts (father_post_id, child_post_id) VALUES (' . $postFatherID . ' , ' . $lastID . ')';
             
 
@@ -64,7 +64,7 @@ function main() {
     $conn->close();
 
 
-    header("Location: https://localhost/new/pages/profile.php"); /* Redirect browser */
+    header("Location: https://192.168.1.116/new/pages/newsfeed.php"); /* Redirect browser */
         
 }
 

@@ -117,6 +117,7 @@ CREATE TABLE TagPosts(
 #creating an index for the post id
 CREATE INDEX TagPostIndexPostID ON TagPosts(post_id);
 
+/**
 #testing
 INSERT INTO Users (user_email, user_private_key, user_public_key, user_salt, user_hashed_password) VALUES ('elias@elias.com', '123', '123', '123', '123');
 
@@ -139,3 +140,4 @@ INSERT INTO ChildrenPosts (father_post_id, child_post_id) VALUES (3,4);
 INSERT INTO ChildrenPosts (father_post_id, child_post_id) VALUES (3,5);
 
 INSERT INTO ChildrenPosts (father_post_id, child_post_id) VALUES (5,6);
+**/

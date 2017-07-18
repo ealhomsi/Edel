@@ -57,13 +57,41 @@ function signFile($fileContent, $privKey) {
 	return $fileContent;
 }
 
-//getting something from database
+//getting something from database Users
 function querrySomethingFromUsers($search, $which, $column) {
 	//connecting to the database
 	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
 
 	// making the querry
 	$dbQuery = "SELECT * FROM Users WHERE ". $which ." = '".$search. "'";
+	$result = $conn->query($dbQuery);
+
+	// checking for errors
+	if(!$result) {
+		echo "Error: " . $dbQuery . "<br>" . $conn->error;
+		die();
+	}
+
+	//if $result is successful
+	$row = $result->fetch_array();  //by now they should have the same email address
+
+	if(!$row) {
+		die('FATAL: user was not found');
+	}
+
+	// free the results array
+	$result->close();
+	
+	return $row[$column];
+}
+
+//getting something from database Posts
+function querrySomethingFromPosts($search, $which, $column) {
+	//connecting to the database
+	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+
+	// making the querry
+	$dbQuery = "SELECT * FROM Posts WHERE ". $which ." = '".$search. "'";
 	$result = $conn->query($dbQuery);
 
 	// checking for errors
@@ -151,13 +179,17 @@ function formatPost($row, $level) {
 	echo "</strong>";
 
 	//printing the text
-	echo $level . "" . $row['post_text'];
+	echo $level . '<a href="../php/upRatePost.php?ratedPostID='. $row['post_id'] . '"> <img style="width:1em;" src="../images/arrowUp.png"> </a>';
+	echo '<span>' . $row['post_rating'] . '</span>';
+
+	echo '<a href="../php/downRatePost.php?ratedPostID='. $row['post_id'] . '"> <img style="width:1em;" src="../images/arrowDown.png"> </a>';
+	echo "".$row['post_text'];
 	echo "<br>";
 
 	$currentPostID = $row['post_id'];
 	//printing the reply to this button
 	echo '<form method=post action="../php/createSubPost.php">';
-	echo $level . "<input style='display:inline;' type=text name='reply". $currentPostID ."'><br>";
+	echo $level ."<input style='display:inline;' type=text name='reply". $currentPostID ."'><br>";
 	echo '<input type=text value=' .$currentPostID . ' name="fatherPostID" style="display:none;">';
 	echo $level . "<input style='display:inline;' type='submit' value='reply'>";
 	echo "<br>";

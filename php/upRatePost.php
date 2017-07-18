@@ -12,18 +12,16 @@ if(!isset($_SESSION['userID']))
 //upload routine and listing files of some organiztion.
 function main() {
     // fetch credentials through post   
-    $postType =  "";
-    $postText = "";
-    
-    // fetch credentials thorugh post
-    if(isset($_POST["postText"])){
-        $postText = $_POST["postText"];
+    $postID = "";
+
+    // fetch credentials thorugh GET
+    if(isset($_GET['ratedPostID'])){
+        $postID = $_GET['ratedPostID'];
+    } else {
+        die("ratedPostID was not set");
     }
-    if(isset($_POST["postType"])) {
-        $postType = $_POST["postType"];
-    }
- 
-     //error no login
+     
+    //error no login
     if(!isset($_SESSION["userName"])){
         die("please login or register first");
     }
@@ -31,9 +29,11 @@ function main() {
 
     //create mysql time
     $phptime = date( 'Y-m-d H:i:s');
-    echo $phptime;
+    echo $phptime . "<br>";
+    echo $postID;
+    $voteValue = 1;
     //building querry to the database
-    $dbQuery = "INSERT INTO Posts (user_id, post_type, post_date, post_text, post_rating) VALUES ('" . $_SESSION['userID'] . "', '" . $postType ."', FROM_UNIXTIME('" . $phptime ."'), '". $postText  ."', 1)";
+    $dbQuery = "INSERT INTO Votes (user_id, post_id, vote_date, vote_value) VALUES ('" . $_SESSION['userID'] . "', '" . $postID ."', FROM_UNIXTIME('" . $phptime ."'), ". $voteValue  .")";
             
 
     //inserting
@@ -41,25 +41,28 @@ function main() {
     $result = $conn->query($dbQuery);
 
     if(!$result) {
-        die("something went wrong" . $conn->error);
+        die("something went wrong inseting a new vote " . $conn->error);
     }
 
     //closing connection
     $conn->close();
 
 
-    //building querry to the database
-    $lastID = querryLastPost('post_id');
-    echo "<br> " . $lastID ."<br>"; 
-    $dbQuery = "INSERT INTO ChildrenPosts (child_post_id) VALUES (" . $lastID .")";
+    //get the post current rating
+    $rating = querrySomethingFromPosts($postID, 'post_id', 'post_rating');
+    $rating = $rating + $voteValue;
+
+    echo "<br>" . $rating . "<br>";
+    //update the rating on the post
+    $dbQuery = 'UPDATE  Posts SET post_rating='. $rating .  ' WHERE post_id=' . $postID ;
             
 
-    //inserting
+    //updating
     $conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
     $result = $conn->query($dbQuery);
 
     if(!$result) {
-        die("something went wrong" . $conn->error);
+        die("something went wrong with updating " . $conn->error);
     }
 
     //closing connection

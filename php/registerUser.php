@@ -65,7 +65,7 @@ VALUES ('" . $name . "', '" . $imei ."', '" . $user ."', '" . $hash ."', '" . $s
 	$_SESSION['userName'] = $name;
 
 	//forward back to the index page
-	header("Location: https://localhost/new/index.php"); /* Redirect browser */
+	header("Location: https://192.168.1.116/new/index.php"); /* Redirect browser */
 	exit();
 }
 

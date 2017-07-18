@@ -77,7 +77,7 @@ function main() {
     }
 
     sleep(3);
-    header("Location: https://localhost/new/profile.php"); /* Redirect browser */
+    header("Location: https://192.168.1.116/new/profile.php"); /* Redirect browser */
         
 }
 

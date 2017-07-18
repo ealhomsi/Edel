@@ -20,17 +20,20 @@ Functional Website:
 
 # TO DO
 The website sepcification is the following:
-a) it should include login ability (done)
-b) it should include sign up ability(done)
-c) it should include posting after singing in (done)
-c') change the display thing like reddit what the fuck is this
-d) the home page (without login) is exactly like reddit (done)
+c') change the display thing like reddit or stack over flow
+d) the home page (without login) is exactly like reddit 
 e) the posting should include functionalities of attaching documnets and images and stuff (everything)
-f) up voting down voting ofcourse (done)
 z) news feed better organized based on trending.
-z') fix sql injection problems.
 z'') tag things and show tags.
 
+# NEW TO DO
+a) make uploading pictures 3/10
+b) making the whole thing look nice
+c) tags (create tag and list them)
+d) threads style reddit in terms of showing sub
+e) save (favorite so ppl would be able to accesit later)
+f) number of views (after clicking inside)
+g) list time of posting.
 
 # WHATS DONE
 a) uploading posts seperately

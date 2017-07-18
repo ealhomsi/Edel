@@ -69,7 +69,7 @@ if(!isset($_SESSION['userID']))
             </div>
 
 
-            <!-- Querry the database for all documents uploaded so far -->
+            <!-- Querry the database for all posts listed so far-->
             <div class="w3-content" style="max-width:2000px;margin-top:46px">
                 <h2> Your uploaded posts:</h2>
                 <?php
@@ -95,10 +95,15 @@ if(!isset($_SESSION['userID']))
                 <img src="../images/img_avatar2.png" alt="Avatar" class="avatar">
             </div>
             <div class="container">
+            	<label><b>Post Image</b></label>
+                <input type="file" placeholder="upload an image for the post" name="postType" required>
+
                 <label><b>Post Type</b></label>
                 <input type="text" placeholder="Describe the new subEdel" name="postType" required>
+
                 <label><b>Post Text</b></label>
                 <input type="text" style="height:9em;" placeholder="text 255 chars left" name="postText" required>
+
                 <button type="submit">Submit</button>
             </div>
             <div class="container" style="background-color:#f1f1f1">

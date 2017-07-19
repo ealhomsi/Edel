@@ -53,7 +53,7 @@
                     echo "<a href=\"pages/profile.php\" > <button class=\"buttonsMenu\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Profile</button> </a>";
                 } else {
                     echo "<button  class=\"buttonsMenu menushit\" onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Login</button>";
-                    echo "<button  class=\"buttonsMenu menushit\" onclick=\"document.getElementById('id02').style.display='block'\" style=\"width:auto; float:right; display:inline-block; margin-left:9.5em; \">Sign up</button>";
+                    echo "<button  class=\"buttonsMenu menushit\" onclick=\"document.getElementById('id02').style.display='block'\" style=\"width:auto; float:right; display:inline-block; margin-left: 9.5em; \">Sign up</button>";
                 }
                  
             ?>      
@@ -93,16 +93,16 @@
                 <img src="images/img_avatar2.png" alt="Avatar" class="avatar">
             </div>
             <div class="container">
-                <label><b>Username</b></label>
+                <label><b>Email</b></label>
                 <input type="email" placeholder="Enter Email" name="userEmail" required>
                 <label><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="userPassword" required>
-                <button type="submit">Login</button>
+                <button type="submit" style="background-color: #456990">Login</button>
                 <input type="checkbox" checked="checked"> Remember me
             </div>
             <div class="container" style="background-color:#f1f1f1">
                 <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                <span class="psw" style="float:right;">Register <a style="color: blue;" onclick="document.getElementById('id02').style.display='block'" > here!</a></span>
+                <span class="psw" style="float:right;"> <a style="color: blue;" onclick="hideAndShow()" > <span style="background-color:#2dd0c6; border-radius: 1em; padding:0.5em 1em; color:white; margin-left: 2em; display:block; float:right; position:relative; bottom:1.1em;"> Sign up <span> </a></span>
             </div>
         </form>
     </div>
@@ -125,10 +125,10 @@
                 <input type="password" placeholder="Enter Password" name="userPassword" required>
 
                 <label><b>IMEI</b></label>
-                <input type="text" placeholder="Enter Imei" name="userImei" required>
+                <input type="text" placeholder="Enter IMEI" name="userImei" required>
 
-                <button type="submit">Register</button>
-                <input type="checkbox" checked="checked"> Remember me
+                <button type="submit" style="background-color: #456990">Register</button>
+               
             </div>
             <div class="container" style="background-color:#f1f1f1">
                 <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>

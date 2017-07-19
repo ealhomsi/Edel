@@ -91,3 +91,11 @@
 .modal {
 	padding: 15em;
 }
+
+form {
+	padding: 1em;
+}
+
+form input {
+	padding: 0em 0.1em;
+}

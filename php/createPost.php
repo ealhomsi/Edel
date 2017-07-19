@@ -14,6 +14,7 @@ function main() {
     // fetch credentials through post   
     $postType =  "";
     $postText = "";
+    $postTags = "";
     
     // fetch credentials thorugh post
     if(isset($_POST["postText"])){
@@ -21,6 +22,9 @@ function main() {
     }
     if(isset($_POST["postType"])) {
         $postType = $_POST["postType"];
+    }
+    if(isset($_POST["postTags"])) {
+    	$postTags = $_POST['postTags'];
     }
  
      //error no login
@@ -32,7 +36,7 @@ function main() {
     //create mysql time
     $phptime = date( 'Y-m-d H:i:s');
     echo $phptime;
-   
+   	echo $postTags;
     //inserting
     $conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
 
@@ -70,6 +74,17 @@ function main() {
     //closing connection
     $conn->close();
 
+    //getting a list of tags
+    $tags = preg_split("/\s*;\s*/", $postTags);
+    $listOfTagsIDs = array();
+    $i = 0; 
+
+    foreach ($tags as $oneTag) {
+    	$listOfTagsIDs[$i] = insertTag($oneTag);
+    	$i++;
+    }
+
+    tagAPost($lastID, $listOfTagsIDs);
 
     header("Location: https://192.168.1.116/new/pages/newsfeed.php"); /* Redirect browser */
         

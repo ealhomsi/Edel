@@ -113,6 +113,34 @@ function querrySomethingFromPosts($search, $which, $column) {
 	return $row[$column];
 }
 
+//getting something from database Posts
+function querrySomethingFromTags($search, $which, $column) {
+	//connecting to the database
+	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+
+	// making the querry
+	$dbQuery = "SELECT * FROM Tags WHERE ". mysqli_real_escape_string($conn,$which) ." = '".mysqli_real_escape_string($conn,$search) . "'";
+	$result = $conn->query($dbQuery);
+
+	// checking for errors
+	if(!$result) {
+		echo "Error: " . $dbQuery . "<br>" . $conn->error;
+		die();
+	}
+
+	//if $result is successful
+	$row = $result->fetch_array();  //by now they should have the same email address
+
+	if(!$row) {
+		die('FATAL: user was not found');
+	}
+
+	// free the results array
+	$result->close();
+	
+	return $row[$column];
+}
+
 //getting something from database
 function querryLastPost($column) {
 	//connecting to the database
@@ -120,6 +148,34 @@ function querryLastPost($column) {
 
 	// making the querry
 	$dbQuery = "SELECT * FROM Posts ORDER BY post_id DESC LIMIT 1";
+	$result = $conn->query($dbQuery);
+
+	// checking for errors
+	if(!$result) {
+		echo "Error: " . $dbQuery . "<br>" . $conn->error;
+		die();
+	}
+
+	//if $result is successful
+	$row = $result->fetch_array();  //by now they should have the same email address
+
+	if(!$row) {
+		die('FATAL: user was not found');
+	}
+
+	// free the results array
+	$result->close();
+	
+	return $row[$column];
+}
+
+//getting something from database
+function querryLastTag($column) {
+	//connecting to the database
+	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+
+	// making the querry
+	$dbQuery = "SELECT * FROM Tags ORDER BY tag_id DESC LIMIT 1";
 	$result = $conn->query($dbQuery);
 
 	// checking for errors
@@ -254,6 +310,13 @@ function formatPost($row, $level) {
 	echo "<br>";
 
 	$currentPostID = $row['post_id'];
+
+
+	//add a list of tags
+	$tagsArray = listOfTags($currentPostID);
+	$tagsLine = implode(", ", $tagsArray);
+	echo $level . "tags: " . $tagsLine . " <br> ";
+
 	//printing the reply to this button
 	echo '<form method=post action="../php/createSubPost.php">';
 	echo $level ."<input style='display:inline;' type=text name='reply". $currentPostID ."'><br>";
@@ -299,4 +362,160 @@ function listPostsUser($id) {
     return $listing;
 }
 
+
+//insertTag
+function insertTag($value) {
+	//being consistent
+	$value = strtolower($value); 
+
+
+	//connecting to the database
+	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+
+	// making the querry
+	$dbQuery = "SELECT * FROM Tags WHERE tag_name='".mysqli_real_escape_string($conn,$value). "'";
+	$result = $conn->query($dbQuery);
+
+	$row = $result->fetch_array();
+
+    //closing the connection 
+    $conn->close();	
+
+   	if($row) {
+   		return $row['tag_id'];
+   	} 
+    
+    //if it does not exist insert it
+    //connecting to the database
+	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+
+	// making the querry
+	$dbQuery = "INSERT INTO Tags (tag_name) VALUES ('".mysqli_real_escape_string($conn,$value). "')";
+	$result = $conn->query($dbQuery);
+
+	if(!$result) {
+		die("error inserting a new tag of " . $value . " with this error " . $conn->error);
+	}
+
+    //closing the connection 
+    $conn->close();	
+
+    //now get the last id and return it
+    $lastID = querryLastTag('tag_id');
+    return $lastID;
+}
+
+//tag a post
+function tagAPost($postID, $arrayOfTags) {
+	//connecting to the database
+	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+
+
+	//multiple inserts
+	foreach($arrayOfTags as $value) {		
+		// making the querry
+		$dbQuery = "INSERT INTO TagPosts (tag_id, post_id) VALUES (" . mysqli_real_escape_string($conn,$value) . " ," . mysqli_real_escape_string($conn,$postID) . ")";
+		$result = $conn->query($dbQuery);
+
+		if(!$result) {
+			die("error inserting a new tagpost of " . $value . " with this error " . $conn->error);
+		}
+	}
+	//closing the connection 
+	$conn->close();	
+}
+
+//get a list of tags
+function listOfTags($postID) {
+	//connecting to the database
+	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+
+	// making the querry
+	$dbQuery = "SELECT * FROM TagPosts INNER JOIN Tags ON TagPosts.tag_id = Tags.tag_id WHERE post_id='".mysqli_real_escape_string($conn,$postID). "'";
+	$result = $conn->query($dbQuery);
+
+	if(!$result) {
+			die("error listing tagpost of " . $value . " with this error " . $conn->error);
+		}
+	//checking the result array for results
+	$row = $result->fetch_array();
+
+	//tag names array
+	$tagNames = array();
+	$i = 0;
+	while($row) {
+		$tagNames[$i] = $row['tag_name'];
+		$i++;
+		$row = $result->fetch_array();
+	}
+	
+	//closing the connection 
+	$conn->close();	
+
+	//return stuff
+	return $tagNames;
+}
+
+
+//get a list of posts following a tag
+function listOfPostsRelatedToATag($tagID) {
+	//connecting to the database
+	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+
+	// making the querry
+	$dbQuery = "SELECT * FROM TagPosts INNER JOIN Posts ON TagPosts.post_id = Tags.post_id WHERE tag_id='".mysqli_real_escape_string($conn,$tagID). "'";
+	$result = $conn->query($dbQuery);
+
+	if(!$result) {
+			die("error listing tagpost of " . $value . " with this error " . $conn->error);
+		}
+	//checking the result array for results
+	$row = $result->fetch_array();
+
+	//tag names array
+	$posts = array();
+	$i = 0;
+	while($row) {
+		$posts[$i] = $row;
+		$i++;
+		$row = $result->fetch_array();
+	}
+	
+	//closing the connection 
+	$conn->close();	
+
+	//return stuff
+	return $posts;
+}
+
+//return a list of all tags
+function listOfAllTags() {
+	//connecting to the database
+	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+
+	// making the querry
+	$dbQuery = "SELECT * FROM Tags";
+	$result = $conn->query($dbQuery);
+
+	if(!$result) {
+			die("error listing tagpost of " . $value . " with this error " . $conn->error);
+		}
+	//checking the result array for results
+	$row = $result->fetch_array();
+
+	//tag names array
+	$tags = array();
+	$i = 0;
+	while($row) {
+		$tags[$i] = $row['tag_name'];
+		$i++;
+		$row = $result->fetch_array();
+	}
+	
+	//closing the connection 
+	$conn->close();	
+
+	//return stuff
+	return $tags;
+}
 ?>

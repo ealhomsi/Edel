@@ -104,6 +104,9 @@ if(!isset($_SESSION['userID']))
                 <label><b>Post Text</b></label>
                 <input type="text" style="height:9em;" placeholder="text 255 chars left" name="postText" required>
 
+				<label><b> Tags: seperate tags by a ; "semi colon" </b> </label>
+				<input type="text" style="height:9em;" placeholder="text 255 chars left" name="postTags" required>
+
                 <button type="submit">Submit</button>
             </div>
             <div class="container" style="background-color:#f1f1f1">

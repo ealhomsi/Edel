@@ -28,7 +28,7 @@ function main() {
 
 
     //create mysql time
-    $phptime = date( 'Y-m-d H:i:s');
+    $phptime = time();
     echo $phptime;
             
 
@@ -68,7 +68,8 @@ function main() {
     $conn->close();
 
 
-    header("Location: https://192.168.1.116/new/pages/newsfeed.php"); /* Redirect browser */
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
         
 }
 

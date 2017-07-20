@@ -1,0 +1,91 @@
+
+.printPost {
+    width: 80%;
+    height: 7em;
+    border-radius: 7em;
+    margin:0 auto;
+    background-color:#2dd0c6;
+}
+
+.leftPrintPost {
+    position:relative;
+    top:0.7em;
+    float:left;
+    margin-left: 2.5em;
+    color:white;
+    display:block;
+    width: 10%;
+}
+
+.leftPrintPost .rating {
+    font-size: 1.5em;
+    position: relative;
+    left:0.2em;
+    width:10%;
+}
+
+.leftPrintPost .downArrow{
+    width:10%;
+    position:relative;
+    display:block;
+    height: 2.5em;
+}
+
+.leftPrintPost .upArrow {
+    width:10%;
+    position:relative;
+    height: 1.7em;
+    display:block;
+
+}
+
+.rightPrintPost {
+    float:left;
+    display:inline-block;
+}
+
+.contentPrintPost {
+    color: white;
+    font-size: 1.5em;
+    position:relative;
+    top:-0.76em;
+}
+
+.contentPrintPost p {
+    display:inline;
+    position:relative;
+    top:0.9em;
+}
+
+.tags {
+    display: inline-block;
+    float:left;
+    background-color: white;
+    color: #2dd0c6;
+    border-radius: 3em;
+    padding: 0.01em 0.1em;
+    margin: 0.5em 0.8em;
+    opacity: 0.99;
+}
+
+.followupPrintPost {
+    float:left;
+}
+#tagsContainer {
+    width: 100%;
+    height: 10em;
+}
+
+.dateAndBy {
+    left:65em;
+    margin-top:2.7em;
+    width:40%;
+    color:white;
+    position:absolute;
+}
+
+.dateAndBy .userName {
+    color:black;
+    font-style: italic;
+    margin-left:0.5em;
+}

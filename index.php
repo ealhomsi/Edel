@@ -55,7 +55,7 @@
                     echo "<button  class=\"buttonsMenu menushit\" onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Login</button>";
                     echo "<button  class=\"buttonsMenu menushit\" onclick=\"document.getElementById('id02').style.display='block'\" style=\"width:auto; float:right; display:inline-block; margin-left: 9.5em; \">Sign up</button>";
                 }
-                 
+        
             ?>      
         </div>
     </div>

@@ -1,7 +1,7 @@
 <?php 
-	//init
-	session_start(); 
-	include  "../php/functions.php";
+    //init
+    session_start(); 
+    include  "../php/functions.php";
 ?>
 
 <!DOCTYPE html>
@@ -19,29 +19,29 @@
     <link rel="stylesheet" href="../css/home.css">
 
     <style>
-    	#icons img {
-    		width: 3em;
-    		height: 3em;
-    		position: relative;
-    		left:5.2em;
-    		top:-2.3em;
-    	}
+        #icons img {
+            width: 3em;
+            height: 3em;
+            position: relative;
+            left:5.2em;
+            top:-2.3em;
+        }
 
-    	.tags {
-    		display: inline-block;
-    		float:left;
-    		background-color: #2dd0c6;
-    		color: white;
-    		border-radius: 3em;
-    		padding: 0.4em 3em;
-    		margin: 0.5em 0.3em;
-    		opacity: 0.99;
-    	}
+        .tags {
+            display: inline-block;
+            float:left;
+            background-color: #2dd0c6;
+            color: white;
+            border-radius: 3em;
+            padding: 0.4em 3em;
+            margin: 0.5em 0.3em;
+            opacity: 0.99;
+        }
 
-    	#tagsContainer {
-    		width: 100%;
-    		height: 10em;
-    	}
+        #tagsContainer {
+            width: 100%;
+            height: 10em;
+        }
     </style>
 </head>
 
@@ -51,7 +51,7 @@
         <div class="w3-bar w3-card-2" id="navbarStyle">
             <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
             <a href="../index.php" class="w3-bar-item w3-button w3-padding-large" id="logo">EDEL</a>
-            <a href="../index.php" class="w3-bar-item w3-button w3-padding-large menushit ">HOME</a>
+            <a href="../index.php" class="w3-bar-item w3-button w3-padding-large menushit">HOME</a>
             <a href="newsfeed.php" class="w3-bar-item w3-button w3-padding-large w3-hide-small menushit">FORUM</a>
             <a href="tags.php" class="w3-bar-item w3-button w3-padding-large w3-hide-small menushit selectedMenu">TAGS</a>
             <a href="aboutus.php" class="w3-bar-item w3-button w3-padding-large w3-hide-small menushit">ABOUT US</a>
@@ -93,56 +93,28 @@
         <a href="#" class="w3-bar-item w3-button w3-padding-large">MERCH</a>
     </div>
 
-    <!-- big screen -->
-    <div id="splashScreen" style="height: 37em;">
-        <h2 id="slogan"> Choose one of the following categories </h2>
-        <br>
-        <p style="color: white; text-align:center;"> The following categories will help you navigate directly to your point of interest </p>
-		<br><br><br>
-        <div id="icons" style="margin: auto; width: 100%; display:absolute; text-align: center;">
-        	<img src="../images/home-icon.png">
-        	<svg height="100" width="100">
-  				<circle cx="50" cy="50" r="40" stroke="white" stroke-width="3" fill="white" />
-			</svg>
-
-			<img src="../images/business-affiliate-network.png">
-        	<svg height="100" width="100">
-  				<circle cx="50" cy="50" r="40" stroke="white" stroke-width="3" fill="white" />
-			</svg>
-
-			<img src="../images/medical-kit.png">
-        	<svg height="100" width="100">
-  				<circle cx="50" cy="50" r="40" stroke="white" stroke-width="3" fill="white" />
-			</svg>
-
-			<img src="../images/map.png">
-        	<svg height="100" width="100">
-  				<circle cx="50" cy="50" r="40" stroke="white" stroke-width="3" fill="white" />
-			</svg>
-
-			<img src="../images/translation.png">
-        	<svg height="100" width="100">
-  				<circle cx="50" cy="50" r="40" stroke="white" stroke-width="2" fill="white" />
-			</svg>
-
-        </div>
-	</div>
-    
-    
+   
     <!-- page content -->
     <div id="tagsContainer">
-    	<h3 style="margin: 1em;"> Tags: </h3>
-    	<ul>
-    		<?php
-    			$tagsArray = listOfAllTags();
-    			foreach($tagsArray as $oneTag) {
-    				echo '<a href="tagPages.php?tagID=' . $oneTag[1]  .'">';
-    				echo '<li class="tags">' . $oneTag[0] . '</li>';
-    				echo '</a>';
-    			}
-    		?>
-    	</ul>
+        <h3 style="margin: 1em;"> Tags: </h3>
+        <ul>
+            <?php
+                $tagID = $_GET['tagID'];
+                if(!$tagID) {
+                    die("did not get the tag ID");
+                }
+
+                #array of all posts
+                $postArray = listOfPostsRelatedToATag($tagID);
+
+                #list all posts
+                foreach($postArray as $onePost) {
+                    printPost($onePost);
+                }
+            ?>
+        </ul>
     </div>
+
     <!-- Login -->
     <div id="id01" class="modal">
         <form class="modal-content animate" action="../php/verifyCredentials.php" method="post">
@@ -164,6 +136,7 @@
             </div>
         </form>
     </div>
+
     <!-- Register -->
     <div id="id02" class="modal">
         <form class="modal-content animate" action="../php/registerUser.php" method="post">
@@ -227,41 +200,41 @@
         <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
     </footer>
     <script>
-	    // Automatic Slideshow - change image every 4 seconds
-	    var myIndex = 0;
-	    carousel();
+        // Automatic Slideshow - change image every 4 seconds
+        var myIndex = 0;
+        carousel();
 
-	    function carousel() {
-	        var i;
-	        var x = document.getElementsByClassName("mySlides");
-	        for (i = 0; i < x.length; i++) {
-	            x[i].style.display = "none";
-	        }
-	        myIndex++;
-	        if (myIndex > x.length) {
-	            myIndex = 1
-	        }
-	        x[myIndex - 1].style.display = "block";
-	        setTimeout(carousel, 4000);
-	    }
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            myIndex++;
+            if (myIndex > x.length) {
+                myIndex = 1
+            }
+            x[myIndex - 1].style.display = "block";
+            setTimeout(carousel, 4000);
+        }
 
-	    // Used to toggle the menu on small screens when clicking on the menu button
-	    function myFunction() {
-	        var x = document.getElementById("navDemo");
-	        if (x.className.indexOf("w3-show") == -1) {
-	            x.className += " w3-show";
-	        } else {
-	            x.className = x.className.replace(" w3-show", "");
-	        }
-	    }
+        // Used to toggle the menu on small screens when clicking on the menu button
+        function myFunction() {
+            var x = document.getElementById("navDemo");
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
 
-	    // When the user clicks anywhere outside of the modal, close it
-	    var modal = document.getElementById('ticketModal');
-	    window.onclick = function(event) {
-	        if (event.target == modal) {
-	            modal.style.display = "none";
-	        }
-	    }
+        // When the user clicks anywhere outside of the modal, close it
+        var modal = document.getElementById('ticketModal');
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
 
     </script>
 </body>

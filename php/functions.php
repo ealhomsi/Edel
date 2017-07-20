@@ -76,7 +76,7 @@ function querrySomethingFromUsers($search, $which, $column) {
 	$row = $result->fetch_array();  //by now they should have the same email address
 
 	if(!$row) {
-		die('FATAL: user was not found');
+		die('FATAL: user was not found find this' . $seatch . ' which is ' . $which .  ' and give me back '. $column);
 	}
 
 	// free the results array
@@ -328,7 +328,73 @@ function formatPost($row, $level) {
 
 //print normal post
 function printPost($row) {
-	$level = "";
+	#this is where we print the post
+	$rating = $row['post_rating'];
+	$postID = $row['post_id'];
+	$postText = $row['post_text'];
+	$postUserID = $row['user_id'];
+	$userName = querrySomethingFromUsers($postUserID, 'user_id' , 'user_name');
+	$date = $row['post_date'];
+$result= <<< EOT
+	<div class="printPost">
+		<div class="leftPrintPost">
+			<div class="upArrow"> <a href="../php/upRatePost.php?ratedPostID=$postID"> <img style="width:1.5em;" src="../images/arrowUp.png"> </a> </div>
+			<div class="rating"> <span> $rating </span> </div>
+			<div class="downArrow"> <a href="../php/downRatePost.php?ratedPostID=$postID"> <img style="width:1.5em;" src="../images/arrowDown.png"> </a> </div>
+		</div>
+
+		<!-- content -->
+		<div class="rightPrintPost">
+			<div class="contentPrintPost">
+				<p> $postText </p>
+			</div>
+
+			<div class="followupPrintPost">
+				<div class="tags">
+EOT;
+
+
+    			$tagsArray = listOfTags($postID);
+    			foreach($tagsArray as $oneTag) {
+    				$result .= '<a href="tagPages.php?tagID=' . $oneTag[1]  .'">';
+    				$result .='<li class="tags">' . $oneTag[0] . '</li>';
+    				$result .=  '</a>';
+    			}
+$result .= <<< EOT
+				</div>
+
+				<div class="dateAndBy">
+					<span> $date </span> <span class="userName"> asked by $userName </span>
+				</div>
+			</div>
+		</div>
+
+	
+	</div>
+EOT;
+
+	echo $result;
+	echo "<br>";
+	/*
+	echo <<<EOT
+	<div id="printPost">
+		<div id="leftPrintPost">
+			<a href="../php/upRatePost.php?ratedPostID=$row['post_id']"> <img style="width:1em;" src="../images/arrowUp.png"> </a>
+			<span> $row['post_rating'] </span>
+			<a href="../php/downRatePost.php?ratedPostID=$row['post_id']"> <img style="width:1em;" src="../images/arrowDown.png"> </a>
+		</div>
+
+		<div id="rightPrintPost">
+
+		</div>
+	</div>
+EOT;
+
+	echo '<div id="printPost">';
+	echo '<div id="leftPrintPost">';
+	echo '</div>';
+	echo '</div>';
+
 	//printing the title and by which user
 	echo "<strong>";
 	echo $level . "<h4 style='display:inline;'>" . $row['post_type'] . "</h4> by <i> user id " . $row['user_id'] . " </i> <br>"; 
@@ -337,6 +403,7 @@ function printPost($row) {
 	//printing the text
 	echo $level . "" . $row['post_text'];
 	echo "<br>";
+	*/
 }
 
 //getting all uploaded posts
@@ -444,7 +511,7 @@ function listOfTags($postID) {
 	$tagNames = array();
 	$i = 0;
 	while($row) {
-		$tagNames[$i] = $row['tag_name'];
+		$tagNames[$i] = array("#".$row['tag_name'], $row['tag_id']);
 		$i++;
 		$row = $result->fetch_array();
 	}
@@ -507,7 +574,7 @@ function listOfAllTags() {
 	$tags = array();
 	$i = 0;
 	while($row) {
-		$tags[$i] = $row['tag_name'];
+		$tags[$i] = array("#". $row['tag_name'], $row['tag_id']);
 		$i++;
 		$row = $result->fetch_array();
 	}

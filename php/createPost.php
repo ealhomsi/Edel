@@ -34,14 +34,14 @@ function main() {
 
 
     //create mysql time
-    $phptime = date( 'Y-m-d H:i:s');
+    $phptime = time();
     echo $phptime;
    	echo $postTags;
     //inserting
     $conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
 
     //building querry to the database
-    $dbQuery = "INSERT INTO Posts (user_id, post_type, post_date, post_text, post_rating) VALUES ('" . mysqli_real_escape_string($conn, $_SESSION['userID']) . "', '" . mysqli_real_escape_string($conn, $postType) ."', FROM_UNIXTIME('" . mysqli_real_escape_string($conn, $phptime) ."'), '". mysqli_real_escape_string($conn, $postText)  ."', 1)";
+    $dbQuery = "INSERT INTO Posts (user_id, post_type, post_date, post_text, post_rating) VALUES ('" . mysqli_real_escape_string($conn, $_SESSION['userID']) . "', '" . mysqli_real_escape_string($conn, $postType) ."', FROM_UNIXTIME('" . $phptime ."'), '". mysqli_real_escape_string($conn, $postText)  ."', 1)";
             
 
     $result = $conn->query($dbQuery);
@@ -86,7 +86,8 @@ function main() {
 
     tagAPost($lastID, $listOfTagsIDs);
 
-    header("Location: https://192.168.1.116/new/pages/newsfeed.php"); /* Redirect browser */
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
         
 }
 

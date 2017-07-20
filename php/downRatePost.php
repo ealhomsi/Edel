@@ -32,11 +32,12 @@ function main() {
     if($status == 1) {
         //if the case is upvoted
         deleteUserParticipation($postID, $_SESSION['userID'], -1);
-        header("Location: https://192.168.1.116/new/pages/newsfeed.php"); /* Redirect browser */
+        
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit();
     } else if ($status == -1) {
         //just forget the user
-        header("Location: https://192.168.1.116/new/pages/newsfeed.php"); /* Redirect browser */
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
         exit();
     }
 
@@ -89,7 +90,8 @@ function main() {
     $conn->close();
 
 
-    header("Location: https://192.168.1.116/new/pages/newsfeed.php"); /* Redirect browser */
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
         
 }
 

@@ -24,12 +24,15 @@ if(!isset($_SESSION['userID']))
     <meta name="keywords" content="cutom file input, styling, label, cross-browser, accessible, input type file" />
     <meta name="author" content="Osvaldas Valutis for Codrops" />
     <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css" />ke
     <link rel="stylesheet" type="text/css" href="../css/demo.css" />
     <link rel="stylesheet" type="text/css" href="../css/component.css" />
+    <link rel="stylesheet" type="text/css" href="../css/printPost.css" />
     <!--[if IE]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+
 </head>
 
 
@@ -76,7 +79,7 @@ if(!isset($_SESSION['userID']))
                     function listingUserPostsGivenID($id) {
                         $result = listPostsUser($id);
                         
-                        echo "<br> you have " . sizeof($result) . " posts: <br>";
+                        echo '<h3 style="margin-left:3em;"><br> You have ' . sizeof($result) . " posts: <br></h3>";
                         //getting all posts
                         foreach ($result as $value) {
                             printPost($value, "");

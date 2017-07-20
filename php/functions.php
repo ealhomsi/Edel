@@ -113,6 +113,37 @@ function querrySomethingFromPosts($search, $which, $column) {
 	return $row[$column];
 }
 
+//getting a specific post
+function getSpecificPost($postID) {
+	//connecting to the database
+	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+
+	$which = 'post_id';
+	$search = $postID;
+
+	// making the querry
+	$dbQuery = "SELECT * FROM Posts WHERE ". mysqli_real_escape_string($conn,$which) ." = ".mysqli_real_escape_string($conn,$search);
+	$result = $conn->query($dbQuery);
+
+	// checking for errors
+	if(!$result) {
+		echo "Error: " . $dbQuery . "<br>" . $conn->error;
+		die();
+	}
+
+	//if $result is successful
+	$row = $result->fetch_array();  //by now they should have the same email address
+
+	if(!$row) {
+		die('FATAL: user was not found');
+	}
+
+	// free the results array
+	$result->close();
+	
+	return array($row);
+}
+
 //getting something from database Posts
 function querrySomethingFromTags($search, $which, $column) {
 	//connecting to the database
@@ -405,7 +436,7 @@ $result= <<< EOT
 		<!-- content -->
 		<div class="rightPrintPost">
 			<div class="contentPrintPost">
-				<p> $postText </p>
+				<a href="postPage.php?postID=${postID}" > <p> $postText </p> </a>
 			</div>
 
 			<div class="followupPrintPost">

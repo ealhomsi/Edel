@@ -8,7 +8,7 @@
 <html>
 <head>
     <title>EDEL</title>
-     <link rel="stylesheet" href="css/loginPop.css">
+    <link rel="stylesheet" href="css/loginPop.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -46,7 +46,7 @@
             <?php
                 if(isset($_SESSION['userName'])) {
                     echo '<div  style="width:auto; position:relative; float:right; display:inline-block" >
-                            <p> hello ' . $_SESSION['userName'] . ' id = ' . $_SESSION['userID'] . '</p>
+                            <p> hello ' . $_SESSION['userName'] . '</p>
                           </div>';
                     echo "<a href=\"php/logout.php\" > <button class=\"buttonsMenu\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Logout</button> </a>";
 

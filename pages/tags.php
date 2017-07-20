@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>EDEL</title>
+    <title>Tags</title>
      <link rel="stylesheet" href="../css/loginPop.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -40,7 +40,7 @@
 
     	#tagsContainer {
     		width: 100%;
-    		height: 10em;
+            display:block;
     	}
     </style>
 </head>
@@ -72,11 +72,11 @@
             <?php
                 if(isset($_SESSION['userName'])) {
                     echo '<div  style="width:auto; position:relative; float:right; display:inline-block" >
-                            <p> hello ' . $_SESSION['userName'] . ' id = ' . $_SESSION['userID'] . '</p>
+                            <p> hello ' . $_SESSION['userName'] .  '</p>
                           </div>';
-                    echo "<a href=\"php/logout.php\" > <button class=\"buttonsMenu\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Logout</button> </a>";
+                    echo "<a href=\"../php/logout.php\" > <button class=\"buttonsMenu\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Logout</button> </a>";
 
-                    echo "<a href=\"pages/profile.php\" > <button class=\"buttonsMenu\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Profile</button> </a>";
+                    echo "<a href=\"profile.php\" > <button class=\"buttonsMenu\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Profile</button> </a>";
                 } else {
                     echo "<button  class=\"buttonsMenu menushit\" onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Login</button>";
                     echo "<button  class=\"buttonsMenu menushit\" onclick=\"document.getElementById('id02').style.display='block'\" style=\"width:auto; float:right; display:inline-block; margin-left:9.5em; \">Sign up</button>";
@@ -85,6 +85,8 @@
             ?>      
         </div>
     </div>
+
+
     <!-- Navbar on small screens -->
     <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
         <a href="#band" class="w3-bar-item w3-button w3-padding-large">BAND</a>
@@ -130,8 +132,8 @@
     
     
     <!-- page content -->
-    <div id="tagsContainer">
-    	<h3 style="margin: 1em;"> Tags: </h3>
+    <div id="tagsContainer"  style="max-width:2000px;margin-top:46px" class="w3-content w3-container w3-padding-64 w3-center w3-meduim">
+    	<h3 style="margin:1em;"> Tags: </h3>
     	<ul>
     		<?php
     			$tagsArray = listOfAllTags();

@@ -2,56 +2,42 @@
     //init
     session_start(); 
     include  "../php/functions.php";
+    $tagID = $_GET['tagID'];
+    $tagName = querrySomethingFromTags($tagID, 'tag_id', 'tag_name');
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>EDEL</title>
-     <link rel="stylesheet" href="../css/loginPop.css">
+    <title>Tag <?php echo $tagName; ?>  </title>
+    <link rel="stylesheet" href="../css/loginPop.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="../js/homeNavBar.js"> </script>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Demo for the tutorial: Styling and Customizing File Inputs the Smart Way" />
+    <meta name="keywords" content="cutom file input, styling, label, cross-browser, accessible, input type file" />
+    <meta name="author" content="Osvaldas Valutis for Codrops" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="../css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="../css/component.css" />
     <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" type="text/css" href="../css/printPost.css" />
 
-    <style>
-        #icons img {
-            width: 3em;
-            height: 3em;
-            position: relative;
-            left:5.2em;
-            top:-2.3em;
-        }
-
-        .tags {
-            display: inline-block;
-            float:left;
-            background-color: #2dd0c6;
-            color: white;
-            border-radius: 3em;
-            padding: 0.4em 3em;
-            margin: 0.5em 0.3em;
-            opacity: 0.99;
-        }
-
-        #tagsContainer {
-            width: 100%;
-            height: 10em;
-        }
-    </style>
 </head>
 
 <body>
     <!-- Navbar -->
-    <div id="NavBarShit" class="w3-top">
+    <div id="NavBarShit" class="w3-top" style="background-color: black;">
         <div class="w3-bar w3-card-2" id="navbarStyle">
             <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
             <a href="../index.php" class="w3-bar-item w3-button w3-padding-large" id="logo">EDEL</a>
-            <a href="../index.php" class="w3-bar-item w3-button w3-padding-large menushit">HOME</a>
+            <a href="../index.php" class="w3-bar-item w3-button w3-padding-large menushit ">HOME</a>
             <a href="newsfeed.php" class="w3-bar-item w3-button w3-padding-large w3-hide-small menushit">FORUM</a>
             <a href="tags.php" class="w3-bar-item w3-button w3-padding-large w3-hide-small menushit selectedMenu">TAGS</a>
             <a href="aboutus.php" class="w3-bar-item w3-button w3-padding-large w3-hide-small menushit">ABOUT US</a>
@@ -72,11 +58,11 @@
             <?php
                 if(isset($_SESSION['userName'])) {
                     echo '<div  style="width:auto; position:relative; float:right; display:inline-block" >
-                            <p> hello ' . $_SESSION['userName'] . ' id = ' . $_SESSION['userID'] . '</p>
+                            <p> hello ' . $_SESSION['userName'] .  '</p>
                           </div>';
-                    echo "<a href=\"php/logout.php\" > <button class=\"buttonsMenu\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Logout</button> </a>";
+                    echo "<a href=\"../php/logout.php\" > <button class=\"buttonsMenu\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Logout</button> </a>";
 
-                    echo "<a href=\"pages/profile.php\" > <button class=\"buttonsMenu\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Profile</button> </a>";
+                    echo "<a href=\"profile.php\" > <button class=\"buttonsMenu\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Profile</button> </a>";
                 } else {
                     echo "<button  class=\"buttonsMenu menushit\" onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Login</button>";
                     echo "<button  class=\"buttonsMenu menushit\" onclick=\"document.getElementById('id02').style.display='block'\" style=\"width:auto; float:right; display:inline-block; margin-left:9.5em; \">Sign up</button>";
@@ -85,6 +71,8 @@
             ?>      
         </div>
     </div>
+
+
     <!-- Navbar on small screens -->
     <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
         <a href="#band" class="w3-bar-item w3-button w3-padding-large">BAND</a>
@@ -93,26 +81,26 @@
         <a href="#" class="w3-bar-item w3-button w3-padding-large">MERCH</a>
     </div>
 
-   
-    <!-- page content -->
-    <div id="tagsContainer">
-        <h3 style="margin: 1em;"> Tags: </h3>
-        <ul>
-            <?php
-                $tagID = $_GET['tagID'];
-                if(!$tagID) {
-                    die("did not get the tag ID");
-                }
+    
+    
+    <br>
 
-                #array of all posts
-                $postArray = listOfPostsRelatedToATag($tagID);
-
-                #list all posts
-                foreach($postArray as $onePost) {
-                    printPost($onePost);
+     <!-- Querry the database for all posts listed in those tags-->
+    <div class="w3-content" style="max-width:2000px;margin-top:46px">
+        <br>
+        <br>
+        <h2 style="margin-left: 1.5em;"> Posts with tag of #<?php echo $tagName; ?>:</h2> <br>
+        <?php
+            function printByTag($tagID) {
+                $result = listOfPostsRelatedToATag($tagID);
+                //getting all posts
+                foreach ($result as $value) {
+                    printPost($value, "");
                 }
-            ?>
-        </ul>
+            }
+            printByTag($tagID);
+        ?>
+        
     </div>
 
     <!-- Login -->
@@ -136,7 +124,6 @@
             </div>
         </form>
     </div>
-
     <!-- Register -->
     <div id="id02" class="modal">
         <form class="modal-content animate" action="../php/registerUser.php" method="post">
@@ -190,15 +177,7 @@
     </script>
 
     <!-- Footer -->
-    <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
-        <i class="fa fa-facebook-official w3-hover-opacity"></i>
-        <i class="fa fa-instagram w3-hover-opacity"></i>
-        <i class="fa fa-snapchat w3-hover-opacity"></i>
-        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-        <i class="fa fa-twitter w3-hover-opacity"></i>
-        <i class="fa fa-linkedin w3-hover-opacity"></i>
-        <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-    </footer>
+    
     <script>
         // Automatic Slideshow - change image every 4 seconds
         var myIndex = 0;
@@ -237,6 +216,18 @@
         }
 
     </script>
+
+
+    <!-- Footer -->
+    <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+        <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+    </footer>
 </body>
 
 <script>

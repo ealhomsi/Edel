@@ -314,7 +314,14 @@ function formatPost($row, $level) {
 
 	//add a list of tags
 	$tagsArray = listOfTags($currentPostID);
-	$tagsLine = implode(", ", $tagsArray);
+	$tagsNames = array();
+	$i = 0;
+
+	foreach($tagsArray as $value) {
+		$tagsNames[$i] = $value[0];
+		$i++;
+	}
+	$tagsLine = implode(", ", $tagsNames);
 	echo $level . "tags: " . $tagsLine . " <br> ";
 
 	//printing the reply to this button
@@ -324,6 +331,58 @@ function formatPost($row, $level) {
 	echo $level . "<input style='display:inline;' type='submit' value='reply'>";
 	echo "<br>";
 	echo '</form>';	
+}
+
+//print hirearchy post 
+function printPost2($row, $level) {
+	$width = 80 - ($level * 5);
+	#this is where we print the post
+	$rating = $row['post_rating'];
+	$postID = $row['post_id'];
+	$postText = $row['post_text'];
+	$postUserID = $row['user_id'];
+	
+	if($level > 3) {
+		$level = 3;
+	}
+
+	$indentDate=  array(47, 35, 27, 17)[$level];
+
+	$indentName = array(42, 32, 23, 12)[$level];
+	$userName = querrySomethingFromUsers($postUserID, 'user_id' , 'user_name');
+	$date = $row['post_date'];
+$result= <<< EOT
+	<div class="printPost2" style="text-indent: ${level}em; width: ${width}%; ">
+		<div class="leftPrintPost2">
+			<div class="upArrow2"> <a href="../php/upRatePost.php?ratedPostID=$postID"> <img style="width:1em;" src="../images/arrowUp.png"> </a> </div>
+			<div class="rating2" style="font-size:1em;"> <span> $rating </span> </div>
+			<div class="downArrow2"> <a href="../php/downRatePost.php?ratedPostID=$postID"> <img style="width:1em;" src="../images/arrowDown.png"> </a> </div>
+		</div>
+
+		<!-- content -->
+		<div class="rightPrintPost2">
+			<div class="contentPrintPost2" style="width:100%; height:3em;">
+				<p> $postText </p>
+			</div>
+
+			
+EOT;
+$result .= <<< EOT
+
+				<div class="dateAndBy2" style="left:${indentDate}em; ">
+					<span> $date </span> 
+				</div>
+				<div class="userName2" style="left:${indentName}em; ">
+					<span > asked by $userName </span>
+				</div>
+		</div>
+
+	
+	</div>
+EOT;
+
+	echo $result;
+	echo "<br>";
 }
 
 //print normal post
@@ -350,7 +409,7 @@ $result= <<< EOT
 			</div>
 
 			<div class="followupPrintPost">
-				<div class="tags">
+				<div class="tags"> 
 EOT;
 
 
@@ -362,10 +421,15 @@ EOT;
     			}
 $result .= <<< EOT
 				</div>
-
-				<div class="dateAndBy">
-					<span> $date </span> <span class="userName"> asked by $userName </span>
+				<div style="float:right; position: absolute; left:70em;">
+					<div class="dateAndBy">
+						<span> $date </span> 
+					</div>
+					<div class="userName">
+						<span > asked by $userName </span>
+					</div>
 				</div>
+				
 			</div>
 		</div>
 
@@ -375,35 +439,6 @@ EOT;
 
 	echo $result;
 	echo "<br>";
-	/*
-	echo <<<EOT
-	<div id="printPost">
-		<div id="leftPrintPost">
-			<a href="../php/upRatePost.php?ratedPostID=$row['post_id']"> <img style="width:1em;" src="../images/arrowUp.png"> </a>
-			<span> $row['post_rating'] </span>
-			<a href="../php/downRatePost.php?ratedPostID=$row['post_id']"> <img style="width:1em;" src="../images/arrowDown.png"> </a>
-		</div>
-
-		<div id="rightPrintPost">
-
-		</div>
-	</div>
-EOT;
-
-	echo '<div id="printPost">';
-	echo '<div id="leftPrintPost">';
-	echo '</div>';
-	echo '</div>';
-
-	//printing the title and by which user
-	echo "<strong>";
-	echo $level . "<h4 style='display:inline;'>" . $row['post_type'] . "</h4> by <i> user id " . $row['user_id'] . " </i> <br>"; 
-	echo "</strong>";
-
-	//printing the text
-	echo $level . "" . $row['post_text'];
-	echo "<br>";
-	*/
 }
 
 //getting all uploaded posts
@@ -434,6 +469,9 @@ function listPostsUser($id) {
 function insertTag($value) {
 	//being consistent
 	$value = strtolower($value); 
+	if($value == "") {
+		$value = "empty";
+	}
 
 
 	//connecting to the database
@@ -530,11 +568,11 @@ function listOfPostsRelatedToATag($tagID) {
 	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
 
 	// making the querry
-	$dbQuery = "SELECT * FROM TagPosts INNER JOIN Posts ON TagPosts.post_id = Tags.post_id WHERE tag_id='".mysqli_real_escape_string($conn,$tagID). "'";
+	$dbQuery = "SELECT * FROM TagPosts INNER JOIN Posts ON TagPosts.post_id = Posts.post_id WHERE TagPosts.tag_id='".mysqli_real_escape_string($conn,$tagID). "'";
 	$result = $conn->query($dbQuery);
 
 	if(!$result) {
-			die("error listing tagpost of " . $value . " with this error " . $conn->error);
+			die("error listing tagpost of " . $tagID . " with this error " . $conn->error);
 		}
 	//checking the result array for results
 	$row = $result->fetch_array();

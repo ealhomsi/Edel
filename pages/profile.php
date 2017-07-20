@@ -24,71 +24,77 @@ if(!isset($_SESSION['userID']))
     <meta name="keywords" content="cutom file input, styling, label, cross-browser, accessible, input type file" />
     <meta name="author" content="Osvaldas Valutis for Codrops" />
     <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" type="text/css" href="../css/normalize.css" />ke
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="../css/demo.css" />
     <link rel="stylesheet" type="text/css" href="../css/component.css" />
     <link rel="stylesheet" type="text/css" href="../css/printPost.css" />
+    <link rel="stylesheet" href="../css/home.css">
     <!--[if IE]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-
 </head>
 
 
 <body>
     <!-- Navbar -->
-    <div class="w3-top">
-        <div class="w3-bar w3-black w3-card-2">
+    <div id="NavBarShit" class="w3-top" style="background-color: black;">
+        <div class="w3-bar w3-card-2" id="navbarStyle">
             <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-            <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
-            <a href="#" onclick="document.getElementById('id01').style.display='block'" class="w3-bar-item w3-button w3-padding-large w3-hide-small">NEW POST</a>
-            <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hide-small">N/A</a>
-            <a href="newsfeed.php" class="w3-bar-item w3-button w3-padding-large w3-hide-small">NEWS FEED</a>
+            <a href="../index.php" class="w3-bar-item w3-button w3-padding-large" id="logo">EDEL</a>
+            <a href="../index.php" class="w3-bar-item w3-button w3-padding-large menushit ">HOME</a>
+            <a href="newsfeed.php" class="w3-bar-item w3-button w3-padding-large w3-hide-small menushit">FORUM</a>
+            <a href="tags.php" class="w3-bar-item w3-button w3-padding-large w3-hide-small menushit selectedMenu">TAGS</a>
+            <a href="aboutus.php" class="w3-bar-item w3-button w3-padding-large w3-hide-small menushit">ABOUT US</a>
             <div class="w3-dropdown-hover w3-hide-small">
-                <button class="w3-padding-large w3-button" title="More">MORE <i class="fa fa-caret-down"></i></button>
-                <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <button class="w3-padding-large w3-button menushit" title="More">MORE <i class="fa fa-caret-down"></i></button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4 contentbar">
                     <a href="#" class="w3-bar-item w3-button">Merchandise</a>
                     <a href="#" class="w3-bar-item w3-button">Extras</a>
                     <a href="#" class="w3-bar-item w3-button">Media</a>
                 </div>
             </div>
 
+
+            <div>
+                <a href="javascript:void(0)" class="w3-padding-large w3-hover-gray w3-hide-small w3-right menushit"><i class="fa fa-search"></i></a>
+            </div>
+
             <?php
-            if(isset($_SESSION['userName'])) {
+                if(isset($_SESSION['userName'])) {
                     echo '<div  style="width:auto; position:relative; float:right; display:inline-block" >
                             <p> hello ' . $_SESSION['userName'] . '</p>
-                        </div>';
-                        echo "<a href=\"../php/logout.php\" > <button href style=\"width:auto; position:relative; float:right; display:inline-block; \">Logout</button> </a>";
-                    } else {
-                        echo "<button onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Login</button>";
-                    }
-                    ?>
+                          </div>';
+                    echo "<a href=\"../php/logout.php\" > <button class=\"buttonsMenu\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Logout</button> </a>";
 
-                    <div>
-                        <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
-                    </div>
-                </div>
-            </div>
+                    echo "<a href=\"profile.php\" > <button class=\"buttonsMenu\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Profile</button> </a>";
+                } else {
+                    echo "<button  class=\"buttonsMenu menushit\" onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Login</button>";
+                    echo "<button  class=\"buttonsMenu menushit\" onclick=\"document.getElementById('id02').style.display='block'\" style=\"width:auto; float:right; display:inline-block; margin-left:9.5em; \">Sign up</button>";
+                }
+                 
+            ?>      
+        </div>
+    </div>
 
-
-            <!-- Querry the database for all posts listed so far-->
-            <div class="w3-content" style="max-width:2000px;margin-top:46px">
-                <h2> Your uploaded posts:</h2>
-                <?php
-                    function listingUserPostsGivenID($id) {
-                        $result = listPostsUser($id);
-                        
-                        echo '<h3 style="margin-left:3em;"><br> You have ' . sizeof($result) . " posts: <br></h3>";
-                        //getting all posts
-                        foreach ($result as $value) {
-                            printPost($value, "");
-                        }
-                    }
-                    listingUserPostsGivenID($_SESSION['userID']);
-                ?>
+    <!-- Querry the database for all posts listed so far-->
+    <div class="w3-content" style="max-width:2000px;margin-top:46px">
+    	<br>
+    	<br>
+        <h2> Your uploaded posts:</h2>
+        <?php
+            function listingUserPostsGivenID($id) {
+                $result = listPostsUser($id);
                 
-            </div>
+                echo '<h3 style="margin-left:2.3em;"><br> You have ' . sizeof($result) . " posts: <br></h3>";
+                //getting all posts
+                foreach ($result as $value) {
+                    printPost($value, "");
+                }
+            }
+            listingUserPostsGivenID($_SESSION['userID']);
+        ?>
+        
+    </div>
 
     <!-- New Post -->
     <div id="id01" class="modal">
@@ -98,9 +104,6 @@ if(!isset($_SESSION['userID']))
                 <img src="../images/img_avatar2.png" alt="Avatar" class="avatar">
             </div>
             <div class="container">
-            	<label><b>Post Image</b></label>
-                <input type="file" placeholder="upload an image for the post" name="postType" required>
-
                 <label><b>Post Type</b></label>
                 <input type="text" placeholder="Describe the new subEdel" name="postType" required>
 

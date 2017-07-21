@@ -88,3 +88,14 @@
     float:right;
     display:inline;
 }
+
+
+
+.printPost2 .userName2 button {
+   border-radius: 3em;
+   padding: 0.2em 2em;
+   position: relative;
+   right:2em;
+   background-color: white;
+   color: #2dd0c6;
+}

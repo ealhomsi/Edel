@@ -106,7 +106,7 @@
               } else {
                 printPost2($value, $level);
               }
-              listPosts($value["post_id"], $level++);
+              listPosts($value["post_id"], $level+1);
             }
           }
 

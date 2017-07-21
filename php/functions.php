@@ -377,9 +377,8 @@ function printPost2($row, $level) {
 		$level = 3;
 	}
 
-	$indentDate=  array(47, 35, 27, 17)[$level];
-
-	$indentName = array(42, 32, 23, 12)[$level];
+	$indentDate=  array(47, 9, 37, 17)[$level];
+	$indentName = array(22, 9, 35, 12)[$level];
 	$userName = querrySomethingFromUsers($postUserID, 'user_id' , 'user_name');
 	$date = $row['post_date'];
 $result= <<< EOT
@@ -394,17 +393,32 @@ $result= <<< EOT
 		<div class="rightPrintPost2">
 			<div class="contentPrintPost2" style="width:100%; height:3em;">
 				<p> $postText </p>
+				<p style="color: black; position:relative; left:1em; font-size:0.7em"> by $userName </p> 
 			</div>
 
 			
 EOT;
 $result .= <<< EOT
 
-				<div class="dateAndBy2" style="left:${indentDate}em; ">
+				<div class="dateAndBy2" style="left:${indentDate}em;">
 					<span> $date </span> 
 				</div>
-				<div class="userName2" style="left:${indentName}em; ">
-					<span > asked by $userName </span>
+				<div class="userName2" style="left:${indentName}em;">
+					<button onclick="document.getElementById('subpost$postID').style.display='block'"> reply </button>
+				</div>
+
+				<!-- Login -->
+				<div id="subpost$postID" class="modal">
+					<form class="modal-content animate" action="../php/createSubPost.php" method="post">
+			            <div class="container">
+			              	<input type="text" style="height: 9em;" placeholder="255 characters" name="reply$postID" required>
+			              	<input style="display: none;" type="text" value="$postID" name="fatherPostID">
+			              	<button type="submit" value="post" style="text-weight: bold;"> post </button>
+			            </div>
+			            <div class="container" style="background-color:#f1f1f1">
+			                <button type="button" onclick="document.getElementById('subpost$postID').style.display='none'" class="cancelbtn" style="margin-left:1.5em;">Cancel</button>
+		            	</div>
+			        </form>
 				</div>
 		</div>
 
@@ -436,7 +450,8 @@ $result= <<< EOT
 		<!-- content -->
 		<div class="rightPrintPost">
 			<div class="contentPrintPost">
-				<a href="postPage.php?postID=${postID}" > <p> $postText </p> </a>
+				<a style="color: white"; href="postPage.php?postID=${postID}" > <p> $postText </p> </a>
+				<p style="color: black; position:relative; left:1em; font-size:0.7em"> asked $userName </p> 
 			</div>
 
 			<div class="followupPrintPost">
@@ -457,7 +472,21 @@ $result .= <<< EOT
 						<span> $date </span> 
 					</div>
 					<div class="userName">
-						<span > asked by $userName </span>
+						<button onclick="document.getElementById('subpost$postID').style.display='block'"> reply </button>
+
+						<!-- Login -->
+    					<div id="subpost$postID" class="modal">
+        					<form class="modal-content animate" action="../php/createSubPost.php" method="post">
+					            <div class="container">
+					              	<input type="text" style="height: 9em;" placeholder="255 characters" name="reply$postID" required>
+					              	<input style="display: none;" type="text" value="$postID" name="fatherPostID">
+					              	<button type="submit" value="post" style="text-weight: bold;"> post </button>
+					            </div>
+					            <div class="container" style="background-color:#f1f1f1">
+					                <button type="button" onclick="document.getElementById('subpost$postID').style.display='none'" class="cancelbtn" style="margin-left:1.5em;">Cancel</button>
+				            	</div>
+					        </form>
+    					</div>
 					</div>
 				</div>
 				

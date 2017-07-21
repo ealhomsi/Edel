@@ -80,12 +80,15 @@ if(!isset($_SESSION['userID']))
     <div class="w3-content" style="max-width:2000px;margin-top:46px">
     	<br>
     	<br>
-        <h2> Your uploaded posts:</h2>
+        <h2 style="margin-left: 1em;"> Your uploaded posts:</h2>
+        <button  class="buttonsMenu menushit" onclick="document.getElementById('id01').style.display='block'" style="width:auto; position:relative; float:left; margin-left: 2em; display:inline-block; padding:0.5em 2em;">new post</button>
+        
+        <br>
         <?php
             function listingUserPostsGivenID($id) {
                 $result = listPostsUser($id);
                 
-                echo '<h3 style="margin-left:2.3em;"><br> You have ' . sizeof($result) . " posts: <br></h3>";
+                echo '<h3 style="margin-left:2em;"><br> You have ' . sizeof($result) . " posts: <br></h3>";
                 //getting all posts
                 foreach ($result as $value) {
                     printPost($value, "");

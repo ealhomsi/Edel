@@ -42,3 +42,16 @@ c) accounts
 d) login/ signup
 e) storing database issues.
 
+
+
+
+
+New TO DO:
+1) RSS feed
+2) react or angular js
+3) the possiblity to fork to two users.
+4) login using facebook google and other stuff.
+5) we don't use want firebase.
+6) spelling feature. (did  you mean this). (while typing).
+7) search (similarity score). (everything) (partners and  newsfeed).
+sharma.rahul71993@gmail.com

@@ -8,56 +8,14 @@
 <html>
 <head>
     <title>EDEL</title>
-    <link rel="stylesheet" href="css/loginPop.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="js/homeNavBar.js"> </script>
-    <link rel="stylesheet" href="css/home.css">
+    <?php include './template/includes.html' ?>
 </head>
 
 <body>
-    <!-- Navbar -->
-    <div id="NavBarShit" class="w3-top">
-        <div class="w3-bar w3-card-2" id="navbarStyle">
-            <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-            <a href="#" class="w3-bar-item w3-button w3-padding-large" id="logo">EDEL</a>
-            <a href="#" class="w3-bar-item w3-button w3-padding-large menushit selectedMenu">HOME</a>
-            <a href="pages/newsfeed.php" class="w3-bar-item w3-button w3-padding-large w3-hide-small menushit">FORUM</a>
-            <a href="pages/tags.php" class="w3-bar-item w3-button w3-padding-large w3-hide-small menushit">TAGS</a>
-            <a href="pages/aboutus.php" class="w3-bar-item w3-button w3-padding-large w3-hide-small menushit">ABOUT US</a>
-            <div class="w3-dropdown-hover w3-hide-small">
-                <button class="w3-padding-large w3-button menushit" title="More">MORE <i class="fa fa-caret-down"></i></button>
-                <div class="w3-dropdown-content w3-bar-block w3-card-4 contentbar">
-                    <a href="#" class="w3-bar-item w3-button">Merchandise</a>
-                    <a href="#" class="w3-bar-item w3-button">Extras</a>
-                    <a href="#" class="w3-bar-item w3-button">Media</a>
-                </div>
-            </div>
+    <!-- navbar -->
+    <?php include 'template/navbar.php' ?>
 
 
-            <div>
-                <a href="javascript:void(0)" class="w3-padding-large w3-hover-gray w3-hide-small w3-right menushit"><i class="fa fa-search"></i></a>
-            </div>
-
-            <?php
-                if(isset($_SESSION['userName'])) {
-                    echo '<div  style="width:auto; position:relative; float:right; display:inline-block" >
-                            <p> hello ' . $_SESSION['userName'] . '</p>
-                          </div>';
-                    echo "<a href=\"php/logout.php\" > <button class=\"buttonsMenu\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Logout</button> </a>";
-
-                    echo "<a href=\"pages/profile.php\" > <button class=\"buttonsMenu\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Profile</button> </a>";
-                } else {
-                    echo "<button  class=\"buttonsMenu menushit\" onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Login</button>";
-                    echo "<button  class=\"buttonsMenu menushit\" onclick=\"document.getElementById('id02').style.display='block'\" style=\"width:auto; float:right; display:inline-block; margin-left: 9.5em; \">Sign up</button>";
-                }
-            ?>      
-        </div>
-    </div>
     <!-- Navbar on small screens -->
     <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
         <a href="#band" class="w3-bar-item w3-button w3-padding-large">BAND</a>

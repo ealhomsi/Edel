@@ -11,24 +11,107 @@ if(!isset($_SESSION['userID']))
 <html>
 <head>
     <title>Your Profile <?php echo $_SESSION['userName'] ?> </title>
-    <link rel="stylesheet" href="../css/loginPop.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- all required includes -->
+    <?php include '../template/includes-non-index.html' ?>
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Demo for the tutorial: Styling and Customizing File Inputs the Smart Way" />
-    <meta name="keywords" content="cutom file input, styling, label, cross-browser, accessible, input type file" />
-    <meta name="author" content="Osvaldas Valutis for Codrops" />
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" type="text/css" href="../css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="../css/demo.css" />
-    <link rel="stylesheet" type="text/css" href="../css/component.css" />
-    <link rel="stylesheet" href="../css/home.css">
-    <link rel="stylesheet" href="../css/forum.css">
+    <style>
+        #new-post-btn {
+            cursor: hand;
+            background-color: #2dd0c6;
+            color: white;
+            margin-left: 3em;
+            border-radius: 2em;
+            border-color: white;
+        }
+
+        #new-post-btn:hover {
+            background-color: white;
+            border-color: black;
+            text-decoration: none;
+        }
+
+        #upload-area {
+            text-align: center;
+
+        }
+
+        #upload-area .js .inputfile {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: 1;
+        }
+
+        #upload-area .inputfile + label {
+            max-width: 80%;
+            font-size: 1.25rem;
+            /* 20px */
+            font-weight: 700;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            cursor: pointer;
+            display: inline-block;
+            overflow: hidden;
+            padding: 0.625rem 1.25rem;
+            /* 10px 20px */
+        }
+
+        #upload-area .no-js .inputfile + label {
+            display: none;
+        }
+
+        #upload-area .inputfile:focus + label,
+        #upload-area .inputfile.has-focus + label {
+            outline: 1px dotted #000;
+            outline: -webkit-focus-ring-color auto 5px;
+        }
+
+        #upload-area .inputfile {
+            z-index: 1;
+            opacity: 0;
+            position: absolute;
+        }
+        #upload-area .inputfile + label * {
+            /* pointer-events: none; */
+            /* in case of FastClick lib use */
+        }
+
+        #upload-area .inputfile + label svg {
+            width: 1em;
+            height: 1em;
+            vertical-align: middle;
+            fill: currentColor;
+            margin-top: -0.25em;
+            /* 4px */
+            margin-right: 0.25em;
+            /* 4px */
+        }
+
+
+        /* style 1 */
+
+        #upload-area .inputfile + label {
+            color: #f1e5e6;
+            background-color: #d3394c;
+        }
+
+        #upload-area .inputfile:focus + label,
+        #upload-area .inputfile.has-focus + label,
+        #upload-area .inputfile + label:hover {
+            background-color: #722040;
+        }
+
+        #upload-area .exit-sign{
+            font-size: 1.2em;
+            cursor: pointer;
+            display: inline-block;
+            position:relative;
+            top:-0.7em;
+        }
+
+    </style>
     <!--[if IE]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -36,53 +119,16 @@ if(!isset($_SESSION['userID']))
 
 
 <body>
-    <!-- Navbar -->
-    <div id="NavBarShit" class="w3-top" style="background-color: black;">
-        <div class="w3-bar w3-card-2" id="navbarStyle">
-            <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-            <a href="../index.php" class="w3-bar-item w3-button w3-padding-large" id="logo">EDEL</a>
-            <a href="../index.php" class="w3-bar-item w3-button w3-padding-large menushit ">HOME</a>
-            <a href="newsfeed.php" class="w3-bar-item w3-button w3-padding-large w3-hide-small menushit">FORUM</a>
-            <a href="tags.php" class="w3-bar-item w3-button w3-padding-large w3-hide-small menushit selectedMenu">TAGS</a>
-            <a href="aboutus.php" class="w3-bar-item w3-button w3-padding-large w3-hide-small menushit">ABOUT US</a>
-            <div class="w3-dropdown-hover w3-hide-small">
-                <button class="w3-padding-large w3-button menushit" title="More">MORE <i class="fa fa-caret-down"></i></button>
-                <div class="w3-dropdown-content w3-bar-block w3-card-4 contentbar">
-                    <a href="#" class="w3-bar-item w3-button">Merchandise</a>
-                    <a href="#" class="w3-bar-item w3-button">Extras</a>
-                    <a href="#" class="w3-bar-item w3-button">Media</a>
-                </div>
-            </div>
-
-
-            <div>
-                <a href="javascript:void(0)" class="w3-padding-large w3-hover-gray w3-hide-small w3-right menushit"><i class="fa fa-search"></i></a>
-            </div>
-
-            <?php
-                if(isset($_SESSION['userName'])) {
-                    echo '<div  style="width:auto; position:relative; float:right; display:inline-block" >
-                            <p> hello ' . $_SESSION['userName'] . '</p>
-                          </div>';
-                    echo "<a href=\"../php/logout.php\" > <button class=\"buttonsMenu\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Logout</button> </a>";
-
-                    echo "<a href=\"profile.php\" > <button class=\"buttonsMenu\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Profile</button> </a>";
-                } else {
-                    echo "<button  class=\"buttonsMenu menushit\" onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Login</button>";
-                    echo "<button  class=\"buttonsMenu menushit\" onclick=\"document.getElementById('id02').style.display='block'\" style=\"width:auto; float:right; display:inline-block; margin-left:9.5em; \">Sign up</button>";
-                }
-                 
-            ?>      
-        </div>
-    </div>
+    <!-- navbar -->
+    <?php include '../template/navbar-non-index.php' ?>
 
     <!-- Querry the database for all posts listed so far-->
     <div class="w3-content" style="max-width:2000px;margin-top:46px">
     	<br>
     	<br>
         <h2 style="margin-left: 1em;"> Your uploaded posts:</h2>
-        <button  class="buttonsMenu menushit" onclick="document.getElementById('id01').style.display='block'" style="width:auto; position:relative; float:left; margin-left: 2em; display:inline-block; padding:0.5em 2em;">new post</button>
-        
+        <br>
+        <a  id="new-post-btn" onclick="cleanAndPost()" class="w3-bar-item w3-button w3-padding-large w3-hide-small">New Post</a>        
         <br>
         <?php
             function listingUserPostsGivenID($id) {
@@ -112,7 +158,11 @@ if(!isset($_SESSION['userID']))
 				<label><b> Tags: seperate tags by a ; "semi colon" </b> </label>
 				<input type="text" placeholder="Tags: seperate tags by a ; semi colon" name="postTags" required>
             
-                <button type="submit">Submit</button>
+                <a onclick="addNewUploadBox()" >add </a>
+
+                <div id="upload-area">
+                </div>
+                <button type="submit" id="submit-post-btn">Submit</button>
             </div>
             <div class="modal-container">
                
@@ -144,43 +194,68 @@ if(!isset($_SESSION['userID']))
     <i class="fa fa-linkedin w3-hover-opacity"></i>
     <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
 </footer>
+</body>
+
 <script>
-    // Automatic Slideshow - change image every 4 seconds
-    var myIndex = 0;
-    carousel();
+    //registering handlers
+    registerBody();
+    var uploadArea = document.getElementById("upload-area");
+    var arrayList = [];
+    //fixing colors
+    colorBlack();
 
-    function carousel() {
-        var i;
-        var x = document.getElementsByClassName("mySlides");
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
-        }
-        myIndex++;
-        if (myIndex > x.length) {
-            myIndex = 1
-        }
-        x[myIndex - 1].style.display = "block";
-        setTimeout(carousel, 4000);
+    //adding functions
+    function cleanAndPost() {
+        uploadArea.innerHTML = '';
+        document.getElementById('id01').style.display='block';
     }
 
-    // Used to toggle the menu on small screens when clicking on the menu button
-    function myFunction() {
-        var x = document.getElementById("navDemo");
-        if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
-        } else {
-            x.className = x.className.replace(" w3-show", "");
-        }
-    }
+    function addNewUploadBox() {
+        uploadArea.innerHTML = uploadArea.innerHTML + `
+            <div>
+                <div class="row" style="postion:relative;">
+                    <input type="file"  name="file[]" class="inputfile"/>
+                    <label "><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Choose a file&hellip;</span></label>
+                    <span class="exit-sign glyphicon glyphicon-remove"> </span>
+                </div>
+            </div>
 
-    // When the user clicks anywhere outside of the modal, close it
-    var modal = document.getElementById('ticketModal');
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+        `;
+
+        //first defining the two functions
+        //readding the event handlers for everything
+        //function event for closing the thing 
+        close = (e) => {
+            var targetElement = event.target || event.srcElement;
+            targetElement.parentElement.parentElement.outerHTML = "";
+        }
+
+        //create event for the uploading
+        handler = (e) => {
+            var targetElement = event.target || event.srcElement;
+
+            var fileName = '';
+            var label    = targetElement.nextElementSibling,
+            labelVal = label.innerHTML;
+
+            label.style.backgroundColor = "#eeeeee";
+            label.style.color = "red";
+
+            fileName = e.target.value.split( '\\' ).pop();
+            if( fileName )
+                label.querySelector( 'span' ).innerHTML = fileName;
+            else
+                label.innerHTML = labelVal;
+        }
+
+        //for the whole thing
+        var arrayList = uploadArea.children;
+        for(var count = 0; count < arrayList.length; count++) {
+            var input = arrayList[count];
+            input.firstElementChild.firstElementChild.addEventListener('change', handler);
+            input.firstElementChild.lastElementChild.addEventListener('click', close);
         }
     }
 </script>
-</body>
 
 </html>

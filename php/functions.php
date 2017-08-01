@@ -575,10 +575,10 @@ $result .= <<< EOT
 
 			 <!-- Login -->
 			    <div id="subpost$postID" class="modal">
-			        <form class="modal-content container animate" action="../php/createSubPost.php" method="post">
+			        <form class="modal-content modal-container animate" action="../php/createSubPost.php" method="post">
 	                   	<input type="text" style="height: 9em;" placeholder="255 characters" name="reply$postID" required>
 		              	<input style="display: none;" type="text" value="$postID" name="fatherPostID">
-		              	<button type="submit" value="post" style="text-weight: bold; margin-bottom:1em;"> post </button>
+		              	<button type="submit" value="post" style="text-weight: bold; border-radius:2em; margin-bottom:1em;"> post </button>
 		           		<div style="background-color:#f1f1f1">
 		                	<button type="button" onclick="document.getElementById('subpost$postID').style.display='none'" class="cancelbtn" style="border-radius: 2em;">Cancel</button>
 	            		</div>
@@ -644,10 +644,10 @@ $result= <<< EOT
 
 			 <!-- Login -->
 			    <div id="subpost$postID" class="modal">
-			        <form class="modal-content container animate" action="../php/createSubPost.php" method="post">
+			        <form class="modal-content modal-container animate" action="../php/createSubPost.php" method="post">
 	                   	<input type="text" style="height: 9em;" placeholder="255 characters" name="reply$postID" required>
 		              	<input style="display: none;" type="text" value="$postID" name="fatherPostID">
-		              	<button type="submit" value="post" style="text-weight: bold; margin-bottom:1em;"> post </button>
+		              	<button type="submit" value="post" style="text-weight: bold; border-radius:2em; margin-bottom:1em;"> post </button>
 		           		<div style="background-color:#f1f1f1">
 		                	<button type="button" onclick="document.getElementById('subpost$postID').style.display='none'" class="cancelbtn" style="border-radius: 2em;">Cancel</button>
 	            		</div>
@@ -661,6 +661,4 @@ EOT;
 }
 
 // add something to all pages bootstrap
-echo '<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">';
 ?>

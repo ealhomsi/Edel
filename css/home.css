@@ -15,25 +15,6 @@
 	opacity: 0.3;
 }
 
-#logo {
-	font-size: 2em;
-	margin-right: 13em;
-}
-
-#navbarStyle {
-	color: white;
-}
-
-.menushit {
-	font-size: 0.85em;
-	float:right;
-	margin-top: 0.6em;
-	display:inline-block;
-}
-
-.selectedMenu {
-	color: #456990;
-}
 
 #slogan {
 	color: white;

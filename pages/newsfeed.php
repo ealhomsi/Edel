@@ -8,68 +8,15 @@
 <html>
 <head>
     <title>Forum</title>
-    <link rel="stylesheet" href="../css/loginPop.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Demo for the tutorial: Styling and Customizing File Inputs the Smart Way" />
-    <meta name="keywords" content="cutom file input, styling, label, cross-browser, accessible, input type file" />
-    <meta name="author" content="Osvaldas Valutis for Codrops" />
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" type="text/css" href="../css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="../css/demo.css" />
-    <link rel="stylesheet" type="text/css" href="../css/component.css" />
-    <link rel="stylesheet" href="../css/home.css">
-    <link rel="stylesheet" type="text/css" href="../css/forum.css" />
-    <script src="../js/homeNavBar.js"> </script>
+    <!-- all required includes -->
+    <?php include '../template/includes-non-index.html' ?>
+
 </head>
 
 <body>
-    <!-- Navbar -->
-    <div id="NavBarShit" class="w3-top" style="background-color: black;">
-        <div class="w3-bar w3-card-2" id="navbarStyle">
-            <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-            <a href="../index.php" class="w3-bar-item w3-button w3-padding-large" id="logo">EDEL</a>
-            <a href="../index.php" class="w3-bar-item w3-button w3-padding-large menushit ">HOME</a>
-            <a href="newsfeed.php" class="w3-bar-item w3-button w3-padding-large w3-hide-small menushit">FORUM</a>
-            <a href="tags.php" class="w3-bar-item w3-button w3-padding-large w3-hide-small menushit selectedMenu">TAGS</a>
-            <a href="aboutus.php" class="w3-bar-item w3-button w3-padding-large w3-hide-small menushit">ABOUT US</a>
-            <div class="w3-dropdown-hover w3-hide-small">
-                <button class="w3-padding-large w3-button menushit" title="More">MORE <i class="fa fa-caret-down"></i></button>
-                <div class="w3-dropdown-content w3-bar-block w3-card-4 contentbar">
-                    <a href="#" class="w3-bar-item w3-button">Merchandise</a>
-                    <a href="#" class="w3-bar-item w3-button">Extras</a>
-                    <a href="#" class="w3-bar-item w3-button">Media</a>
-                </div>
-            </div>
-
-
-            <div>
-                <a href="javascript:void(0)" class="w3-padding-large w3-hover-gray w3-hide-small w3-right menushit"><i class="fa fa-search"></i></a>
-            </div>
-
-            <?php
-                if(isset($_SESSION['userName'])) {
-                    echo '<div  style="width:auto; position:relative; float:right; display:inline-block" >
-                            <p> hello ' . $_SESSION['userName'] .  '</p>
-                          </div>';
-                    echo "<a href=\"../php/logout.php\" > <button class=\"buttonsMenu\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Logout</button> </a>";
-
-                    echo "<a href=\"profile.php\" > <button class=\"buttonsMenu\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Profile</button> </a>";
-                } else {
-                    echo "<button  class=\"buttonsMenu menushit\" onclick=\"document.getElementById('id01').style.display='block'\" style=\"width:auto; position:relative; float:right; display:inline-block; \">Login</button>";
-                    echo "<button  class=\"buttonsMenu menushit\" onclick=\"document.getElementById('id02').style.display='block'\" style=\"width:auto; float:right; display:inline-block; margin-left:9.5em; \">Sign up</button>";
-                }
-                 
-            ?>      
-        </div>
-    </div>
-
+    <!-- navbar -->
+    <?php include '../template/navbar-non-index.php' ?>
 
     <!-- Navbar on small screens -->
     <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
@@ -127,6 +74,6 @@
 <script>
     //registering handlers
     registerBody();
-    window.addEventListener("scroll", update);
+    colorBlack();
 </script>
 </html>

@@ -55,3 +55,22 @@ New TO DO:
 6) spelling feature. (did  you mean this). (while typing).
 7) search (similarity score). (everything) (partners and  newsfeed).
 sharma.rahul71993@gmail.com
+
+
+# what to do last week
+* rss feed
+* posting a question
+* reply
+* email as an answer
+* focus on the mobile app (application)
+* organization website side.
+
+
+posting *****
+taging
+voting
+email an answer (notification system).] **** 
+
+priority
+protect private key - verification
+log changes

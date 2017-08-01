@@ -1,3 +1,4 @@
+
 var body = 0 ;
 var NavBarShit = 0;
 function registerBody() {
@@ -15,7 +16,3 @@ function update() {
 }
 
 
-function hideAndShow() {
-    document.getElementById('id01').style.display='none';
-    document.getElementById('id02').style.display='block';
-}

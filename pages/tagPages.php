@@ -27,7 +27,7 @@
     <link rel="stylesheet" type="text/css" href="../css/demo.css" />
     <link rel="stylesheet" type="text/css" href="../css/component.css" />
     <link rel="stylesheet" href="../css/home.css">
-    <link rel="stylesheet" type="text/css" href="../css/printPost.css" />
+    <link rel="stylesheet" type="text/css" href="../css/forum.css" />
 
 </head>
 
@@ -95,7 +95,7 @@
                 $result = listOfPostsRelatedToATag($tagID);
                 //getting all posts
                 foreach ($result as $value) {
-                    printPost($value, "");
+                    printPostResponsive($value, "");
                 }
             }
             printByTag($tagID);
@@ -110,7 +110,7 @@
                 <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
                 <img src="../images/img_avatar2.png" alt="Avatar" class="avatar">
             </div>
-            <div class="container">
+            <div class="modal-container">
                 <label><b>Email</b></label>
                 <input type="email" placeholder="Enter Email" name="userEmail" required>
                 <label><b>Password</b></label>
@@ -118,7 +118,7 @@
                 <button type="submit" style="background-color: #456990">Login</button>
                 <input type="checkbox" checked="checked"> Remember me
             </div>
-            <div class="container" style="background-color:#f1f1f1">
+            <div class="modal-container" style="background-color:#f1f1f1">
                 <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
                 <span class="psw" style="float:right;"> <a style="color: blue;" onclick="hideAndShow()" > <span style="background-color:#2dd0c6; border-radius: 1em; padding:0.5em 1em; color:white; margin-left: 2em; display:block; float:right; position:relative; bottom:1.1em;"> Sign up <span> </a></span>
             </div>
@@ -131,7 +131,7 @@
                 <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
                 <img src="../images/img_avatar2.png" alt="Avatar" class="avatar">
             </div>
-            <div class="container">
+            <div class="modal-container">
 
                 <label><b>Name</b></label>
                 <input type="text" placeholder="Enter Name" name="userName" required>
@@ -148,7 +148,7 @@
                 <button type="submit" style="background-color: #456990">Register</button>
                
             </div>
-            <div class="container" style="background-color:#f1f1f1">
+            <div class="modal-container" style="background-color:#f1f1f1">
                 <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
             </div>
         </form>

@@ -24,7 +24,7 @@
     		height: 3em;
     		position: relative;
     		left:5.2em;
-    		top:-2.3em;
+    		top:-3.3em;
     	}
 
     	.tags {
@@ -96,7 +96,7 @@
     </div>
 
     <!-- big screen -->
-    <div id="splashScreen" style="height: 37em;">
+    <div id="splashScreen" style="height: auto;">
         <h2 id="slogan"> Choose one of the following categories </h2>
         <br>
         <p style="color: white; text-align:center;"> The following categories will help you navigate directly to your point of interest </p>
@@ -128,7 +128,9 @@
 			</svg>
 
         </div>
-	</div>
+	   <br>
+       <br>
+    </div>
     
     
     <!-- page content -->

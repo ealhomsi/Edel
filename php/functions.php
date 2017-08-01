@@ -325,181 +325,6 @@ function deleteUserParticipation($postID, $userID, $value) {
     $conn->close();
 }
 
-//format post
-function formatPost($row, $level) {
-	//printing the title and by which user
-	echo "<strong>";
-	echo $level . "<h4 style='display:inline;'>" . $row['post_type'] . "</h4> by <i> user id " . $row['user_id'] . " </i> <br>"; 
-	echo "</strong>";
-
-	//printing the text
-	echo $level . '<a href="../php/upRatePost.php?ratedPostID='. $row['post_id'] . '"> <img style="width:1em;" src="../images/arrowUp.png"> </a>';
-	echo '<span>' . $row['post_rating'] . '</span>';
-
-	echo '<a href="../php/downRatePost.php?ratedPostID='. $row['post_id'] . '"> <img style="width:1em;" src="../images/arrowDown.png"> </a>';
-	echo "".$row['post_text'];
-	echo "<br>";
-
-	$currentPostID = $row['post_id'];
-
-
-	//add a list of tags
-	$tagsArray = listOfTags($currentPostID);
-	$tagsNames = array();
-	$i = 0;
-
-	foreach($tagsArray as $value) {
-		$tagsNames[$i] = $value[0];
-		$i++;
-	}
-	$tagsLine = implode(", ", $tagsNames);
-	echo $level . "tags: " . $tagsLine . " <br> ";
-
-	//printing the reply to this button
-	echo '<form method=post action="../php/createSubPost.php">';
-	echo $level ."<input style='display:inline;' type=text name='reply". $currentPostID ."'><br>";
-	echo '<input type=text value=' .$currentPostID . ' name="fatherPostID" style="display:none;">';
-	echo $level . "<input style='display:inline;' type='submit' value='reply'>";
-	echo "<br>";
-	echo '</form>';	
-}
-
-//print hirearchy post 
-function printPost2($row, $level) {
-	$width = 80 - ($level * 5);
-	#this is where we print the post
-	$rating = $row['post_rating'];
-	$postID = $row['post_id'];
-	$postText = $row['post_text'];
-	$postUserID = $row['user_id'];
-	
-	if($level > 3) {
-		$level = 3;
-	}
-
-	$indentDate=  array(47, 9, 37, 17)[$level];
-	$indentName = array(22, 9, 35, 12)[$level];
-	$userName = querrySomethingFromUsers($postUserID, 'user_id' , 'user_name');
-	$date = $row['post_date'];
-$result= <<< EOT
-	<div class="printPost2" style="text-indent: ${level}em; width: ${width}%; ">
-		<div class="leftPrintPost2">
-			<div class="upArrow2"> <a href="../php/upRatePost.php?ratedPostID=$postID"> <img style="width:1em;" src="../images/arrowUp.png"> </a> </div>
-			<div class="rating2" style="font-size:1em;"> <span> $rating </span> </div>
-			<div class="downArrow2"> <a href="../php/downRatePost.php?ratedPostID=$postID"> <img style="width:1em;" src="../images/arrowDown.png"> </a> </div>
-		</div>
-
-		<!-- content -->
-		<div class="rightPrintPost2">
-			<div class="contentPrintPost2" style="width:100%; height:3em;">
-				<p> $postText </p>
-				<p style="color: black; position:relative; left:1em; font-size:0.7em"> by $userName </p> 
-			</div>
-
-			
-EOT;
-$result .= <<< EOT
-
-				<div class="dateAndBy2" style="left:${indentDate}em;">
-					<span> $date </span> 
-				</div>
-				<div class="userName2" style="left:${indentName}em;">
-					<button onclick="document.getElementById('subpost$postID').style.display='block'"> reply </button>
-				</div>
-
-				<!-- Login -->
-				<div id="subpost$postID" class="modal">
-					<form class="modal-content animate" action="../php/createSubPost.php" method="post">
-			            <div class="container">
-			              	<input type="text" style="height: 9em;" placeholder="255 characters" name="reply$postID" required>
-			              	<input style="display: none;" type="text" value="$postID" name="fatherPostID">
-			              	<button type="submit" value="post" style="text-weight: bold;"> post </button>
-			            </div>
-			            <div class="container" style="background-color:#f1f1f1">
-			                <button type="button" onclick="document.getElementById('subpost$postID').style.display='none'" class="cancelbtn" style="margin-left:1.5em;">Cancel</button>
-		            	</div>
-			        </form>
-				</div>
-		</div>
-
-	
-	</div>
-EOT;
-
-	echo $result;
-	echo "<br>";
-}
-
-//print normal post
-function printPost($row) {
-	#this is where we print the post
-	$rating = $row['post_rating'];
-	$postID = $row['post_id'];
-	$postText = $row['post_text'];
-	$postUserID = $row['user_id'];
-	$userName = querrySomethingFromUsers($postUserID, 'user_id' , 'user_name');
-	$date = $row['post_date'];
-$result= <<< EOT
-	<div class="printPost">
-		<div class="leftPrintPost">
-			<div class="upArrow"> <a href="../php/upRatePost.php?ratedPostID=$postID"> <img style="width:1.5em;" src="../images/arrowUp.png"> </a> </div>
-			<div class="rating"> <span> $rating </span> </div>
-			<div class="downArrow"> <a href="../php/downRatePost.php?ratedPostID=$postID"> <img style="width:1.5em;" src="../images/arrowDown.png"> </a> </div>
-		</div>
-
-		<!-- content -->
-		<div class="rightPrintPost">
-			<div class="contentPrintPost">
-				<a style="color: white"; href="postPage.php?postID=${postID}" > <p> $postText </p> </a>
-				<p style="color: black; position:relative; left:1em; font-size:0.7em"> asked $userName </p> 
-			</div>
-
-			<div class="followupPrintPost">
-				<div class="tags"> 
-EOT;
-
-
-    			$tagsArray = listOfTags($postID);
-    			foreach($tagsArray as $oneTag) {
-    				$result .= '<a href="tagPages.php?tagID=' . $oneTag[1]  .'">';
-    				$result .='<li class="tags">' . $oneTag[0] . '</li>';
-    				$result .=  '</a>';
-    			}
-$result .= <<< EOT
-				</div>
-				<div style="float:right; position: absolute; left:70em;">
-					<div class="dateAndBy">
-						<span> $date </span> 
-					</div>
-					<div class="userName">
-						<button onclick="document.getElementById('subpost$postID').style.display='block'"> reply </button>
-
-						<!-- Login -->
-    					<div id="subpost$postID" class="modal">
-        					<form class="modal-content animate" action="../php/createSubPost.php" method="post">
-					            <div class="container">
-					              	<input type="text" style="height: 9em;" placeholder="255 characters" name="reply$postID" required>
-					              	<input style="display: none;" type="text" value="$postID" name="fatherPostID">
-					              	<button type="submit" value="post" style="text-weight: bold;"> post </button>
-					            </div>
-					            <div class="container" style="background-color:#f1f1f1">
-					                <button type="button" onclick="document.getElementById('subpost$postID').style.display='none'" class="cancelbtn" style="margin-left:1.5em;">Cancel</button>
-				            	</div>
-					        </form>
-    					</div>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-
-	
-	</div>
-EOT;
-
-	echo $result;
-	echo "<br>";
-}
 
 //getting all uploaded posts
 function listPostsUser($id) {
@@ -622,7 +447,7 @@ function listOfTags($postID) {
 }
 
 
-//get a list of posts following a tag
+//get a list of posts following a tag #listOfPostsRelatedToATag
 function listOfPostsRelatedToATag($tagID) {
 	//connecting to the database
 	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
@@ -685,7 +510,157 @@ function listOfAllTags() {
 }
 
 
-// add som5ething to all pages
+//print normal post
+function printPostResponsive($row) {
+	#this is where we print the post
+	$rating = $row['post_rating'];
+	$postID = $row['post_id'];
+	$postText = $row['post_text'];
+	$postUserID = $row['user_id'];
+	$userName = querrySomethingFromUsers($postUserID, 'user_id' , 'user_name');
+	$date = $row['post_date'];
+
+$result= <<< EOT
+	<div class="row forum-main">
+
+			<!-- sexy up and down vote -->
+			<div class="col-sm-1 sexy-vote shrink row">
+				<div class="well">
+						<a href="../php/upRatePost.php?ratedPostID=$postID"> <span class="arrows glyphicon glyphicon-chevron-up"> </span>  </a> 
+					
+					<div class="rating">
+						<span> $rating </span>
+					</div>
+					
+					<a style="margin: auto 0; display:block;" href="../php/downRatePost.php?ratedPostID=$postID"> <span class="arrows glyphicon glyphicon-chevron-down"> </span>  </a> 
+					
+				</div>
+			</div>
+
+			<!-- the main piece of sexy post -->
+			<div class="col-sm-10 post-text shrink row">
+				<div class="well shrink">
+					<div class="post-text-div">
+						<a  href="postPage.php?postID=${postID}" > <p style="word-wrap: break-word;"> $postText </p> </a>
+						
+					</div>
+				
+
+					<!-- username and date -->
+					<div class="username"> 
+						<span style="color: gray;"> asked by </span> <span> $userName </span>
+						<span style="color: gray;"> on $date </span>
+					</div>
+
+					<!-- comment -->
+					<div class="reply-and-tags row">
+						<span onclick="document.getElementById('subpost$postID').style.display='block'" class="glyphicon glyphicon-comment" style="font-size: 0.8em; color: black; cursor: hand;position: relative; top:0.6em; float:left"> </span>
+
+						<div class="tags-container row">
+EOT;
+						$tagsArray = listOfTags($postID);
+    					foreach($tagsArray as $oneTag) {
+		    				$result .= '<a href="tagPages.php?tagID=' . $oneTag[1]  .'">';
+		    				$result .='<li class="tags">' . $oneTag[0] . '</li>';
+		    				$result .=  '</a>';
+    					}
+
+$result .= <<< EOT
+						<br>
+
+    				    </div>
+					</div>
+				</div>
+			</div>
+
+			 <!-- Login -->
+			    <div id="subpost$postID" class="modal">
+			        <form class="modal-content container animate" action="../php/createSubPost.php" method="post">
+	                   	<input type="text" style="height: 9em;" placeholder="255 characters" name="reply$postID" required>
+		              	<input style="display: none;" type="text" value="$postID" name="fatherPostID">
+		              	<button type="submit" value="post" style="text-weight: bold; margin-bottom:1em;"> post </button>
+		           		<div style="background-color:#f1f1f1">
+		                	<button type="button" onclick="document.getElementById('subpost$postID').style.display='none'" class="cancelbtn" style="border-radius: 2em;">Cancel</button>
+	            		</div>
+			        </form>
+			    </div>
+
+	</div>
+EOT;
+
+	echo $result;
+}
+
+//print subpost post
+function printPostResponsive2($row, $level) {
+	#this is where we print the post
+	$level *=3;
+	$rating = $row['post_rating'];
+	$postID = $row['post_id'];
+	$postText = $row['post_text'];
+	$postUserID = $row['user_id'];
+	$userName = querrySomethingFromUsers($postUserID, 'user_id' , 'user_name');
+	$date = $row['post_date'];
+
+$result= <<< EOT
+	<div class="row forum-main" style="margin-left: ${level}em; padding:0em;">
+
+			<!-- sexy up and down vote -->
+			<div class="col-sm-1 sexy-vote shrink row">
+				<div class="well">
+						<a href="../php/upRatePost.php?ratedPostID=$postID"> <span class="arrows glyphicon glyphicon-chevron-up"> </span>  </a> 
+					
+					<div class="rating">
+						<span> $rating </span>
+					</div>
+					
+					<a style="margin: auto 0; display:block;" href="../php/downRatePost.php?ratedPostID=$postID"> <span class="arrows glyphicon glyphicon-chevron-down"> </span>  </a> 
+					
+				</div>
+			</div>
+
+			<!-- the main piece of sexy post -->
+			<div class="col-sm-8 post-text shrink row">
+				<div class="well shrink" style="padding: 0.7em;">
+					<div class="post-text-div">
+						<p style="word-wrap: break-word; font-size: 0.6em;"> $postText </p> 	
+					</div>
+
+					<!-- username and date -->
+					<div class="username" style="width:20%;"> 
+						<span style="color: gray;"> by </span> <span> $userName </span>
+						<span style="color: gray;"> on $date </span>
+					</div>
+
+					<!-- comment -->
+					<div class="reply-and-tags row" style="position:relative; top:-0.4em; left:0.3em;">
+						<span onclick="document.getElementById('subpost$postID').style.display='block'" class="glyphicon glyphicon-comment" style="font-size: 0.8em; color: black; cursor: hand;position: relative; top:0.6em; float:left"> </span>
+
+
+    				    </div>
+					</div>
+				</div>
+			</div>
+
+			 <!-- Login -->
+			    <div id="subpost$postID" class="modal">
+			        <form class="modal-content container animate" action="../php/createSubPost.php" method="post">
+	                   	<input type="text" style="height: 9em;" placeholder="255 characters" name="reply$postID" required>
+		              	<input style="display: none;" type="text" value="$postID" name="fatherPostID">
+		              	<button type="submit" value="post" style="text-weight: bold; margin-bottom:1em;"> post </button>
+		           		<div style="background-color:#f1f1f1">
+		                	<button type="button" onclick="document.getElementById('subpost$postID').style.display='none'" class="cancelbtn" style="border-radius: 2em;">Cancel</button>
+	            		</div>
+			        </form>
+			    </div>
+
+	</div>
+EOT;
+
+	echo $result;
+}
+
+// add something to all pages bootstrap
 echo '<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">';
 ?>

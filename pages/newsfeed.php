@@ -25,9 +25,8 @@
     <link rel="stylesheet" type="text/css" href="../css/demo.css" />
     <link rel="stylesheet" type="text/css" href="../css/component.css" />
     <link rel="stylesheet" href="../css/home.css">
-    <link rel="stylesheet" type="text/css" href="../css/printPost.css" />
-    <link rel="stylesheet" type="text/css" href="../css/printPost2.css" />
-  
+    <link rel="stylesheet" type="text/css" href="../css/forum.css" />
+    <script src="../js/homeNavBar.js"> </script>
 </head>
 
 <body>
@@ -92,7 +91,7 @@
             $result = listChildrenPosts($id);
             foreach ($result as $value) {
               if($id == "null") {
-                printPost($value);
+                printPostResponsive($value);
               } else {
                 printPost2($value, $level);
               }
@@ -105,118 +104,12 @@
     </div>
 
     <!-- Login -->
-    <div id="id01" class="modal">
-        <form class="modal-content animate" action="../php/verifyCredentials.php" method="post">
-            <div class="imgcontainer">
-                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-                <img src="../images/img_avatar2.png" alt="Avatar" class="avatar">
-            </div>
-            <div class="container">
-                <label><b>Email</b></label>
-                <input type="email" placeholder="Enter Email" name="userEmail" required>
-                <label><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="userPassword" required>
-                <button type="submit" style="background-color: #456990">Login</button>
-                <input type="checkbox" checked="checked"> Remember me
-            </div>
-            <div class="container" style="background-color:#f1f1f1">
-                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                <span class="psw" style="float:right;"> <a style="color: blue;" onclick="hideAndShow()" > <span style="background-color:#2dd0c6; border-radius: 1em; padding:0.5em 1em; color:white; margin-left: 2em; display:block; float:right; position:relative; bottom:1.1em;"> Sign up <span> </a></span>
-            </div>
-        </form>
-    </div>
+    <?php include '../template/login-non-index.html' ?>
     <!-- Register -->
-    <div id="id02" class="modal">
-        <form class="modal-content animate" action="../php/registerUser.php" method="post">
-            <div class="imgcontainer">
-                <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-                <img src="../images/img_avatar2.png" alt="Avatar" class="avatar">
-            </div>
-            <div class="container">
+    <?php include '../template/register-non-index.html' ?>
 
-                <label><b>Name</b></label>
-                <input type="text" placeholder="Enter Name" name="userName" required>
-
-                <label><b>Email</b></label>
-                <input type="email" placeholder="Enter Email" name="userEmail" required>
-
-                <label><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="userPassword" required>
-
-                <label><b>IMEI</b></label>
-                <input type="text" placeholder="Enter IMEI" name="userImei" required>
-
-                <button type="submit" style="background-color: #456990">Register</button>
-               
-            </div>
-            <div class="container" style="background-color:#f1f1f1">
-                <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
-            </div>
-        </form>
-    </div>
-
-    <!-- hide and show stuff -->
-    <script>
-        // Get the modal
-        var modal = document.getElementById('id01');
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-
-        var modal2 = document.getElementById('id02');
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal2) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
-
-    <!-- Footer -->
-    
-    <script>
-        // Automatic Slideshow - change image every 4 seconds
-        var myIndex = 0;
-        carousel();
-
-        function carousel() {
-            var i;
-            var x = document.getElementsByClassName("mySlides");
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-            }
-            myIndex++;
-            if (myIndex > x.length) {
-                myIndex = 1
-            }
-            x[myIndex - 1].style.display = "block";
-            setTimeout(carousel, 4000);
-        }
-
-        // Used to toggle the menu on small screens when clicking on the menu button
-        function myFunction() {
-            var x = document.getElementById("navDemo");
-            if (x.className.indexOf("w3-show") == -1) {
-                x.className += " w3-show";
-            } else {
-                x.className = x.className.replace(" w3-show", "");
-            }
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        var modal = document.getElementById('ticketModal');
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-
-    </script>
+    <!-- add script -->
+    <script src="../js/register-modal.js"> </script>
 
 
     <!-- Footer -->

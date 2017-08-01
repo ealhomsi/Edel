@@ -27,8 +27,8 @@ if(!isset($_SESSION['userID']))
     <link rel="stylesheet" type="text/css" href="../css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="../css/demo.css" />
     <link rel="stylesheet" type="text/css" href="../css/component.css" />
-    <link rel="stylesheet" type="text/css" href="../css/printPost.css" />
     <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/forum.css">
     <!--[if IE]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -91,7 +91,7 @@ if(!isset($_SESSION['userID']))
                 echo '<h3 style="margin-left:2em;"><br> You have ' . sizeof($result) . " posts: <br></h3>";
                 //getting all posts
                 foreach ($result as $value) {
-                    printPost($value, "");
+                    printPostResponsive($value, "");
                 }
             }
             listingUserPostsGivenID($_SESSION['userID']);
@@ -102,11 +102,7 @@ if(!isset($_SESSION['userID']))
     <!-- New Post -->
     <div id="id01" class="modal">
         <form class="modal-content animate" action="../php/createPost.php" method="post">
-            <div class="imgcontainer">
-                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-                <img src="../images/img_avatar2.png" alt="Avatar" class="avatar">
-            </div>
-            <div class="container">
+            <div class="modal-container">
                 <label><b>Post Type</b></label>
                 <input type="text" placeholder="Describe the new subEdel" name="postType" required>
 
@@ -114,13 +110,13 @@ if(!isset($_SESSION['userID']))
                 <input type="text" style="height:9em;" placeholder="text 255 chars left" name="postText" required>
 
 				<label><b> Tags: seperate tags by a ; "semi colon" </b> </label>
-				<input type="text" style="height:9em;" placeholder="text 255 chars left" name="postTags" required>
-
+				<input type="text" placeholder="Tags: seperate tags by a ; semi colon" name="postTags" required>
+            
                 <button type="submit">Submit</button>
             </div>
-            <div class="container" style="background-color:#f1f1f1">
+            <div class="modal-container">
+               
                 <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                <span class="psw" style="float:right;">Register <a style="color: blue;" onclick="document.getElementById('id02').style.display='block'" > here!</a></span>
             </div>
         </form>
     </div>

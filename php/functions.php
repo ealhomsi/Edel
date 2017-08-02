@@ -140,7 +140,7 @@ function getSpecificPost($postID) {
 
 	// free the results array
 	$result->close();
-	
+	$conn->close();
 	return array($row);
 }
 
@@ -522,7 +522,7 @@ function printPostResponsive($row) {
 
 $result= <<< EOT
 	<div class="row forum-main">
-			<div class="col-sm-12 well" style="padding-bottom:1.5em;">
+			<div class="col-sm-12 well" style="padding-bottom:1.5em; padding-top:0em;">
 			<!-- sexy up and down vote -->
 			<div class="col-sm-1 sexy-vote shrink row">
 				<div>
@@ -572,6 +572,19 @@ $result .= <<< EOT
 						<br>
 
     				    </div>
+					</div>
+
+					<!-- documents -->
+					<div class="documents">
+EOT;
+					$documentsArray = listDocumentsRelatedToAPost($postID);
+					foreach($documentsArray as $oneDocument) {
+							$documentName = $oneDocument[1];
+							$documentID = $oneDocument[0];
+
+							$result .='<a href="../php/download.php?id=' . $documentID .'"> <span class="glyphicon glyphicon-file"> </span>' . $documentName .'</a>';
+					}
+$result .= <<< EOT
 					</div>
 				</div>
 			</div>
@@ -672,13 +685,14 @@ EOT;
 function attachDocuments($postID) {
     $conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
     $targetDir = "../uploads/";
+
     foreach ($_FILES["file"]["error"] as $key => $error) {
         $tmpName =  $_FILES["file"]["tmp_name"][$key];
         $fileName = $_FILES["file"]["name"][$key];
         $ext = pathinfo($fileName, PATHINFO_EXTENSION);
         $fileType = $_FILES["file"]["type"][$key];
-        $targetFile = $targetDir . basename($fileName);
-        
+     	$targetFile = $targetDir . basename($fileName);
+        $fileSize = "";
         #check for erros
         if ($error == UPLOAD_ERR_OK) {
             #storing the uploded files in the upload directory
@@ -687,35 +701,31 @@ function attachDocuments($postID) {
                 $targetFile
                 ) or die("Problems with upload");
 
-            #getting extra required data
-            $fileHandle = fopen($targetFile, "r");
-            $fileContent = fread($fileHandle, filesize($targetFile));
-            $fileContent = addslashes($fileContent);
-            fclose($fileHandle);
 
-            #fixing file name for storing
-            if(!get_magic_quotes_gpc())
-            {
-                $fileName = addslashes($fileName);
-            }
-
-            #size
+			#reading the file size
             $fileSize = filesize($targetFile);
 
+            #getting extra required data
+            $fileHandle = fopen($targetFile, "r");
+            $fileContent = fread($fileHandle, $fileSize);
+
             #create documents and store them in the database
-            
             //building a querry
-            $dbQuery = "INSERT INTO Documents (document_type, document_size, document_name, document_content, post_id) VALUES ('" . mysqli_real_escape_string($conn, $fileType) ."', " . mysqli_real_escape_string($conn, $fileSize) .", '" . mysqli_real_escape_string($conn, $fileName) ."', '" . mysqli_real_escape_string($conn, $fileContent) ."' , " . $postID . ")";
+            $dbQuery = "INSERT INTO Documents (document_type, document_size, document_name, document_content, post_id) VALUES ('" . mysqli_real_escape_string($conn, $fileType) ."', '" . mysqli_real_escape_string($conn, $fileSize) ."', '" . mysqli_real_escape_string($conn, $fileName) ."', '" . mysqli_real_escape_string($conn,$fileContent) ."' , " . $postID . ")";
           
             $result = $conn->query($dbQuery);
 
+            fclose($fileHandle);
+
             if(!$result) {
                 die("something went wrong with inserting a file to database" . $conn->error);
+            } if($fileSize == 0) {
+            	die("file size is 0");
             }
 
            
         } else {
-            die("upload error");
+            die("upload error ". $fileSize . " error-> " . $error);
         }
     }
     //closing connection
@@ -729,22 +739,24 @@ function listDocumentsRelatedToAPost($postID) {
 	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
 
 	// making the querry
-	$dbQuery = "SELECT document_id, document_name FROM Posts INNER JOIN Documents ON Documents.post_id = Posts.post_id WHERE post_id='".mysqli_real_escape_string($conn,$postID). "'";
+	$dbQuery = "SELECT document_id, document_name FROM Posts INNER JOIN Documents ON Documents.post_id = Posts.post_id WHERE Posts.post_id='".mysqli_real_escape_string($conn,$postID). "'";
 
 	$result = $conn->query($dbQuery);
-	
+
 	// filling up the listing array
 	$listing = array();
 	$i = 0;
+
+	if(!$result) {
+		return array();
+	}
 	$row = $result->fetch_array();
     while($row) {
-    	$listing[$i] = $row;
+    	$listing[$i][0] = $row['document_id'];
+    	$listing[$i][1] = $row['document_name'];
     	$i++;
     	$row = $result->fetch_array();
     }
-
-   	//close result
-   	$result->close();
 
     //closing the connection 
     $conn->close();
@@ -759,7 +771,7 @@ function getDocumentContent($id) {
 	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
 
 	// making the querry
-	$dbQuery = "SELECT document_name, documnet_type, document_size, document_content FROM Documents WHERE document_id='".mysqli_real_escape_string($conn,$id). "'";
+	$dbQuery = "SELECT document_name, document_type, document_size, document_content FROM Documents WHERE document_id='".mysqli_real_escape_string($conn,$id). "'";
 
 	// $result
 	$result = $conn->query($dbQuery);
@@ -783,6 +795,4 @@ function getDocumentContent($id) {
 
 	return $row;
 }
-
-// add something to all pages bootstrap
 ?>

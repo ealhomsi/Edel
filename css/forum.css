@@ -199,6 +199,9 @@
 	margin-right:0.25;
 	padding-bottom: 0.1em;
 }
+.forum-main .tags:hover {
+	text-decoration: underline;
+}
 
 
 .forum-main div.post-text-div {
@@ -216,4 +219,19 @@
 
 .forum-main .reply-and-tags {
 	margin-left: 0.1em;
+}
+
+
+.forum-main .documents a {
+	text-decoration: none;
+	font-size:0.8em;
+	margin-left:0.9em;
+}
+
+.forum-main .documents a:hover {
+	text-decoration: underline;
+}
+
+.forum-main .documents {
+	margin-top: 0.2em;
 }

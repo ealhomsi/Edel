@@ -179,6 +179,7 @@
 .forum-main div.tags-container {
 	flex-wrap: wrap;
 	width: 70%;
+	margin-left: 10em;
 }
 .forum-main .tags {
 	float:left;

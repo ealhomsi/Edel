@@ -554,9 +554,12 @@ $result= <<< EOT
 
 					<!-- comment -->
 					<div class="reply-and-tags row">
-						<span onclick="document.getElementById('subpost$postID').style.display='block'" class="glyphicon glyphicon-comment" style="font-size: 0.8em; color: black; cursor: hand;position: relative; top:0.6em; float:left"> </span>
+						<span onclick="document.getElementById('subpost$postID').style.display='block'" class="glyphicon glyphicon-comment" style="font-size: 0.8em; margin-right:0.4em; color: black; cursor: hand;position: relative; top:0.6em; margin-left: 0.7em; float:left; cursor: pointer;"> </span>
 
-						<div class="tags-container row">
+						<span style="font-size:0.8em;">
+							reply
+						</span>
+						<div class="tags-container row" style="margin-left: 0.7em">
 EOT;
 						$tagsArray = listOfTags($postID);
     					foreach($tagsArray as $oneTag) {
@@ -636,6 +639,9 @@ $result= <<< EOT
 					<div class="reply-and-tags row" style="position:relative; top:-0.4em; left:0.3em;">
 						<span onclick="document.getElementById('subpost$postID').style.display='block'" class="glyphicon glyphicon-comment" style="font-size: 0.8em; color: black; cursor: hand;position: relative; top:0.6em; float:left"> </span>
 
+						<span style="font-size:0.7em; margin-left:0.4em;">
+							   reply
+						</span>
 
     				    </div>
 					</div>

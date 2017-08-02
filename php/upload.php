@@ -76,9 +76,8 @@ function main() {
         
     }
 
-    sleep(3);
-    header("Location: https://192.168.1.116/new/profile.php"); /* Redirect browser */
-        
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit(); 
 }
 
 //calling main()

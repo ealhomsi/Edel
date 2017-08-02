@@ -65,8 +65,8 @@ VALUES ('" . mysqli_real_escape_string($conn,$name) . "', '" . mysqli_real_escap
 	$_SESSION['userName'] = $name;
 
 	//forward back to the index page
-	header("Location: https://192.168.1.116/new/index.php"); /* Redirect browser */
-	exit();
+	header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
 }
 
 //calling the main function

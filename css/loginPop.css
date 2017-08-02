@@ -1,3 +1,7 @@
+.modal {
+    position: relative;
+    top:100em;
+}
 .modal body {
     font-family: "Lato", sans-serif;
 }
@@ -75,7 +79,9 @@
     text-align:center;
     position:relative;
 }
-
+.animate {
+    top: -10em;
+}
 .modal span.psw {
     float: right;
     padding-top: 16px;

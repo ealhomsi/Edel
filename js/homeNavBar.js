@@ -18,7 +18,9 @@ function colorBlack() {
 	NavBarShit.style.backgroundColor = "black";
     NavBarShit.style.opacity = "0.99";
     NavBarShit.style.color = "white";
-    userName.style.color = "white";   
+    if(userName) {
+      userName.style.color = "white";   
+    }
 
     NavBarShit.style.borderWidth = '0';
    	for(var count =0; count < actionButtons.length; count++) {
@@ -31,16 +33,20 @@ function update() {
         NavBarShit.style.backgroundColor = "black";
         NavBarShit.style.opacity = "0.99";
         NavBarShit.style.color = "white";
-        userName.style.color = "white";   
+        if(userName) {
+          userName.style.color = "white";   
+        }
 
     	NavBarShit.style.borderWidth = '0';
        	for(var count =0; count < actionButtons.length; count++) {
        		colorBorderWhite(actionButtons[count]);
        	}
     } else { 
-        NavBarShit.style.backgroundColor = "rgba(255,255,255,0.5)";
-        NavBarShit.style.color = "black";
+      NavBarShit.style.backgroundColor = "rgba(255,255,255,0.5)";
+      NavBarShit.style.color = "black";
+      if(userName){
         userName.style.color = "black";    
+      }
     	NavBarShit.style.borderWidth = '0';
 
 		for(var count =0; count < actionButtons.length; count++) {

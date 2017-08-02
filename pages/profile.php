@@ -111,6 +111,10 @@ if(!isset($_SESSION['userID']))
             top:-0.7em;
         }
 
+        .hover-non-decoration:hover {
+            text-decoration: none;
+        }
+
     </style>
     <!--[if IE]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -147,7 +151,7 @@ if(!isset($_SESSION['userID']))
 
     <!-- New Post -->
     <div id="id01" class="modal">
-        <form class="modal-content animate" action="../php/createPost.php" method="post">
+        <form class="modal-content animate" action="../php/createPost.php" method="post" enctype="multipart/form-data">
             <div class="modal-container">
                 <label><b>Post Type</b></label>
                 <input type="text" placeholder="Describe the new subEdel" name="postType" required>
@@ -157,12 +161,13 @@ if(!isset($_SESSION['userID']))
 
 				<label><b> Tags: seperate tags by a ; "semi colon" </b> </label>
 				<input type="text" placeholder="Tags: seperate tags by a ; semi colon" name="postTags" required>
-            
-                <a onclick="addNewUploadBox()" >add </a>
+                <br>
+                <a onclick="addNewUploadBox()" class="hover-non-decoration"> Attach + </a>
+                <br>
 
                 <div id="upload-area">
                 </div>
-                <button type="submit" id="submit-post-btn">Submit</button>
+                <button type="submit" id="submit-post-btn" value="Submit">Submit</button>
             </div>
             <div class="modal-container">
                

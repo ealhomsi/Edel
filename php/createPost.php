@@ -27,7 +27,7 @@ function main() {
     	$postTags = $_POST['postTags'];
     }
  
-     //error no login
+    //error no login
     if(!isset($_SESSION["userName"])){
         die("please login or register first");
     }
@@ -47,7 +47,7 @@ function main() {
     $result = $conn->query($dbQuery);
 
     if(!$result) {
-        die("something went wrong" . $conn->error);
+        die("something went wrong with " . $conn->error);
     }
 
     //closing connection
@@ -84,7 +84,11 @@ function main() {
     	$i++;
     }
 
+    #tagging
     tagAPost($lastID, $listOfTagsIDs);
+
+    #adding documents
+    attachDocuments($lastID);
 
     header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit();

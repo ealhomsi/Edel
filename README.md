@@ -54,7 +54,6 @@ New TO DO:
 5) we don't use want firebase.
 6) spelling feature. (did  you mean this). (while typing).
 7) search (similarity score). (everything) (partners and  newsfeed).
-sharma.rahul71993@gmail.com
 
 
 # what to do last week

@@ -30,7 +30,10 @@ function main() {
     //create mysql time
     $phptime = time();
     echo $phptime;
-            
+
+    //send email to a user
+    $email = getUserEmailPostID($postFatherID);
+    mail($email,"Your Post number $postFatherID received a reply", $postText);
 
     //inserting
     $conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');

@@ -795,4 +795,35 @@ function getDocumentContent($id) {
 
 	return $row;
 }
+
+// get users email based on post id
+function getUserEmailPostID($postID) {
+	//connecting to the database
+	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+
+	// making the querry
+	$dbQuery = "SELECT Users.user_email FROM Users INNER JOIN Posts ON Posts.user_id = Users.user_id WHERE post_id='".mysqli_real_escape_string($conn,$postID). "'";
+
+	// $result
+	$result = $conn->query($dbQuery);
+
+	// checking for errors
+	if(!$result) {
+		echo "Error: " . $dbQuery . "<br>" . $conn->error;
+		die("result is empty");
+	}
+
+	//if $result is successful
+	$row = $result->fetch_array();  //by now they should have the same email address
+
+	if(!$row) {
+		die('FATAL: document was not found');
+	}
+
+	// free the results array
+	$result->close();
+	$conn->close();
+
+	return $row['user_email'];
+}
 ?>

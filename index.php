@@ -28,7 +28,7 @@
     <div id="splashScreen">
         <img src="https://storage.moqups.com/repo/iNXjFx1a/images/iPCgz6naJD.png" id="imgSplashScreen">
       
-        <h2 id="slogan"> Build for Refugees and Asylum Seekers </h2>
+        <h2 id="slogan"> Built for Refugees and Asylum Seekers </h2>
 
         <h4 id="subSlogan"> Get answers fast and confidentially </h4>
         <div class="downloadApp">

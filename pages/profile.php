@@ -59,7 +59,7 @@ if(!isset($_SESSION['userID']))
         }
 
         #upload-area .no-js .inputfile + label {
-            display: none;
+            position:absolute;
         }
 
         #upload-area .inputfile:focus + label,
@@ -72,6 +72,8 @@ if(!isset($_SESSION['userID']))
             z-index: 1;
             opacity: 0;
             position: absolute;
+            text-align: center;
+            display:inline;
         }
         #upload-area .inputfile + label * {
             /* pointer-events: none; */
@@ -109,6 +111,11 @@ if(!isset($_SESSION['userID']))
             display: inline-block;
             position:relative;
             top:-0.7em;
+            z-index: 100;
+        }
+
+        .hover-non-decoration:hover {
+            text-decoration: none;
         }
 
     </style>
@@ -147,7 +154,7 @@ if(!isset($_SESSION['userID']))
 
     <!-- New Post -->
     <div id="id01" class="modal">
-        <form class="modal-content animate" action="../php/createPost.php" method="post">
+        <form class="modal-content animate" action="../php/createPost.php" method="post" enctype="multipart/form-data">
             <div class="modal-container">
                 <label><b>Post Type</b></label>
                 <input type="text" placeholder="Describe the new subEdel" name="postType" required>
@@ -157,12 +164,13 @@ if(!isset($_SESSION['userID']))
 
 				<label><b> Tags: seperate tags by a ; "semi colon" </b> </label>
 				<input type="text" placeholder="Tags: seperate tags by a ; semi colon" name="postTags" required>
-            
-                <a onclick="addNewUploadBox()" >add </a>
+                <br>
+                <a onclick="addNewUploadBox()" class="hover-non-decoration"> Attach + </a>
+                <br>
 
                 <div id="upload-area">
                 </div>
-                <button type="submit" id="submit-post-btn">Submit</button>
+                <button type="submit" id="submit-post-btn" value="Submit">Submit</button>
             </div>
             <div class="modal-container">
                
@@ -214,7 +222,7 @@ if(!isset($_SESSION['userID']))
         uploadArea.innerHTML = uploadArea.innerHTML + `
             <div>
                 <div class="row" style="postion:relative;">
-                    <input type="file"  name="file[]" class="inputfile"/>
+                    <input type="file"  name="file[]" class="inputfile" required/>
                     <label "><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Choose a file&hellip;</span></label>
                     <span class="exit-sign glyphicon glyphicon-remove"> </span>
                 </div>

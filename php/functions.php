@@ -8,7 +8,7 @@ function createPPKeys() {
     "private_key_bits" => 1024,
     "private_key_type" => OPENSSL_KEYTYPE_RSA,
 	);
-    
+
 	// Create the private and public key
 	$res = openssl_pkey_new($config);
 
@@ -81,7 +81,7 @@ function querrySomethingFromUsers($search, $which, $column) {
 
 	// free the results array
 	$result->close();
-	
+
 	return $row[$column];
 }
 
@@ -109,7 +109,7 @@ function querrySomethingFromPosts($search, $which, $column) {
 
 	// free the results array
 	$result->close();
-	
+
 	return $row[$column];
 }
 
@@ -168,7 +168,7 @@ function querrySomethingFromTags($search, $which, $column) {
 
 	// free the results array
 	$result->close();
-	
+
 	return $row[$column];
 }
 
@@ -196,7 +196,7 @@ function querryLastPost($column) {
 
 	// free the results array
 	$result->close();
-	
+
 	return $row[$column];
 }
 
@@ -224,7 +224,7 @@ function querryLastTag($column) {
 
 	// free the results array
 	$result->close();
-	
+
 	return $row[$column];
 }
 
@@ -241,7 +241,7 @@ function listChildrenPosts($id) {
 		$dbQuery = "SELECT post_id, post_type, post_date, user_id, post_rating, post_text FROM Posts INNER JOIN ChildrenPosts ON ChildrenPosts.child_post_id = Posts.post_id WHERE father_post_id is null";
 	}
 	$result = $conn->query($dbQuery);
-	
+
 	// filling up the listing array
 	$listing = array();
 	$i = 0;
@@ -252,7 +252,7 @@ function listChildrenPosts($id) {
     	$row = $result->fetch_array();
     }
 
-    //closing the connection 
+    //closing the connection
     $conn->close();
 
     return $listing;
@@ -266,15 +266,15 @@ function checkUserStatus($postID, $userID) {
 	//connecting to the database
 	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
 
-	// querry the 
+	// querry the
 	// making the querry
 	$dbQuery = "SELECT * From Votes WHERE post_id=".mysqli_real_escape_string($conn,$postID). " AND user_id=". mysqli_real_escape_string($conn,$userID);
 
 	$result = $conn->query($dbQuery);
-	
+
 	$row = $result->fetch_array();
 
-    //closing the connection 
+    //closing the connection
     $conn->close();
 
     if($row) {
@@ -293,14 +293,14 @@ function deleteUserParticipation($postID, $userID, $value) {
 	$dbQuery = "DELETE From Votes WHERE post_id=".mysqli_real_escape_string($conn,$postID). " AND user_id=". mysqli_real_escape_string($conn,$userID);
 
 	$result = $conn->query($dbQuery);
-	
+
 	// checking for errors
 	if(!$result) {
 		echo "Error: " . $dbQuery . "<br>" . $conn->error;
 		die();
 	}
 
-    //closing the connection 
+    //closing the connection
     $conn->close();
 
     //get the rating
@@ -314,14 +314,14 @@ function deleteUserParticipation($postID, $userID, $value) {
     $dbQuery = 'UPDATE  Posts SET post_rating='. mysqli_real_escape_string($conn,$rating) .  ' WHERE post_id=' . mysqli_real_escape_string($conn,$postID) ;
 
 	$result = $conn->query($dbQuery);
-	
+
 	// checking for errors
 	if(!$result) {
 		echo "Error: " . $dbQuery . "<br>" . $conn->error;
 		die();
 	}
 
-    //closing the connection 
+    //closing the connection
     $conn->close();
 }
 
@@ -343,7 +343,7 @@ function listPostsUser($id) {
     	$i++;
     	$row = $result->fetch_array();
     }
-    //closing the connection 
+    //closing the connection
     $conn->close();
 
     return $listing;
@@ -353,7 +353,7 @@ function listPostsUser($id) {
 //insertTag
 function insertTag($value) {
 	//being consistent
-	$value = strtolower($value); 
+	$value = strtolower($value);
 	if($value == "") {
 		$value = "empty";
 	}
@@ -368,13 +368,13 @@ function insertTag($value) {
 
 	$row = $result->fetch_array();
 
-    //closing the connection 
-    $conn->close();	
+    //closing the connection
+    $conn->close();
 
    	if($row) {
    		return $row['tag_id'];
-   	} 
-    
+   	}
+
     //if it does not exist insert it
     //connecting to the database
 	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
@@ -387,8 +387,8 @@ function insertTag($value) {
 		die("error inserting a new tag of " . $value . " with this error " . $conn->error);
 	}
 
-    //closing the connection 
-    $conn->close();	
+    //closing the connection
+    $conn->close();
 
     //now get the last id and return it
     $lastID = querryLastTag('tag_id');
@@ -402,7 +402,7 @@ function tagAPost($postID, $arrayOfTags) {
 
 
 	//multiple inserts
-	foreach($arrayOfTags as $value) {		
+	foreach($arrayOfTags as $value) {
 		// making the querry
 		$dbQuery = "INSERT INTO TagPosts (tag_id, post_id) VALUES (" . mysqli_real_escape_string($conn,$value) . " ," . mysqli_real_escape_string($conn,$postID) . ")";
 		$result = $conn->query($dbQuery);
@@ -411,8 +411,8 @@ function tagAPost($postID, $arrayOfTags) {
 			die("error inserting a new tagpost of " . $value . " with this error " . $conn->error);
 		}
 	}
-	//closing the connection 
-	$conn->close();	
+	//closing the connection
+	$conn->close();
 }
 
 //get a list of tags
@@ -438,9 +438,9 @@ function listOfTags($postID) {
 		$i++;
 		$row = $result->fetch_array();
 	}
-	
-	//closing the connection 
-	$conn->close();	
+
+	//closing the connection
+	$conn->close();
 
 	//return stuff
 	return $tagNames;
@@ -470,9 +470,9 @@ function listOfPostsRelatedToATag($tagID) {
 		$i++;
 		$row = $result->fetch_array();
 	}
-	
-	//closing the connection 
-	$conn->close();	
+
+	//closing the connection
+	$conn->close();
 
 	//return stuff
 	return $posts;
@@ -501,9 +501,9 @@ function listOfAllTags() {
 		$i++;
 		$row = $result->fetch_array();
 	}
-	
-	//closing the connection 
-	$conn->close();	
+
+	//closing the connection
+	$conn->close();
 
 	//return stuff
 	return $tags;
@@ -522,35 +522,35 @@ function printPostResponsive($row) {
 
 $result= <<< EOT
 	<div class="row forum-main">
-			<div class="col-sm-12 well" style="padding-bottom:1.5em; padding-top:0em;">
+			<div id="0808" class="col-sm-12 well" style="padding-bottom:1.5em; padding-top:0em;">
 			<!-- sexy up and down vote -->
-			<div class="col-sm-1 sexy-vote shrink row">
+			<div class="col-sm-1 sexy-vote row">
 				<div>
-						<a href="../php/upRatePost.php?ratedPostID=$postID"> <span class="arrows glyphicon glyphicon-chevron-up"> </span>  </a> 
-					
+						<a href="../php/upRatePost.php?ratedPostID=$postID"> <span class="arrows glyphicon glyphicon-chevron-up"> </span>  </a>
+
 					<div class="rating">
 						<span> $rating </span>
 					</div>
-					
-					<a style="margin: auto 0; display:block;" href="../php/downRatePost.php?ratedPostID=$postID"> <span class="arrows glyphicon glyphicon-chevron-down"> </span>  </a> 
-					
+
+					<a style="margin: auto 0; display:block;" href="../php/downRatePost.php?ratedPostID=$postID"> <span class="arrows glyphicon glyphicon-chevron-down"> </span>  </a>
+
 				</div>
 			</div>
 
 			<!-- the main piece of sexy post -->
-			<div class="col-sm-10 post-text shrink row">
-				<div class="shrink">
+			<div class="col-sm-10 post-text row">
+				<div class="0808">
 					<div class="post-text-div">
 						<a  href="postPage.php?postID=${postID}" > <p style="word-wrap: break-word;"> $postText </p> </a>
 
 						<!-- username and date -->
-						<div class="username row"> 
+						<div class="username row">
 							<span style="color: gray;"> asked by </span> <span> $userName </span>
 							<span style="color: gray;"> on $date </span>
 						</div>
-						
+
 					</div>
-				
+
 
 					<!-- comment -->
 					<div class="reply-and-tags row">
@@ -624,30 +624,30 @@ $result= <<< EOT
 			<!-- sexy up and down vote -->
 			<div class="col-sm-1 sexy-vote row">
 				<div class="">
-						<a href="../php/upRatePost.php?ratedPostID=$postID"> <span class="arrows glyphicon glyphicon-chevron-up"> </span>  </a> 
-					
+						<a href="../php/upRatePost.php?ratedPostID=$postID"> <span class="arrows glyphicon glyphicon-chevron-up"> </span>  </a>
+
 					<div class="rating">
 						<span> $rating </span>
 					</div>
-					
-					<a style="margin: auto 0; display:block;" href="../php/downRatePost.php?ratedPostID=$postID"> <span class="arrows glyphicon glyphicon-chevron-down"> </span>  </a> 
-					
+
+					<a style="margin: auto 0; display:block;" href="../php/downRatePost.php?ratedPostID=$postID"> <span class="arrows glyphicon glyphicon-chevron-down"> </span>  </a>
+
 				</div>
 			</div>
 
 			<!-- the main piece of sexy post -->
 			<div class="col-sm-8 post-text row">
-				<div class=" shrink" style="padding: 0em;">
+				<div class=" 0808" style="padding: 0em;">
 					<div class="post-text-div">
-						<p style="word-wrap: break-word; font-size: 0.6em;"> $postText </p> 
+						<p style="word-wrap: break-word; font-size: 0.6em;"> $postText </p>
 						<!-- username and date -->
-						<div class="username row"> 
+						<div class="username row">
 							<span style="color: gray;"> by </span> <span> $userName </span>
 							<span style="color: gray;"> on $date </span>
 						</div>
 					</div>
 
-				
+
 					<!-- comment -->
 					<div class="reply-and-tags row" style="position:relative; top:-0.4em; left:0.3em;">
 						<span onclick="document.getElementById('subpost$postID').style.display='block'" class="glyphicon glyphicon-comment" style="font-size: 0.8em; color: black; cursor: hand;position: relative; top:0.6em; float:left"> </span>
@@ -697,7 +697,7 @@ function attachDocuments($postID) {
         if ($error == UPLOAD_ERR_OK) {
             #storing the uploded files in the upload directory
             move_uploaded_file(
-               $tmpName, 
+               $tmpName,
                 $targetFile
                 ) or die("Problems with upload");
 
@@ -712,7 +712,7 @@ function attachDocuments($postID) {
             #create documents and store them in the database
             //building a querry
             $dbQuery = "INSERT INTO Documents (document_type, document_size, document_name, document_content, post_id) VALUES ('" . mysqli_real_escape_string($conn, $fileType) ."', '" . mysqli_real_escape_string($conn, $fileSize) ."', '" . mysqli_real_escape_string($conn, $fileName) ."', '" . mysqli_real_escape_string($conn,$fileContent) ."' , " . $postID . ")";
-          
+
             $result = $conn->query($dbQuery);
 
             fclose($fileHandle);
@@ -723,7 +723,7 @@ function attachDocuments($postID) {
             	die("file size is 0");
             }
 
-           
+
         } else {
             die("upload error ". $fileSize . " error-> " . $error);
         }
@@ -758,7 +758,7 @@ function listDocumentsRelatedToAPost($postID) {
     	$row = $result->fetch_array();
     }
 
-    //closing the connection 
+    //closing the connection
     $conn->close();
 
     return $listing;

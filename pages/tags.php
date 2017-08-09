@@ -1,6 +1,6 @@
-<?php 
+<?php
 	//init
-	session_start(); 
+	session_start();
 	include  "../php/functions.php";
 ?>
 
@@ -58,37 +58,52 @@
         <p style="color: white; text-align:center;"> The following categories will help you navigate directly to your point of interest </p>
 		<br><br><br>
         <div id="icons" style="margin: auto; width: 100%; display:absolute; text-align: center;">
-        	<img src="../images/home-icon.png">
+
+
+
+					<div style="float:left"><img src="../images/home-icon.png">
         	<svg height="100" width="100">
   				<circle cx="50" cy="50" r="40" stroke="white" stroke-width="3" fill="white" />
 			</svg>
-
+		</div>
+			<div style="float:left">
 			<img src="../images/business-affiliate-network.png">
         	<svg height="100" width="100">
   				<circle cx="50" cy="50" r="40" stroke="white" stroke-width="3" fill="white" />
 			</svg>
-
+		</div>
+			<div style="float:left">
 			<img src="../images/medical-kit.png">
         	<svg height="100" width="100">
   				<circle cx="50" cy="50" r="40" stroke="white" stroke-width="3" fill="white" />
 			</svg>
+		</div>
+
+			<div style="float:left">
 
 			<img src="../images/map.png">
         	<svg height="100" width="100">
   				<circle cx="50" cy="50" r="40" stroke="white" stroke-width="3" fill="white" />
 			</svg>
+		</div>
+			<div style="float:left">
 
 			<img src="../images/translation.png">
         	<svg height="100" width="100">
   				<circle cx="50" cy="50" r="40" stroke="white" stroke-width="2" fill="white" />
 			</svg>
+		</div>
 
         </div>
 	   <br>
        <br>
+		<br>
+			<br>
+	 <br>
+		 <br>
     </div>
-    
-    
+
+
     <!-- page content -->
     <div id="tagsContainer"  style="max-width:2000px;margin-top:46px" class="w3-content w3-container w3-padding-64 w3-center w3-meduim">
     	<h3 style="margin:1em;"> Tags: </h3>
@@ -103,7 +118,7 @@
     		?>
     	</ul>
     </div>
-    
+
    <!-- Login -->
     <?php include '../template/login-non-index.html' ?>
     <!-- Register -->

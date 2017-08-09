@@ -1,6 +1,6 @@
-<?php 
+<?php
     //init
-    session_start(); 
+    session_start();
     include  "../php/functions.php";
 ?>
 
@@ -47,7 +47,7 @@
           }
 
           listPosts("null", 0);
-        ?>     
+        ?>
     </div>
 
     <!-- Login -->

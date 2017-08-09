@@ -1,186 +1,207 @@
-<?php 
-	//init
-	session_start(); 
-	include  "php/functions.php";
+`<?php
+//init
+session_start();
+include  "php/functions.php";
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>EDEL</title>
-    <?php include './template/includes.html' ?>
+	<title>EDEL</title>
+	<?php include './template/includes.html' ?>
 </head>
 
 <body>
-    <!-- navbar -->
-    <?php include 'template/navbar.php' ?>
+	<!-- navbar -->
+	<?php include 'template/navbar.php' ?>
+
+	<!-- Navbar on small screens -->
+	<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top">
+		<a href="#band" class="w3-bar-item w3-button w3-padding-large">BAND</a>
+		<a href="#tour" class="w3-bar-item w3-button w3-padding-large">TOUR</a>
+		<a href="#contact" class="w3-bar-item w3-button w3-padding-large">CONTACT</a>
+		<a href="#" class="w3-bar-item w3-button w3-padding-large">MERCH</a>
+	</div>
+
+	<!-- big screen -->
+	<div id="splashScreen">
+		<img src="https://storage.moqups.com/repo/iNXjFx1a/images/iPCgz6naJD.png" id="imgSplashScreen">
+
+		<h2 id="slogan"> Built for Refugees and Asylum Seekers </h2>
+
+		<h4 id="subSlogan"> Get the answers you need in a simple and efficient way </h4>
+
+	</div>
+
+	<!-- phone in hand -->
+	<div >
+		<img class="width100" src="images/phoneInHand.png">
+	</div>
+
+	<!-- Login -->
+	<?php include './template/login.html' ?>
+	<!-- Register -->
+	<?php include './template/register.html' ?>
+
+	<!-- add script -->
+	<script src="js/register-modal.js"> </script>
 
 
-    <!-- Navbar on small screens -->
-    <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-        <a href="#band" class="w3-bar-item w3-button w3-padding-large">BAND</a>
-        <a href="#tour" class="w3-bar-item w3-button w3-padding-large">TOUR</a>
-        <a href="#contact" class="w3-bar-item w3-button w3-padding-large">CONTACT</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">MERCH</a>
-    </div>
 
-    <!-- big screen -->
-    <div id="splashScreen">
-        <img src="https://storage.moqups.com/repo/iNXjFx1a/images/iPCgz6naJD.png" id="imgSplashScreen">
-      
-        <h2 id="slogan"> Built for Refugees and Asylum Seekers </h2>
 
-        <h4 id="subSlogan"> Get answers fast and confidentially </h4>
-        <div class="downloadApp">
-            <img class="downloadAppImages" src="https://storage.moqups.com/repo/iNXjFx1a/images/jsgz4kcW2q.png">
-            <img class= "downloadAppImages" src="https://storage.moqups.com/repo/iNXjFx1a/images/A6v9HOv8On.png">
-        </div>
-    </div>
 
-    <!-- phone in hand -->
-    <div >
-        <img id="phoneInHand" src="images/phoneInHand.png">
-    </div>
+	<!-- Page content -->
+	<div class="w3-content" class="newStyle">
+		<!-- The Band Section -->
+		<div class="w3-container w3-content w3-center w3-padding-64" id="band">
+			<h2 class="w3-wide">EDEL</h2>
+			<p class="w3-opacity"><i>Find what you need when you need it</i></p>
+			<p class="centered"> We have gather here the information and tools you need for a smooth transition into your new home. </p>
+			<p class="centered"> Choose from a variety of topics such as: </p>
+			<div class="w3-row w3-padding-32">
 
-    <!-- Login -->
-    <?php include './template/login.html' ?>
-    <!-- Register -->
-    <?php include './template/register.html' ?>
-    
-    <!-- add script -->
-    <script src="js/register-modal.js"> </script>
-    <!-- Page content -->
-    <div class="w3-content" class="newStyle">
-        <!-- The Band Section -->
-        <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
-            <h2 class="w3-wide">EDEL</h2>
-            <p class="w3-opacity"><i>We love refugees</i></p>
-            <p class="w3-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse molestie arcu volutpat est interdum, at egestas orci facilisis. Praesent vitae est vel nibh finibus consequat eget non erat. Cras vulputate tincidunt mauris nec facilisis. Integer mollis maximus tristique. Proin ac libero a orci ornare suscipit. Sed tempor nunc eu nisl venenatis, ac feugiat sem maximus. Maecenas enim lorem, pulvinar elementum dolor et, feugiat faucibus massa. Phasellus eu gravida quam, non euismod diam.</p>
-            <div class="w3-row w3-padding-32">
-                <div class="w3-third">
-                    <p>Name</p>
-                    <img src="images/here.png" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
-                </div>
-                <div class="w3-third">
-                    <p>Name</p>
-                    <img src="images/here.png" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%">
-                </div>
-                <div class="w3-third">
-                    <p>Name</p>
-                    <img src="images/here.png" class="w3-round" alt="Random Name" style="width:60%">
-                </div>
-            </div>
-        </div>
-        <!-- The Tour Section -->
-        <div class="w3-black" id="tour">
-            <div class="w3-container w3-content w3-padding-64" style="max-width:800px; width:100%;">
-                <h2 class="w3-wide w3-center">SOMETHING</h2>
-                <p class="w3-opacity w3-center"><i>Remember to book your tickets!</i></p>
-                <br>
-                <ul class="w3-ul w3-border w3-white w3-text-grey">
-                    <li class="w3-padding">September <span class="w3-tag w3-red w3-margin-left">Sold out</span></li>
-                    <li class="w3-padding">October <span class="w3-tag w3-red w3-margin-left">Sold out</span></li>
-                    <li class="w3-padding">November <span class="w3-badge w3-right w3-margin-right">3</span></li>
-                </ul>
-                <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
-                    <div class="w3-third w3-margin-bottom">
-                        <div class="w3-container w3-white">
-                            <p><b>New York</b></p>
-                            <p class="w3-opacity">Fri 27 Nov 2016</p>
-                            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-                            <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Buy Tickets</button>
-                        </div>
-                    </div>
-                    <div class="w3-third w3-margin-bottom">
-                        <div class="w3-container w3-white">
-                            <p><b>Paris</b></p>
-                            <p class="w3-opacity">Sat 28 Nov 2016</p>
-                            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-                            <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Buy Tickets</button>
-                        </div>
-                    </div>
-                    <div class="w3-third w3-margin-bottom">
-                        <div class="w3-container w3-white">
-                            <p><b>San Francisco</b></p>
-                            <p class="w3-opacity">Sun 29 Nov 2016</p>
-                            <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-                            <button class="w3-button w3-black w3-margin-bottom" onclick="document.getElementById('ticketModal').style.display='block'">Buy Tickets</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+				<div class="row">
+					<div class="col-sm-4 floatLeft width33">
+						<p class="centerText">Housing</p>
+						<img class="pic" src="images/home.png" alt="Random Name">
+						<svg height="100" width="100">
+							<circle cx="50" cy="50" r="40" stroke="white" stroke-width="2" fill="#7595cd" />
+						</svg>
+					</div>
 
-        <!-- Ticket Modal -->
-        <div id="ticketModal" class="w3-modal">
-            <div class="w3-modal-content w3-animate-top w3-card-4">
-                <header class="w3-container w3-teal w3-center w3-padding-32">
-                    <span onclick="document.getElementById('ticketModal').style.display='none'" class="w3-button w3-teal w3-xlarge w3-display-topright">×</span>
-                    <h2 class="w3-wide"><i class="fa fa-suitcase w3-margin-right"></i>Tickets</h2>
-                </header>
-                <div class="w3-container">
-                    <p>
-                        <label><i class="fa fa-shopping-cart"></i> Tickets, $15 per person</label>
-                    </p>
-                    <input class="w3-input w3-border" type="text" placeholder="How many?">
-                    <p>
-                        <label><i class="fa fa-user"></i> Send To</label>
-                    </p>
-                    <input class="w3-input w3-border" type="text" placeholder="Enter email">
-                    <button class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right">PAY <i class="fa fa-check"></i></button>
-                    <button class="w3-button w3-red w3-section" onclick="document.getElementById('ticketModal').style.display='none'">Close <i class="fa fa-remove"></i></button>
-                    <p class="w3-right">Need <a href="#" class="w3-text-blue">help?</a></p>
-                </div>
-            </div>
-        </div>
+					<div class="col-sm-4 floatLeft width33">
+						<p class="centerText"="text-align: center">Health Care</p>
+						<img class="pic" src="images/kit.png" alt="Random Name">
+						<svg height="100" width="100">
+							<circle cx="50" cy="50" r="41" stroke="white" stroke-width="2" fill="#7595cd" />
+						</svg>
+					</div>
 
-        <!-- The Contact Section -->
-        <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
-            <h2 class="w3-wide w3-center">CONTACT</h2>
-            <p class="w3-opacity w3-center"><i>Fan? Drop a note!</i></p>
-            <div class="w3-row w3-padding-32">
-                <div class="w3-col m6 w3-large w3-margin-bottom">
-                    <i class="fa fa-map-marker" style="width:30px"></i> Chicago, US
-                    <br>
-                    <i class="fa fa-phone" style="width:30px"></i> Phone: +00 151515
-                    <br>
-                    <i class="fa fa-envelope" style="width:30px"> </i> Email: mail@mail.com
-                    <br>
-                </div>
-                <div class="w3-col m6">
-                    <form action="/action_page.php" target="_blank">
-                        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-                            <div class="w3-half">
-                                <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
-                            </div>
-                            <div class="w3-half">
-                                <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
-                            </div>
-                        </div>
-                        <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
-                        <button class="w3-button w3-black w3-section w3-right" type="submit">SEND</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- End Page Content -->
-    </div>
+					<div class="col-sm-4 floatRight width33">
+						<p class="centerText"="text-align: center">Education</p>
+						<img class="pic" src="images/books.png" alt="Random Name">
+						<svg height="100" width="100">
+							<circle cx="50" cy="50" r="40" stroke="white" stroke-width="2" fill="#7595cd" />
+						</svg>
+					</div>
 
-    <!-- Footer -->
-    <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
-        <i class="fa fa-facebook-official w3-hover-opacity"></i>
-        <i class="fa fa-instagram w3-hover-opacity"></i>
-        <i class="fa fa-snapchat w3-hover-opacity"></i>
-        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-        <i class="fa fa-twitter w3-hover-opacity"></i>
-        <i class="fa fa-linkedin w3-hover-opacity"></i>
-        <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-    </footer>
-</body>
+				</div>
+			</div>
+		</div>
 
-<script>
-    //registering handlers
-    registerBody();
-    window.addEventListener("scroll", update);
-</script>
-</html>
+
+		<div class="contentBox">
+			<svg class="shape" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 208" ><title>testshape</title>
+				<polygon class="shape2" points="448 140 0 130 0 0 448 0 448 140"> </svg>
+
+				<div class="row">
+
+					<div class="col-sm-5 floatLeft width50">
+						<img src="images/Desktop+.png" alt="desktop" id="deskcell">
+					</div>
+
+					<div class="col-sm-5 floatRight width50">
+						<h2 id="header2"> Perfect for plannig ahead or using on the go</h2>
+
+						<h4 id="subSlogan"> Whether you are at home or on the street, access your account from the platform of your liking.
+							Our chatbot and  forums can be accessed by web or by using our mobile application</h4>
+
+						</div>
+					</div>
+				</div>
+
+
+				<div class="w3-container w3-content w3-center w3-padding-64 maxWidth800" id="band">
+
+
+					<div class="col-sm-5 floatLeft">
+						<h2 class="blackeade">
+							Connect with a community of peers and experts</h2>
+
+							<h4 id="subSlogan"> With this tool, you can get directed to the proper organisations that seek to help you.
+								To find out why NGO's recommend our service <a href="pages/aboutUs.php"> click here!</a> </h4>
+
+							</div>
+
+							<div class="col-sm-5" id="boot1">
+
+							</div>
+
+						</div>
+
+
+						<div class="row" id="boot2" >
+							<svg class="shape" xmlns="http://www.w3.org/2000/svg" viewBox="0 50 448 500" id="Background2"><title>testshape</title>
+								<polygon class="shape2" points="448 200 0 215 0 0 448 0 448 200" /> </svg>
+
+								<div class="row">
+
+									<h2 id="boot3">CONTACT</h2>
+									<p class="w3-left p2"><strong>If you have any question or comments you would like to share with us, feel free to reach out to us!</strong></p>
+									<div class="w3-row w3-padding-32">
+
+										<div class="w3-col m6 floatLeft">
+											<form action="/action_page.php" target="_blank">
+												<div class="w3-row-padding div2">
+													<div class="w3-half">
+														<input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+													</div>
+													<div class="w3-half">
+														<input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+													</div>
+												</div>
+												<input class="w3-input w3-border" type="text" placeholder="Message" required name="Message" style="height:15em">
+												<button class="w3-button w3-black w3-section w3-right" type="submit">SEND</button>
+											</form>
+
+											<div>
+											</div>
+										</div>
+
+										<div class="col-sm-4 floatRight margin3em">
+
+											<p class="p3"> <i class="fa fa-map-marker"></i> Montreal, Qc </p>
+											<br>
+
+
+											<p class="p3"> <i class="fa fa-phone width30px"></i> Phone: +00 1 (514)555-5555 </p>
+											<br>
+
+
+											<p class="p3"> <i class="fa fa-envelope width30px"> </i>Email: mail@mail.com </p>
+											<br>
+
+
+										</div>
+									</div>
+								</div>
+								<!-- End Page Content -->
+							</div>
+
+							<!-- Subscribe Section -->
+							<div class="w3-container w3-content w3-padding-64 maxWidth800">
+								<h2 class="w3-wide w3-center">Never Miss A Thing </h2>
+								<p class="w3-opacity w3-center">For regular updates about our products, subscribe to our newsletter</p>
+
+								<button class="w3-button w3-black w3-section w3-right floatLeft" type="submit" >SUBSCRIBE</button>
+
+							</div>
+							<!-- End Page Content -->
+						</div>
+
+						<!-- Footer -->
+						<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+							<i class="fa fa-facebook-official w3-hover-opacity"></i>
+							<i class="fa fa-instagram w3-hover-opacity"></i>
+							<i class="fa fa-snapchat w3-hover-opacity"></i>
+							<i class="fa fa-pinterest-p w3-hover-opacity"></i>
+							<i class="fa fa-twitter w3-hover-opacity"></i>
+							<i class="fa fa-linkedin w3-hover-opacity"></i>
+							<p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+						</footer>
+						<script>
+						//registering handlers
+						registerBody();
+						window.addEventListener("scroll", update);
+						</script>
+						</html>

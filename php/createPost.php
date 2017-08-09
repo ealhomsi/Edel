@@ -31,7 +31,6 @@ function main() {
     	$postTags = $_POST['postTags'];
     }
 
-
     //create mysql time
     $phptime = time();
     echo $phptime;

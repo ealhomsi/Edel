@@ -157,9 +157,8 @@
 }
 
 .forum-main div.sexy-vote {
-	margin-left: 3em;
-	margin-right: 0.5em;
 	text-align:center;
+	padding-top:0.5em;
 }
 
 .forum-main div.post-text {
@@ -169,10 +168,13 @@
 }
 
 .forum-main div.username {
-	position: relative;
-	top: 1.5em;
-	text-align:right;
 	color: blue;
+	float:left;
+	clear:both;
+	width:auto;
+	margin-left: 1em;
+	margin-top:0em;
+	display:block;
 	font-size: 0.5em;
 }
 
@@ -196,16 +198,40 @@
 	margin-left:0.25em;
 	margin-right:0.25;
 	padding-bottom: 0.1em;
-
+}
+.forum-main .tags:hover {
+	text-decoration: underline;
 }
 
-.forum-main div.username {
-	display:inline-block; 
-	width:30%; 
-	float:right;
-}
 
 .forum-main div.post-text-div {
-	width: 70%; 
+	width: auto; 
 	display:inline-block;
+	padding-top: 0.5em;
+}
+
+.forum-main div.post-text-div p {
+	width: auto; 
+	float:left;
+	margin-bottom: 0em;
+	display:block;
+}
+
+.forum-main .reply-and-tags {
+	margin-left: 0.1em;
+}
+
+
+.forum-main .documents a {
+	text-decoration: none;
+	font-size:0.8em;
+	margin-left:0.9em;
+}
+
+.forum-main .documents a:hover {
+	text-decoration: underline;
+}
+
+.forum-main .documents {
+	margin-top: 0.2em;
 }

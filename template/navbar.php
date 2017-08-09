@@ -12,11 +12,9 @@
             
              <?php
                 $result = '';
-                $userName = $_SESSION['userName'];
-                
                 if(isset($_SESSION['userName'])) {
+                    $userName = $_SESSION['userName'];
                     $result = <<< EOT
-                    
                     <li>
                     <a class="w3-bar-item w3-button w3-padding-large col-sm-1  w3-hide-small action-button" href="php/logout.php">     
                         <span> Logout </span>
@@ -47,9 +45,6 @@ EOT;
                     <a class="w3-bar-item w3-button w3-padding-large col-sm-1 action-button w3-hide-small" onclick="document.getElementById('id02').style.display='block'">     
                         <span> Sign up </span>
                     </a> </li>
-
-
-                   
 EOT;
                 }
                 echo $result;

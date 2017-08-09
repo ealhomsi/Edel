@@ -1,6 +1,35 @@
 <?php
 // this is a library of common functions
 
+//function send email to a user 
+function sendmail($to, $replyer, $msg, $date) {
+	$subject = "Your post got a reply from $replyer";
+
+	$message = <<<EOT
+		<html>
+			<head>
+				<title>HTML email</title>
+			</head>
+			<body>
+				<h4> ${msg} </h4>
+				<p> posted by ${replyer} on ${date} </p>
+			</body>
+		</html>
+EOT;
+	// Always set content-type when sending HTML email
+	$headers = "MIME-Version: 1.0" . "\r\n";
+	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+	// More headers
+	$headers .= 'From: <noreply EDEL>' . "\r\n";
+
+	$result =  mail($to,$subject,$message,$headers);
+	if(!$result) {
+		die("sdfa");
+	}
+}
+
+
 //function that generates private and public keys
 function createPPKeys() {
 	$config = array(
@@ -33,7 +62,7 @@ function generateSalt() {
 	$numberOfDesiredBytes = 16;
 	$salt = random_bytes($numberOfDesiredBytes);
 	return $salt;
-	}
+}
 
 //function that hashes passwords
 function hashPassword($password, $salt) {
@@ -50,11 +79,10 @@ function verifyPassword($password, $hash, $salt) {
 //signing file contents
 function signFile($fileContent, $privKey) {
 	//compute signature
-	//openssl_sign($fileContent, $signature, $privKey);
+	openssl_sign($fileContent, $signature, $privKey);
 
-	//return $signature;
+	return $signature;
 
-	return $fileContent;
 }
 
 //getting something from database Users
@@ -140,7 +168,7 @@ function getSpecificPost($postID) {
 
 	// free the results array
 	$result->close();
-	
+	$conn->close();
 	return array($row);
 }
 
@@ -235,10 +263,10 @@ function listChildrenPosts($id) {
 	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
 
 	// making the querry
-	$dbQuery = "SELECT post_id, post_type, post_date, user_id, post_rating, post_text FROM Posts INNER JOIN ChildrenPosts ON ChildrenPosts.child_post_id = Posts.post_id WHERE father_post_id='".mysqli_real_escape_string($conn,$id). "'";
+	$dbQuery = "SELECT post_id, post_type, post_date, user_id, post_rating, post_text FROM Posts INNER JOIN ChildrenPosts ON ChildrenPosts.child_post_id = Posts.post_id WHERE father_post_id='".mysqli_real_escape_string($conn,$id). "' ORDER BY Posts.post_rating DESC";
 
 	if($id == "null") {
-		$dbQuery = "SELECT post_id, post_type, post_date, user_id, post_rating, post_text FROM Posts INNER JOIN ChildrenPosts ON ChildrenPosts.child_post_id = Posts.post_id WHERE father_post_id is null";
+		$dbQuery = "SELECT post_id, post_type, post_date, user_id, post_rating, post_text FROM Posts INNER JOIN ChildrenPosts ON ChildrenPosts.child_post_id = Posts.post_id WHERE father_post_id is null ORDER BY Posts.post_rating DESC";
 	}
 	$result = $conn->query($dbQuery);
 	
@@ -332,7 +360,7 @@ function listPostsUser($id) {
 	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
 
 	// making the querry
-	$dbQuery = "SELECT * FROM Posts WHERE user_id='".mysqli_real_escape_string($conn,$id). "'";
+	$dbQuery = "SELECT * FROM Posts WHERE user_id='".mysqli_real_escape_string($conn,$id). "' ORDER BY Posts.post_rating DESC";
 	$result = $conn->query($dbQuery);
 
 	$row = $result->fetch_array();
@@ -421,7 +449,7 @@ function listOfTags($postID) {
 	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
 
 	// making the querry
-	$dbQuery = "SELECT * FROM TagPosts INNER JOIN Tags ON TagPosts.tag_id = Tags.tag_id WHERE post_id='".mysqli_real_escape_string($conn,$postID). "'";
+	$dbQuery = "SELECT * FROM TagPosts INNER JOIN Tags ON TagPosts.tag_id = Tags.tag_id WHERE post_id='".mysqli_real_escape_string($conn,$postID). "' ORDER BY Tags.tag_name";
 	$result = $conn->query($dbQuery);
 
 	if(!$result) {
@@ -453,7 +481,7 @@ function listOfPostsRelatedToATag($tagID) {
 	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
 
 	// making the querry
-	$dbQuery = "SELECT * FROM TagPosts INNER JOIN Posts ON TagPosts.post_id = Posts.post_id WHERE TagPosts.tag_id='".mysqli_real_escape_string($conn,$tagID). "'";
+	$dbQuery = "SELECT * FROM TagPosts INNER JOIN Posts ON TagPosts.post_id = Posts.post_id WHERE TagPosts.tag_id='".mysqli_real_escape_string($conn,$tagID). "' ORDER BY Posts.post_rating DESC";
 	$result = $conn->query($dbQuery);
 
 	if(!$result) {
@@ -484,7 +512,7 @@ function listOfAllTags() {
 	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
 
 	// making the querry
-	$dbQuery = "SELECT * FROM Tags";
+	$dbQuery = "SELECT * FROM Tags ORDER BY Tags.tag_name";
 	$result = $conn->query($dbQuery);
 
 	if(!$result) {
@@ -522,10 +550,10 @@ function printPostResponsive($row) {
 
 $result= <<< EOT
 	<div class="row forum-main">
-
+			<div class="col-sm-12 well" style="padding-bottom:1.5em; padding-top:0em;">
 			<!-- sexy up and down vote -->
 			<div class="col-sm-1 sexy-vote shrink row">
-				<div class="well">
+				<div>
 						<a href="../php/upRatePost.php?ratedPostID=$postID"> <span class="arrows glyphicon glyphicon-chevron-up"> </span>  </a> 
 					
 					<div class="rating">
@@ -539,24 +567,24 @@ $result= <<< EOT
 
 			<!-- the main piece of sexy post -->
 			<div class="col-sm-10 post-text shrink row">
-				<div class="well shrink">
+				<div class="shrink">
 					<div class="post-text-div">
 						<a  href="postPage.php?postID=${postID}" > <p style="word-wrap: break-word;"> $postText </p> </a>
+
+						<!-- username and date -->
+						<div class="username row"> 
+							<span style="color: gray;"> asked by </span> <span> $userName </span>
+							<span style="color: gray;"> on $date </span>
+						</div>
 						
 					</div>
 				
 
-					<!-- username and date -->
-					<div class="username"> 
-						<span style="color: gray;"> asked by </span> <span> $userName </span>
-						<span style="color: gray;"> on $date </span>
-					</div>
-
 					<!-- comment -->
 					<div class="reply-and-tags row">
-						<span onclick="document.getElementById('subpost$postID').style.display='block'" class="glyphicon glyphicon-comment" style="font-size: 0.8em; margin-right:0.4em; color: black; cursor: hand;position: relative; top:0.6em; margin-left: 0.7em; float:left; cursor: pointer;"> </span>
+						<span onclick="document.getElementById('subpost$postID').style.display='block'" class="glyphicon glyphicon-comment" style="font-size: 0.8em; margin-right:0.4em; color: black; cursor: hand; position: relative; top:0.6em; margin-left: 0.7em; float:left; "> </span>
 
-						<span style="font-size:0.8em;">
+						<span style="font-size:0.8em; cursor: hand;" onclick="document.getElementById('subpost$postID').style.display='block'">
 							reply
 						</span>
 						<div class="tags-container row" style="margin-left: 0.7em">
@@ -573,6 +601,52 @@ $result .= <<< EOT
 
     				    </div>
 					</div>
+
+					<!-- documents -->
+					<div class="documents">
+EOT;
+					$documentsArray = listDocumentsRelatedToAPost($postID);
+					foreach($documentsArray as $oneDocument) {
+							$documentName = $oneDocument[1];
+							$documentID = $oneDocument[0];
+							$masterType = $oneDocument[2];
+							$firstSlash = preg_split("/\//", $masterType)[0];
+							$secondSlash= preg_split("/\//", $masterType)[1];
+
+							//switch based on document type
+							if($firstSlash == "image") {
+								#insert modal
+								$result .= <<< EOT
+									<div class="imagePreview" style="display:inline;">
+										<a  id="myImg${documentID}" onclick="document.getElementById('myModal${documentID}').style.display='block'"> <span class="glyphicon glyphicon-zoom-in"> </span>  ${documentName} </a>
+
+										<!-- The Modal -->
+											<div id="myModal${documentID}" class="modalImagePreview" onclick="this.style.display='none'";>
+
+											  <span class="close" onclick="document.getElementById('myModal${documentID}').style.display='none'">&times;</span>
+
+											  <!-- Modal Content (The Image) -->
+											  <img style="z-index:100;" src="../uploads/${documentName}" class="modal-content-image-preview img-rounded" id="img${documentID}" onclick="event.stopPropagation(); return false;">
+
+											  <!-- Modal Caption (Image Text) -->
+											  <div style="text-align:center;">
+											  <a class="downloadButton" id="caption${documentID}" href="../php/download.php?id=${documentID}"> download &mapstodown;: ${documentName} </a> </div>
+											</div>
+
+									</div>
+EOT;
+							}else if($secondSlash == "pdf") {
+								#give them a link to the viewerhtml thing
+								$urlName = rawurlencode($documentName);
+								$result .='<a href="../uploads/'. $urlName .'" target="_blank"> <span class="glyphicon glyphicon-zoom-in"> </span>' . $documentName .'</a>';
+							}
+							else {
+								$result .='<a href="../php/download.php?id=' . $documentID .'"> <span class="glyphicon glyphicon-file"> </span>' . $documentName .'</a>';
+							}
+					}
+
+$result .= <<< EOT
+					</div>
 				</div>
 			</div>
 
@@ -587,7 +661,7 @@ $result .= <<< EOT
 	            		</div>
 			        </form>
 			    </div>
-
+			</div>
 	</div>
 EOT;
 
@@ -607,10 +681,10 @@ function printPostResponsive2($row, $level) {
 
 $result= <<< EOT
 	<div class="row forum-main" style="margin-left: ${level}em; padding:0em;">
-
+		<div class="col-sm-11 " style="border-bottom: 1px solid #eeeeee; padding-top: 0em; padding-bottom: 1em;">
 			<!-- sexy up and down vote -->
-			<div class="col-sm-1 sexy-vote shrink row">
-				<div class="well">
+			<div class="col-sm-1 sexy-vote row">
+				<div class="">
 						<a href="../php/upRatePost.php?ratedPostID=$postID"> <span class="arrows glyphicon glyphicon-chevron-up"> </span>  </a> 
 					
 					<div class="rating">
@@ -623,24 +697,24 @@ $result= <<< EOT
 			</div>
 
 			<!-- the main piece of sexy post -->
-			<div class="col-sm-8 post-text shrink row">
-				<div class="well shrink" style="padding: 0.7em;">
+			<div class="col-sm-8 post-text row">
+				<div class=" shrink" style="padding: 0em;">
 					<div class="post-text-div">
-						<p style="word-wrap: break-word; font-size: 0.6em;"> $postText </p> 	
+						<p style="word-wrap: break-word; font-size: 0.6em;"> $postText </p> 
+						<!-- username and date -->
+						<div class="username row"> 
+							<span style="color: gray;"> by </span> <span> $userName </span>
+							<span style="color: gray;"> on $date </span>
+						</div>
 					</div>
 
-					<!-- username and date -->
-					<div class="username" style="width:20%;"> 
-						<span style="color: gray;"> by </span> <span> $userName </span>
-						<span style="color: gray;"> on $date </span>
-					</div>
-
+				
 					<!-- comment -->
 					<div class="reply-and-tags row" style="position:relative; top:-0.4em; left:0.3em;">
 						<span onclick="document.getElementById('subpost$postID').style.display='block'" class="glyphicon glyphicon-comment" style="font-size: 0.8em; color: black; cursor: hand;position: relative; top:0.6em; float:left"> </span>
 
-						<span style="font-size:0.7em; margin-left:0.4em;">
-							   reply
+						<span style="font-size:0.7em; margin-left:0.4em; cursor: hand; position: relative; bottom: 0.1em;" onclick="document.getElementById('subpost$postID').style.display='block'">
+							  reply
 						</span>
 
     				    </div>
@@ -659,12 +733,159 @@ $result= <<< EOT
 	            		</div>
 			        </form>
 			    </div>
-
+		</div>
 	</div>
 EOT;
 
 	echo $result;
 }
 
-// add something to all pages bootstrap
+
+// functions
+// attach documents
+function attachDocuments($postID) {
+    $conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+    $targetDir = "../uploads/";
+
+    foreach ($_FILES["file"]["error"] as $key => $error) {
+        $tmpName =  $_FILES["file"]["tmp_name"][$key];
+        $fileName = $_FILES["file"]["name"][$key];
+        $ext = pathinfo($fileName, PATHINFO_EXTENSION);
+        $fileType = $_FILES["file"]["type"][$key];
+     	$targetFile = $targetDir . basename($fileName);
+        $fileSize = "";
+        #check for erros
+        if ($error == UPLOAD_ERR_OK) {
+            #storing the uploded files in the upload directory
+            move_uploaded_file(
+               $tmpName, 
+                $targetFile
+                ) or die("Problems with upload");
+
+
+			#reading the file size
+            $fileSize = filesize($targetFile);
+
+            #getting extra required data
+            $fileHandle = fopen($targetFile, "r");
+            $fileContent = fread($fileHandle, $fileSize);
+
+            #create documents and store them in the database
+            //building a querry
+            $dbQuery = "INSERT INTO Documents (document_type, document_size, document_name, document_content, post_id) VALUES ('" . mysqli_real_escape_string($conn, $fileType) ."', '" . mysqli_real_escape_string($conn, $fileSize) ."', '" . mysqli_real_escape_string($conn, $fileName) ."', '" . mysqli_real_escape_string($conn,$fileContent) ."' , " . $postID . ")";
+          
+            $result = $conn->query($dbQuery);
+
+            fclose($fileHandle);
+
+            if(!$result) {
+                die("something went wrong with inserting a file to database" . $conn->error);
+            } if($fileSize == 0) {
+            	die("file size is 0");
+            }
+
+           
+        } else {
+            die("upload error ". $fileSize . " error-> " . $error);
+        }
+    }
+    //closing connection
+    $conn->close();
+}
+
+// get documents linked to a post
+// given the post id
+function listDocumentsRelatedToAPost($postID) {
+	//connecting to the database
+	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+
+	// making the querry
+	$dbQuery = "SELECT document_id, document_name, document_type FROM Posts INNER JOIN Documents ON Documents.post_id = Posts.post_id WHERE Posts.post_id='".mysqli_real_escape_string($conn,$postID). "'";
+
+	$result = $conn->query($dbQuery);
+
+	// filling up the listing array
+	$listing = array();
+	$i = 0;
+
+	if(!$result) {
+		return array();
+	}
+	$row = $result->fetch_array();
+    while($row) {
+    	$listing[$i][0] = $row['document_id'];
+    	$listing[$i][1] = $row['document_name'];
+    	$listing[$i][2] = $row['document_type'];
+    	$i++;
+    	$row = $result->fetch_array();
+    }
+
+    //closing the connection 
+    $conn->close();
+
+    return $listing;
+}
+
+
+// get document content given document id
+function getDocumentContent($id) {
+	//connecting to the database
+	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+
+	// making the querry
+	$dbQuery = "SELECT document_name, document_type, document_size, document_content FROM Documents WHERE document_id='".mysqli_real_escape_string($conn,$id). "'";
+
+	// $result
+	$result = $conn->query($dbQuery);
+
+	// checking for errors
+	if(!$result) {
+		echo "Error: " . $dbQuery . "<br>" . $conn->error;
+		die();
+	}
+
+	//if $result is successful
+	$row = $result->fetch_array();  //by now they should have the same email address
+
+	if(!$row) {
+		die('FATAL: document was not found');
+	}
+
+	// free the results array
+	$result->close();
+	$conn->close();
+
+	return $row;
+}
+
+// get users email based on post id
+function getUserEmailPostID($postID) {
+	//connecting to the database
+	$conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
+
+	// making the querry
+	$dbQuery = "SELECT Users.user_email FROM Users INNER JOIN Posts ON Posts.user_id = Users.user_id WHERE post_id='".mysqli_real_escape_string($conn,$postID). "'";
+
+	// $result
+	$result = $conn->query($dbQuery);
+
+	// checking for errors
+	if(!$result) {
+		echo "Error: " . $dbQuery . "<br>" . $conn->error;
+		die("result is empty");
+	}
+
+	//if $result is successful
+	$row = $result->fetch_array();  //by now they should have the same email address
+
+	if(!$row) {
+		die('FATAL: document was not found');
+	}
+
+	// free the results array
+	$result->close();
+	$conn->close();
+
+	return $row['user_email'];
+}
 ?>

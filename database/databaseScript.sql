@@ -62,7 +62,7 @@ CREATE TABLE Documents(
    document_type varchar(255),
    document_size int,
    document_name varchar(255),
-   post_document_content MEDIUMBLOB,
+   document_content MEDIUMBLOB,
    post_id int not null,
    FOREIGN KEY (post_id)
    REFERENCES Posts(post_id)

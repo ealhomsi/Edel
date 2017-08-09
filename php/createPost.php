@@ -3,8 +3,12 @@
 session_start(); 
 include  "functions.php";
 
-if(!isset($_SESSION['userID'])) 
-    die("LOGIN / REGISTER FIRST!!!");
+if(!isset($_SESSION['userID'])) {
+    print("LOGIN / REGISTER FIRST!!!");
+    sleep(2);
+    header('Location: ' . 'https://localhost/new/index.php');
+    exit();
+}
 ?>
 
 <?php
@@ -26,11 +30,6 @@ function main() {
     if(isset($_POST["postTags"])) {
     	$postTags = $_POST['postTags'];
     }
- 
-     //error no login
-    if(!isset($_SESSION["userName"])){
-        die("please login or register first");
-    }
 
 
     //create mysql time
@@ -47,7 +46,7 @@ function main() {
     $result = $conn->query($dbQuery);
 
     if(!$result) {
-        die("something went wrong" . $conn->error);
+        die("something went wrong with " . $conn->error);
     }
 
     //closing connection
@@ -75,7 +74,7 @@ function main() {
     $conn->close();
 
     //getting a list of tags
-    $tags = preg_split("/\s*;\s*/", $postTags);
+    $tags = preg_split("/\s*,\s*/", $postTags);
     $listOfTagsIDs = array();
     $i = 0; 
 
@@ -84,7 +83,11 @@ function main() {
     	$i++;
     }
 
+    #tagging
     tagAPost($lastID, $listOfTagsIDs);
+
+    #adding documents
+    attachDocuments($lastID);
 
     header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit();

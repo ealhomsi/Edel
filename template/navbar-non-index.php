@@ -23,9 +23,9 @@
             
              <?php
                 $result = '';
-                $userName = $_SESSION['userName'];
                 
                 if(isset($_SESSION['userName'])) {
+                    $userName = $_SESSION['userName'];
                     $result = <<< EOT
                     
                     <li>
@@ -43,7 +43,6 @@
                     <a class='w3-bar-item w3-padding-large w3-hide-small w3-button col-sm-1 w3-hide-small' style="float:right;" href="profile.php">
                         <p style="color:gray;"> hello  <span id="user-name-id" style="color: black;"> $userName </span> </p>
                     </a> </li>
-
 EOT;
 
                 } else {
@@ -58,9 +57,6 @@ EOT;
                     <a class="w3-bar-item w3-button w3-padding-large col-sm-1 w3-hide-small action-button" onclick="document.getElementById('id02').style.display='block'">     
                         <span> Sign up </span>
                     </a> </li>
-
-
-                   
 EOT;
                 }
                 echo $result;

@@ -1,8 +1,12 @@
 # edel
 The website of edel side
 
+# how to configure
+    * run the mysql server if it is from scratch
+    * run the gulp server for the pdfjs
+        gulp server
+
 This website should include the stack overflow funcitonality
-I
 Functional Website:
 
 * official orientation
@@ -54,14 +58,10 @@ New TO DO:
 5) we don't use want firebase.
 6) spelling feature. (did  you mean this). (while typing).
 7) search (similarity score). (everything) (partners and  newsfeed).
-sharma.rahul71993@gmail.com
 
 
 # what to do last week
 * rss feed
-* posting a question
-* reply
-* email as an answer
 * focus on the mobile app (application)
 * organization website side.
 
@@ -69,8 +69,11 @@ sharma.rahul71993@gmail.com
 posting *****
 taging
 voting
-email an answer (notification system).] **** 
 
 priority
 protect private key - verification
 log changes
+
+
+todo
+please work documents web/viewer.html?file=somethingencoded in url encoding

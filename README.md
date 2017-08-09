@@ -46,6 +46,14 @@ c) accounts
 d) login/ signup
 e) storing database issues.
 
+#color whats 
+a) #FAFAFA white
+b) #292929 dark
+c) #606C38  dark green
+e) #3897F0 blue for buttons
+d) #90FCF9 electric green
+
+
 
 
 

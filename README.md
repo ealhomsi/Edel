@@ -72,6 +72,8 @@ echo 'text-content' | mail -s 'subject' 'destination@mail.ca'
 * the forum is 80% phone responsive
 
 * images and documents (pdf) are able to preview before download
+
+* responsive menu depending on screen size
 --------------------------------------------------------------------------------
 # Design and Colors
 
@@ -86,5 +88,4 @@ echo 'text-content' | mail -s 'subject' 'destination@mail.ca'
 # TO DO:
     a) RSS feed if necessary
     b) final touches for the phone reposivness
-
 

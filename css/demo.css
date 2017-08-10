@@ -207,6 +207,7 @@ a:hover, a:focus {
 	font-size: 1em;
 }
 
+<<<<<<< HEAD
 /*@media screen and (max-width: 50em) {
 	.codrops-header {
 		padding: 3em 10% 4em;
@@ -218,3 +219,5 @@ a:hover, a:focus {
 		font-size: 2.8em;
 	}
 }*/
+=======
+>>>>>>> a3d2cd61e89a971d0db439c302bbc33cd51092f3

@@ -1,5 +1,3 @@
-<!-- delete invisible >
-
 body{
 	min-width:300px; /* suppose you want minimun width of 1000px */
    width: auto !important;  /* Firefox will set width as auto */
@@ -141,17 +139,6 @@ body{
 	width: 97%;
 }
 
-.forum-main div.Invisible{
-	@media screen and (max-width: 600px) {
-		.Invisible {
-			visibility: hidden;
-			clear: both;
-			float: left;
-			display: none;
-		}
-	}
-}
-
 .forum-main div.forum-main {
 	text-align: center;
 }
@@ -168,8 +155,6 @@ body{
 	text-align:center;
 	float:left;
 	width:10%;
-	margin-top:25%;
-	margin-bottom: 25%;
 }
 
 .forum-main div.post-text {

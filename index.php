@@ -91,20 +91,20 @@ include  "php/functions.php";
 
 
 		<div class="contentBox">
-			<svg class="shape" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 208" ><title>testshape</title>
+			<svg class="shape" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 100" ><title>testshape</title>
 				<polygon class="shape2" points="448 140 0 130 0 0 448 0 448 140"> </svg>
 
 				<div class="row">
 
-					<div class="col-sm-5 floatLeft width50">
+					<div class="col-sm-5 fiftyto100 floatLeft">
 						<img src="images/Desktop+.png" alt="desktop" id="deskcell">
 					</div>
 
-					<div class="col-sm-5 floatRight width50">
-						<h2 id="header2"> Perfect for plannig ahead or using on the go</h2>
+					<div class="col-sm-5 fiftyto100 floatRight">
+						<p id="header2"> Perfect for plannig ahead or using on the go</p>
 
-						<h4 id="subSlogan"> Whether you are at home or on the street, access your account from the platform of your liking.
-							Our chatbot and  forums can be accessed by web or by using our mobile application</h4>
+						<p id="subSlogan"> Whether you are at home or on the street, access your account from the platform of your liking.
+							Our chatbot and  forums can be accessed by web or by using our mobile application</p>
 
 						</div>
 					</div>
@@ -118,7 +118,7 @@ include  "php/functions.php";
 						<h2 class="blackeade">
 							Connect with a community of peers and experts</h2>
 
-							<h4 id="subSlogan"> With this tool, you can get directed to the proper organisations that seek to help you.
+							<h4 id="subSlogan2"> With this tool, you can get directed to the proper organisations that seek to help you.
 								To find out why NGO's recommend our service <a href="pages/aboutUs.php"> click here!</a> </h4>
 
 							</div>
@@ -130,17 +130,16 @@ include  "php/functions.php";
 						</div>
 
 
-						<div class="row" id="boot2" >
-							<svg class="shape" xmlns="http://www.w3.org/2000/svg" viewBox="0 50 448 500" id="Background2"><title>testshape</title>
-								<polygon class="shape2" points="448 200 0 215 0 0 448 0 448 200" /> </svg>
-
+						<div id="boot2" >
+							<svg class="shape1" xmlns="http://www.w3.org/2000/svg" viewBox="0 50 448 160" id="Background2"><title>testshape</title>
+								<polygon class="shape3" points="448 200 0 215 0 0 448 0 448 200" />
 								<div class="row">
 
 									<h2 id="boot3">CONTACT</h2>
 									<p class="w3-left p2"><strong>If you have any question or comments you would like to share with us, feel free to reach out to us!</strong></p>
 									<div class="w3-row w3-padding-32">
 
-										<div class="w3-col m6 floatLeft">
+										<div class="w3-col m6 floatLeft fortyto100">
 											<form action="/action_page.php" target="_blank">
 												<div class="w3-row-padding div2">
 													<div class="w3-half">
@@ -149,16 +148,17 @@ include  "php/functions.php";
 													<div class="w3-half">
 														<input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
 													</div>
-												</div>
-												<input class="w3-input w3-border" type="text" placeholder="Message" required name="Message" style="height:15em">
-												<button class="w3-button w3-black w3-section w3-right" type="submit">SEND</button>
+												<input class="w3-input w3-border" type="text" placeholder="Message" required name="Message" style="height:15em;">
+
+											</div>
+											<button class="w3-button w3-black w3-section w3-right" type="submit">SEND</button>
 											</form>
 
 											<div>
 											</div>
 										</div>
 
-										<div class="col-sm-4 floatRight margin3em">
+										<div class="col-sm-4 floatRight fortyto100 margin3em">
 
 											<p class="p3"> <i class="fa fa-map-marker"></i> Montreal, Qc </p>
 											<br>
@@ -174,7 +174,9 @@ include  "php/functions.php";
 
 										</div>
 									</div>
+
 								</div>
+								</svg>
 								<!-- End Page Content -->
 							</div>
 

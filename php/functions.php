@@ -1,7 +1,7 @@
 <?php
 // this is a library of common functions
 
-//function send email to a user 
+//function send email to a user
 function sendmail($to, $replyer, $msg, $date) {
 	$subject = "Your post got a reply from $replyer";
 
@@ -550,7 +550,7 @@ function printPostResponsive($row) {
 
 $result= <<< EOT
 	<div class="row forum-main">
-			<div id="0808" class="col-sm-12 well" style="padding-bottom:1.5em; padding-top:0em;">
+			<div class="col-sm-12 well" style="padding-bottom:1.5em;">
 			<!-- sexy up and down vote -->
 			<div class="col-sm-1 sexy-vote row">
 				<div>
@@ -566,7 +566,7 @@ $result= <<< EOT
 
 			<!-- the main piece of sexy post -->
 			<div class="col-sm-10 post-text row">
-				<div class="0808">
+				<div>
 					<div class="post-text-div">
 						<a  href="postPage.php?postID=${postID}" > <p style="word-wrap: break-word;"> $postText </p> </a>
 
@@ -684,8 +684,8 @@ $result= <<< EOT
 			<!-- sexy up and down vote -->
 			<div class="col-sm-1 sexy-vote row">
 				<div class="">
-						<a href="../php/upRatePost.php?ratedPostID=$postID"> <span class="arrows glyphicon glyphicon-chevron-up"> </span>  </a> 
-					
+						<a href="../php/upRatePost.php?ratedPostID=$postID"> <span class="arrows glyphicon glyphicon-chevron-up"> </span>  </a>
+
 					<div class="rating">
 						<span> $rating </span>
 					</div>
@@ -697,7 +697,7 @@ $result= <<< EOT
 
 			<!-- the main piece of sexy post -->
 			<div class="col-sm-8 post-text row">
-				<div class=" 0808" style="padding: 0em;">
+				<div style="padding: 0em;">
 					<div class="post-text-div">
 						<p style="word-wrap: break-word; font-size: 0.6em;"> $postText </p>
 						<!-- username and date -->
@@ -707,7 +707,7 @@ $result= <<< EOT
 						</div>
 					</div>
 
-				
+
 					<!-- comment -->
 					<div class="reply-and-tags row" style="position:relative; top:-0.4em; left:0.3em;">
 						<span onclick="document.getElementById('subpost$postID').style.display='block'" class="glyphicon glyphicon-comment" style="font-size: 0.8em; color: black; cursor: hand;position: relative; top:0.6em; float:left"> </span>
@@ -757,7 +757,7 @@ function attachDocuments($postID) {
         if ($error == UPLOAD_ERR_OK) {
             #storing the uploded files in the upload directory
             move_uploaded_file(
-               $tmpName, 
+               $tmpName,
                 $targetFile
                 ) or die("Problems with upload");
 
@@ -819,7 +819,7 @@ function listDocumentsRelatedToAPost($postID) {
     	$row = $result->fetch_array();
     }
 
-    //closing the connection 
+    //closing the connection
     $conn->close();
 
     return $listing;
@@ -888,4 +888,3 @@ function getUserEmailPostID($postID) {
 	return $row['user_email'];
 }
 ?>
-

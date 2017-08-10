@@ -12,29 +12,51 @@
     <?php include '../template/includes-non-index.html' ?>
 
     <style>
+
+		@media screen and (max-width: 1000px){
+			.move{
+				margin-top: -2em;
+			}
+
+		}
+		@media screen and (max-width: 450px){
+			.move{
+				margin-top: -5em;
+			}
+
+		}
+
+		@media screen and (max-width: 600px) {
+
+		}
+
     	#icons img {
-    		width: 3em;
-    		height: 3em;
-    		position: relative;
-    		left:5.2em;
-    		top:-3.3em;
+
+					position: absolute;
+					width:40px;
+					margin: 2em 0em 1em 2em;
     	}
 
     	.tags {
     		display: inline-block;
-    		float:left;
     		background-color: #2dd0c6;
     		color: white;
     		border-radius: 3em;
     		padding: 0.4em 3em;
     		margin: 0.5em 0.3em;
     		opacity: 0.99;
+
+
     	}
 
     	#tagsContainer {
     		width: 100%;
             display:block;
     	}
+
+
+
+
     </style>
 </head>
 
@@ -53,7 +75,7 @@
 
     <!-- big screen -->
     <div id="splashScreen" style="height: auto;">
-        <h2 id="slogan"> Choose one of the following categories </h2>
+        <h2 id="slogan"> Choose a tag from a variety of categories </h2>
         <br>
         <p style="color: white; text-align:center;"> The following categories will help you navigate directly to your point of interest </p>
 		<br><br><br>
@@ -61,32 +83,32 @@
 
 
 
-					<div style="float:left"><img src="../images/home-icon.png">
+					<div style="float:left; width:20%"><img src="../images/home-icon.png">
         	<svg height="100" width="100">
   				<circle cx="50" cy="50" r="40" stroke="white" stroke-width="3" fill="white" />
 			</svg>
 		</div>
-			<div style="float:left">
+			<div class="move" style="float:left; width:20%">
 			<img src="../images/business-affiliate-network.png">
         	<svg height="100" width="100">
   				<circle cx="50" cy="50" r="40" stroke="white" stroke-width="3" fill="white" />
 			</svg>
 		</div>
-			<div style="float:left">
+			<div style="float:left; width:20%">
 			<img src="../images/medical-kit.png">
         	<svg height="100" width="100">
   				<circle cx="50" cy="50" r="40" stroke="white" stroke-width="3" fill="white" />
 			</svg>
 		</div>
 
-			<div style="float:left">
+			<div class="move" style="float:left; width:20%">
 
 			<img src="../images/map.png">
         	<svg height="100" width="100">
   				<circle cx="50" cy="50" r="40" stroke="white" stroke-width="3" fill="white" />
 			</svg>
 		</div>
-			<div style="float:left">
+			<div style="float:left; width:20%">
 
 			<img src="../images/translation.png">
         	<svg height="100" width="100">
@@ -105,8 +127,10 @@
 
 
     <!-- page content -->
-    <div id="tagsContainer"  style="max-width:2000px;margin-top:46px" class="w3-content w3-container w3-padding-64 w3-center w3-meduim">
+    <div id="tagsContainer"  style="max-width:2000px; margin-top:46px" class="w3-content w3-container w3-padding-64 w3-center w3-meduim">
     	<h3 style="margin:1em;"> Tags: </h3>
+			<p style="color: white; text-align:center;"> For more precise topics pick one of these tags </p>
+
     	<ul>
     		<?php
     			$tagsArray = listOfAllTags();

@@ -1,9 +1,9 @@
-<?php 
+<?php
 //init
-session_start(); 
+session_start();
 include  "../php/functions.php";
 
-if(!isset($_SESSION['userID'])) 
+if(!isset($_SESSION['userID']))
     die("you should login/register first");
 ?>
 
@@ -13,14 +13,15 @@ if(!isset($_SESSION['userID']))
     <title>Your Profile <?php echo $_SESSION['userName'] ?> </title>
     <!-- all required includes -->
     <?php include '../template/includes-non-index.html' ?>
-    
-    <!-- in document styling --> 
+
+    <!-- in document styling -->
     <style>
         #ui-id-1 {
             display: inline;
             z-index: 3000;
             opacity: 1;
         }
+        
         #new-post-btn {
             cursor: hand;
             background-color: #2dd0c6;
@@ -140,12 +141,12 @@ if(!isset($_SESSION['userID']))
     	<br>
         <h2 style="margin-left: 1em;"> Your uploaded posts:</h2>
         <br>
-        <a  id="new-post-btn" onclick="cleanAndPost()" class="w3-bar-item w3-button w3-padding-large w3-hide-small">New Post</a>        
+        <a  id="new-post-btn" onclick="cleanAndPost()" class="w3-bar-item w3-button w3-padding-large w3-hide-small">New Post</a>
         <br>
         <?php
             function listingUserPostsGivenID($id) {
                 $result = listPostsUser($id);
-                
+
                 echo '<h3 style="margin-left:2em;"><br> You have ' . sizeof($result) . " posts: <br></h3>";
                 //getting all posts
                 foreach ($result as $value) {
@@ -154,7 +155,7 @@ if(!isset($_SESSION['userID']))
             }
             listingUserPostsGivenID($_SESSION['userID']);
         ?>
-        
+
     </div>
 
     <!-- New Post -->
@@ -187,7 +188,7 @@ EOT;
                         ];
                         $("#tagsInputArea").tagit({
                             availableTags: availableTagss,
-                            autocomplete: {delay: 0, minLength: 2} 
+                            autocomplete: {delay: 0, minLength: 2}
                         });
                     });
                  </script>
@@ -195,7 +196,7 @@ EOT;
                 echo $toEcho;
                 ?>
                 <!-- end script for tags -->
-                
+
                 <br>
                 <a onclick="addNewUploadBox()" class="hover-non-decoration"> Attach + </a>
                 <br>
@@ -205,7 +206,7 @@ EOT;
                 <button type="submit" id="submit-post-btn" value="Submit">Submit</button>
             </div>
             <div class="modal-container">
-               
+
                 <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
             </div>
         </form>
@@ -223,7 +224,7 @@ EOT;
         }
     }
 </script>
-    
+
 <!-- Footer -->
 <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
     <i class="fa fa-facebook-official w3-hover-opacity"></i>
@@ -274,7 +275,7 @@ EOT;
 
         //first defining the two functions
         //readding the event handlers for everything
-        //function event for closing the thing 
+        //function event for closing the thing
         close = (e) => {
             var targetElement = event.target || event.srcElement;
             targetElement.parentElement.parentElement.outerHTML = "";

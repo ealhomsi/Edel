@@ -29,10 +29,10 @@
     <br>
 
     <!-- Querry the database for all posts listed in those tags-->
-    <div class="w3-content" style="max-width:2000px;margin-top:46px">
+    <div class="w3-content" style="max-width:2000px; margin-top:46px;">
         <br>
         <br>
-        <h2 style="margin-left: 1.5em;">  Forum</h2> <br>
+        <h2 style="margin-left: 1.5em;">Forum</h2> <br>
          <?php
           function listPosts($id, $level) {
             $result = listChildrenPosts($id);

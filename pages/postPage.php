@@ -1,6 +1,6 @@
-<?php 
+<?php
     //init
-    session_start(); 
+    session_start();
     include  "../php/functions.php";
     $postID = $_GET['postID'];
     if(!isset($_GET['postID'])) {
@@ -28,12 +28,10 @@
         <a href="#" class="w3-bar-item w3-button w3-padding-large">MERCH</a>
     </div>
 
-    
-    
     <br>
 
      <!-- Querry the database for all posts listed in those tags-->
-    <div class="w3-content" style="max-width:2000px;margin-top:46px">
+    <div class="w3-content" style="max-width:2000px; margin-top:46px">
         <br>
         <br>
         <?php

@@ -1,3 +1,272 @@
+@media screen and (max-width: 900px) {
+
+	}body{
+		min-width:350px; /* suppose you want minimun width of 1000px */
+		width: auto !important;  /* Firefox will set width as auto */
+		width:350px;
+	}
+
+	#splashScreen {
+		width: 100%;
+		margin-top: -20px;
+		height: 27em;
+		background-color: #2dd0c6;
+	}
+
+	.newStyle {
+		display: block;
+	}
+
+	#imgSplashScreen {
+		position: absolute;
+		width: 100%;
+		height: 27em;
+		opacity: 0.3;
+	}
+
+
+	#slogan {
+		color: white;
+		text-align: center;
+		display: block;
+		margin: auto 0;
+		width: 100%;
+		padding-top: 5.5em;
+		font-weight: bold;
+		opacity: 0.99;
+	}
+
+
+	#subSlogan {
+		color: white;
+		text-align: center;
+		display: block;
+		margin: auto 0;
+		width: 100%;
+		padding-top: 0.4em;
+		font-weight: bold;
+		opacity: 0.99;
+		font-size: 0.75em;
+	}
+
+	#header2{
+		color: white;
+		text-align: center;
+		margin: auto 0;
+		margin-top:1.5em;
+		width: 100%;
+		font-weight: bold;
+		font-size: 1em;
+
+	}
+
+	.buttonsMenu {
+		background-color: white;
+		color: #2dd0c6;
+		border-radius: 2em;
+		margin-top: 1.3em;
+		margin-right: 1em;
+		position: absolute;
+		padding: 0.2em 0.7em;
+	}
+
+	.contentbar {
+		margin-top: 3em;
+		border-radius: 0.3em;
+	}
+
+	.downloadAppImages {
+		width: 7em;
+		opacity: 0.99;
+	}
+	.downloadApp {
+		padding-top: 1.5em;
+		display:inline-block;
+		text-align: center;
+		width: 100%;
+	}
+	.width100 {
+		width: 100%;
+	}
+
+	.width50{
+		width: 50%
+	}
+
+	.fiftyto100{
+		width: 50%;
+
+	}
+	.width33{
+		width: 33%;
+	}
+
+	.centerText{
+		text-align: center;
+	}
+
+	.shape{
+		position: absolute;
+		left:0;
+	}
+	.shape2{
+		style="fill:#7595cd;
+	}
+
+	.shape1{
+			position: absolute;
+			width: 100%;
+			left:0;
+			height: 30em;
+		}
+	.shape3{
+			width: 100%;
+			style="fill:#7595cd;
+			height: 30em;
+		}
+
+	.modal {
+		padding: 15em;
+	}
+
+	form {
+		padding: 1em;
+	}
+
+	form input {
+		padding: 0em 0.1em;
+	}
+
+	polygon {
+		fill:#7595cd;
+		width: 100%;
+	}
+
+	#Background1{
+		position: absolute;
+		left:0;
+		width: 100%;
+		z-index: -1;
+	}
+
+	#Background2{
+		position: absolute;
+		background-color: 7595cd;
+		left:0;
+		width: 50em;
+		z-index: -1;
+	}
+
+	#deskcell{
+		width: 55%;
+		margin-left: 2em;
+		margin-top:2em;
+	}
+
+	.blackeader{
+		color: black;
+		text-align: center;
+		margin: auto 0;
+		width: 100%;
+		font-weight: bold;
+		opacity: 0.99;
+	}
+
+	.circle {
+		position: absolute;
+		margin-right:50%
+	}
+
+	.pic {
+		position: absolute;
+		width:40px;
+		margin: 2em 0em 1em 2em;
+	}
+
+	.floatRight {
+		float:right;
+	}
+
+	.floatLeft{
+		float: left;
+	}
+
+	#navDemo{
+		margin-top:46px;
+
+	}
+
+	.centered{
+		text-align:center;
+	}
+
+	.contentBox{
+		width: 100%;
+		height: 16em;
+	}
+
+
+	.p2{
+		margin-left:4.4em;
+		color: white;
+	}
+
+	.div2{
+		margin:0 -16px 8px -16px;
+	}
+
+	.margin3em{
+		margin:3em;
+	}
+
+	.p3{
+		color: white;
+		margin: auto 0;
+		font-weight: bold;
+	}
+	.width30px{
+		width:30px
+	}
+
+	.maxWidth800{
+		max-width:800px;
+	}
+
+	#boot2{
+		width: 100%;
+		height: 40em;
+	}
+
+	#boot3{
+		color:white;
+		margin-left:2em;
+	}
+
+	.tooltip {
+		/*position: relative;*/
+		display: inline-block;
+	}
+
+	.tooltip .tooltippicture {
+		visibility: hidden;
+		width: 120px;
+		background-color: black;
+		color: #fff;
+		text-align: center;
+		border-radius: 6px;
+		padding: 5px 0;
+
+		/* Position the tooltip *
+		position: absolute;*/
+		z-index: 10;
+	}
+
+	.tooltip:hover .tooltiptext {
+		visibility: visible;
+	}
+}
+
+
 body{
 	min-width:300px; /* suppose you want minimun width of 1000px */
    width: auto !important;  /* Firefox will set width as auto */
@@ -6,6 +275,7 @@ body{
 
 #splashScreen {
 	width: 100%;
+	margin-top: -20px;
 	height: 27em;
 	background-color: #2dd0c6;
 }
@@ -33,6 +303,7 @@ body{
 	opacity: 0.99;
 }
 
+
 #subSlogan {
 	color: white;
 	text-align: center;
@@ -42,6 +313,30 @@ body{
 	padding-top: 0.4em;
 	font-weight: bold;
 	opacity: 0.99;
+	font-size: 1em;
+}
+
+#subSlogan2 {
+	color: black;
+	text-align: center;
+	display: block;
+	margin: auto 0;
+	width: 100%;
+	padding-top: 0.4em;
+	font-weight: bold;
+	opacity: 0.99;
+	font-size: 1em;
+}
+
+#header2{
+	color: white;
+	text-align: center;
+	margin: auto 0;
+	margin-top:1em;
+	width: 100%;
+	font-weight: bold;
+	font-size: 1.5em;
+
 }
 
 .buttonsMenu {
@@ -58,7 +353,6 @@ body{
 	margin-top: 3em;
 	border-radius: 0.3em;
 }
-
 
 .downloadAppImages {
 	width: 7em;
@@ -78,6 +372,15 @@ body{
 	width: 50%
 }
 
+	.fortyto100{
+		width: 40%;
+
+	}
+
+.fiftyto100{
+		width: 50%;
+
+}
 .width33{
 	width: 33%;
 }
@@ -89,11 +392,9 @@ body{
 .shape{
 	position: absolute;
 	left:0;
-	width: 100;
 }
 .shape2{
 	style="fill:#7595cd;
-	width: 100%;
 }
 
 .modal {
@@ -149,9 +450,8 @@ polygon {
 
 .pic {
 	position: absolute;
-	width:60px;
-	padding:8px;
-	margin-right:50%;
+	width:40px;
+	margin: 2em 0em 1em 2em;
 }
 
 .floatRight {
@@ -173,18 +473,9 @@ polygon {
 
 .contentBox{
 	width: 100%;
-	height: 27em;
+	height: 16em;
 }
 
-#header2{
-	color: white;
-	text-align: center;
-	margin: auto 0;
-	margin-top:3em;
-	width: 100%;
-	font-weight: bold;
-
-}
 
 .p2{
 	margin-left:4.4em;

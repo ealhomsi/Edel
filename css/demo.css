@@ -37,8 +37,7 @@ a {
 	text-decoration: none;
 }
 
-a:hover,
-a:focus {
+a:hover, a:focus {
 	color: #722040;
 }
 
@@ -208,14 +207,14 @@ a:focus {
 	font-size: 1em;
 }
 
-@media screen and (max-width: 50em) {
+/*@media screen and (max-width: 50em) {
 	.codrops-header {
 		padding: 3em 10% 4em;
 	}
-}
+}*/
 
-@media screen and (max-width: 40em) {
+/*@media screen and (max-width: 40em) {
 	.codrops-header h1 {
 		font-size: 2.8em;
 	}
-}
+}*/

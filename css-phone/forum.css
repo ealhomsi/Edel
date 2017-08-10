@@ -4,9 +4,15 @@ body{
    width:300px;
 }
 
+.forum-main{
+	height: auto;
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
 .forum-main div.registration{
 	width: 1165px;
-	height: 518px;
+	height: auto;
 	margin: 20px;
 	margin-left: 55px;
 	background-image: url('Images/Capture.PNG');
@@ -18,7 +24,7 @@ body{
 	border-radius: 15px;
 	margin-left: 1em;
 	width:90%;
-	height: 110px;
+	height: auto;
 	margin-bottom: 10px;
 }
 
@@ -151,8 +157,14 @@ body{
 	color: black;
 }
 
-.forum-main div.sexy-vote {
+.textBox{
+	height:auto;
+}
+
+.forum-main div.zone-vote {
 	text-align:center;
+	vertical-align: middle;
+	padding-top: 4em;
 	float:left;
 	width:10%;
 }
@@ -161,8 +173,8 @@ body{
 	text-align: left;
 	font-size: 1.5em;
 	text-indent: 0.3em;
-	float: right;
-	width:89%;
+	float:right;
+	width: 89%
 }
 
 .forum-main div.username {
@@ -205,13 +217,13 @@ body{
 .forum-main div.post-text-div {
 	width: auto;
 	display:inline-block;
-	padding-top: 1.5em;
 
 }
 
 .forum-main div.post-text-div p {
 	width: auto;
 	float:left;
+	overflow: hidden;
 	margin-bottom: 0em;
 	display:block;
 }

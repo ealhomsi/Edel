@@ -1,6 +1,6 @@
 <?php 
 //init
-session_start(); 
+session_start();
 include  "functions.php";
 
 if(!isset($_SESSION['userID'])) {
@@ -15,11 +15,11 @@ if(!isset($_SESSION['userID'])) {
 //this file does just the uploading routine
 //upload routine and listing files of some organiztion.
 function main() {
-    // fetch credentials through post   
+    // fetch credentials through post
     $postType =  "";
     $postText = "";
     $postTags = "";
-    
+
     // fetch credentials thorugh post
     if(isset($_POST["postText"])){
         $postText = $_POST["postText"];
@@ -40,7 +40,7 @@ function main() {
 
     //building querry to the database
     $dbQuery = "INSERT INTO Posts (user_id, post_type, post_date, post_text, post_rating) VALUES ('" . mysqli_real_escape_string($conn, $_SESSION['userID']) . "', '" . mysqli_real_escape_string($conn, $postType) ."', FROM_UNIXTIME('" . $phptime ."'), '". mysqli_real_escape_string($conn, $postText)  ."', 1)";
-            
+
 
     $result = $conn->query($dbQuery);
 
@@ -54,15 +54,15 @@ function main() {
 
     //building querry to the database
     $lastID = querryLastPost('post_id');
-    echo "<br> " . $lastID ."<br>"; 
-            
+    echo "<br> " . $lastID ."<br>";
+
 
     //inserting
     $conn = new mysqli('localhost','boubou','boubou','edel') or die('Error connecting to MySQL server.');
 
     //building a querry
     $dbQuery = "INSERT INTO ChildrenPosts (child_post_id) VALUES (" . mysqli_real_escape_string($conn, $lastID) .")";
-  
+
     $result = $conn->query($dbQuery);
 
     if(!$result) {
@@ -75,7 +75,7 @@ function main() {
     //getting a list of tags
     $tags = preg_split("/\s*,\s*/", $postTags);
     $listOfTagsIDs = array();
-    $i = 0; 
+    $i = 0;
 
     foreach ($tags as $oneTag) {
     	$listOfTagsIDs[$i] = insertTag($oneTag);
@@ -90,10 +90,10 @@ function main() {
 
     header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit();
-        
+
 }
 
 //calling main()
 main();
-  
+
 ?>

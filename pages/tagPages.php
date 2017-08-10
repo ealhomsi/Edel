@@ -1,6 +1,6 @@
-<?php 
+<?php
     //init
-    session_start(); 
+    session_start();
     include  "../php/functions.php";
     $tagID = $_GET['tagID'];
     $tagName = querrySomethingFromTags($tagID, 'tag_id', 'tag_name');
@@ -20,16 +20,7 @@
     <?php include '../template/navbar-non-index.php' ?>
 
 
-    <!-- Navbar on small screens -->
-    <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-        <a href="#band" class="w3-bar-item w3-button w3-padding-large">BAND</a>
-        <a href="#tour" class="w3-bar-item w3-button w3-padding-large">TOUR</a>
-        <a href="#contact" class="w3-bar-item w3-button w3-padding-large">CONTACT</a>
-        <a href="#" class="w3-bar-item w3-button w3-padding-large">MERCH</a>
-    </div>
 
-    
-    
     <br>
 
      <!-- Querry the database for all posts listed in those tags-->
@@ -47,7 +38,7 @@
             }
             printByTag($tagID);
         ?>
-        
+
     </div>
 
     <!-- Login -->
@@ -93,7 +84,7 @@
                 <input type="text" placeholder="Enter IMEI" name="userImei" required>
 
                 <button type="submit" style="background-color: #456990">Register</button>
-               
+
             </div>
             <div class="modal-container" style="background-color:#f1f1f1">
                 <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
@@ -124,7 +115,7 @@
     </script>
 
     <!-- Footer -->
-    
+
     <script>
         // Automatic Slideshow - change image every 4 seconds
         var myIndex = 0;

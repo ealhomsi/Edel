@@ -1,5 +1,5 @@
 
-.navDemo{
+#navDemo{
 		margin-top:5em;
 
 	}
@@ -111,7 +111,8 @@ body{
 
 
 .modal {
-	padding: 15em;
+	padding: 0% 8%;
+
 }
 
 form {

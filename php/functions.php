@@ -550,9 +550,9 @@ function printPostResponsive($row) {
 
 $result= <<< EOT
 	<div class="row forum-main">
-			<div class="col-sm-12 well" style="padding-bottom:1.5em;">
+			<div class="col-sm-12 well row textBox" style="padding-bottom:1.5em;">
 			<!-- sexy up and down vote -->
-			<div class="col-sm-1 sexy-vote row">
+			<div class="col-sm-1 zone-vote row">
 				<div>
 						<a href="../php/upRatePost.php?ratedPostID=$postID"> <span class="arrows glyphicon glyphicon-chevron-up"> </span>  </a>
 					<div class="rating">
@@ -682,7 +682,7 @@ $result= <<< EOT
 	<div class="row forum-main" style="margin-left: ${level}em; padding:0em;">
 		<div class="col-sm-11 " style="border-bottom: 1px solid #eeeeee; padding-top: 0em; padding-bottom: 1em;">
 			<!-- sexy up and down vote -->
-			<div class="col-sm-1 sexy-vote row">
+			<div class="col-sm-1 zone-vote row">
 				<div class="">
 						<a href="../php/upRatePost.php?ratedPostID=$postID"> <span class="arrows glyphicon glyphicon-chevron-up"> </span>  </a>
 

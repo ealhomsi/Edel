@@ -1,6 +1,7 @@
 .modal {
     position: relative;
     top:100em;
+    width: 500px;
 }
 .modal body {
     font-family: "Lato", sans-serif;
@@ -81,6 +82,7 @@
 }
 .animate {
     top: -10em;
+    width: 500px;
 }
 .modal span.psw {
     float: right;
@@ -115,10 +117,12 @@
 .modal .modal-content {
     padding-bottom: 5em;
     background-color: #fefefe;
-    margin: 5% auto 15% auto;
+    margin: 5% 0 5% 0;
     /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
-    width: 80%;
+    width: 300px;
+    text-align: center;
+    margin-left: 0;
     /* Could be more or less, depending on screen size */
 }
 /* The Close Button (x) */

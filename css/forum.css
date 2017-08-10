@@ -1,3 +1,9 @@
+body{
+	min-width:300px; /* suppose you want minimun width of 1000px */
+   width: auto !important;  /* Firefox will set width as auto */
+   width:300px;
+}
+
 .forum-main div.registration{
 	width: 1165px;
 	height: 518px;
@@ -133,20 +139,8 @@
 	width: 97%;
 }
 
-.forum-main div.Invisible{
-	@media screen and (max-width: 600px) {
-		.Invisible {
-			visibility: hidden;
-			clear: both;
-			float: left;
-			display: none;
-		}
-	}
-}
-
 .forum-main div.forum-main {
 	text-align: center;
-
 }
 
 .forum-main div.rating {
@@ -157,10 +151,11 @@
 	color: black;
 }
 
-
-.forum-main div.sexy-vote {
-	text-align:center;
+.forum-main div.zone-vote {
 	vertical-align: middle;
+	text-align: center;
+	margin-left: 7px;
+	margin-top: 2.5em;
 }
 
 .forum-main div.post-text {

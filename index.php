@@ -15,14 +15,6 @@ include  "php/functions.php";
 	<!-- navbar -->
 	<?php include 'template/navbar.php' ?>
 
-	<!-- Navbar on small screens -->
-	<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top">
-		<a href="#band" class="w3-bar-item w3-button w3-padding-large">BAND</a>
-		<a href="#tour" class="w3-bar-item w3-button w3-padding-large">TOUR</a>
-		<a href="#contact" class="w3-bar-item w3-button w3-padding-large">CONTACT</a>
-		<a href="#" class="w3-bar-item w3-button w3-padding-large">MERCH</a>
-	</div>
-
 	<!-- big screen -->
 	<div id="splashScreen">
 		<img src="https://storage.moqups.com/repo/iNXjFx1a/images/iPCgz6naJD.png" id="imgSplashScreen">

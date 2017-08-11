@@ -76,16 +76,12 @@ include  "../php/functions.php";
 
 
     <div class="w3-container w3-content w3-center w3-padding-24 maxWidth800" id="abBand">
-
+      <br>
       <h3 class="blackheader">Our goal </h3>
 
       <h4 id="ABsubSlogan2"> Ask Jay if left/right split is better or above under. Lorem ipsum dolor sit amet,ADD LINK TO VIDEO!!!!<br>
-        Lorem ipsum dolor sit amet,ADD LINK TO VIDEO!!!!<br>
-        Lorem ipsum dolor sit amet,ADD LINK TO VIDEO!!!!<br>
-        Lorem ipsum dolor sit amet,ADD LINK TO VIDEO!!!!<br>
-        Lorem ipsum dolor sit amet,ADD LINK TO VIDEO!!!!<br>
-        Lorem ipsum dolor sit amet,ADD LINK TO VIDEO!!!!<br>
-        Lorem ipsum dolor sit amet,ADD LINK TO VIDEO!!!!<br>
+       <br>
+       <br>
      </h4>
       </div>
 

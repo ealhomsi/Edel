@@ -564,7 +564,7 @@ $result= <<< EOT
 				</div>
 			</div>
 
-			<!-- the main piece of sexy post -->
+			<!-- the main piece of post -->
 			<div class="col-sm-10 post-text row">
 				<div>
 					<div class="post-text-div">

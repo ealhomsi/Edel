@@ -29,7 +29,7 @@
 
                     <li>
                     <a class='w3-bar-item w3-padding-large w3-hide-medium w3-button w3-hide-small w3-hide-medium col-sm-1' style="float:right;" href="pages/profile.php">
-                        <p style="color:gray;"> hello  <span id="user-name-id" style="color: black;"> $userName </span> </p>
+                        <p style="color:white;"> hello  <span id="user-name-id"> $userName </span> </p>
                     </a> </li>
 EOT;
 

@@ -12,7 +12,6 @@
 		margin: auto 0;
 		width: 100%;
 		margin-top: 3em;
-		font-weight: bold;
 		opacity: 0.99;
 		font-size: 1em;
 	}
@@ -60,8 +59,8 @@
 		width: 50%;
 
 	}
-	.width33{
-		width: 33%;
+	.width25to50{
+		width: 25%;
 	}
 
 	.centerText{
@@ -102,12 +101,6 @@
 		left:0;
 		width: 100%;
 		z-index: -1;
-	}
-
-	#deskcell{
-		width: 55%;
-		margin-left: 2em;
-		margin-top:2em;
 	}
 
 	.blackheader{
@@ -330,8 +323,8 @@
 		width: 50%;
 
 	}
-	.width33{
-		width: 33%;
+	.width25to50{
+		width: 25%;
 	}
 
 	.centerText{
@@ -372,12 +365,6 @@
 		left:0;
 		width: 100%;
 		z-index: -1;
-	}
-
-	#deskcell{
-		width: 55%;
-		margin-left: 2em;
-		margin-top:2em;
 	}
 
 	.blackheader{
@@ -592,8 +579,9 @@
 		width: 50%;
 
 	}
-	.width33{
-		width: 33%;
+
+	.width25to50{
+		width: 25%;
 	}
 
 	.centerText{
@@ -634,12 +622,6 @@
 		left:0;
 		width: 100%;
 		z-index: -1;
-	}
-
-	#deskcell{
-		width: 55%;
-		margin-left: 2em;
-		margin-top:2em;
 	}
 
 	.blackheader{

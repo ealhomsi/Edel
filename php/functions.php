@@ -12,7 +12,7 @@ function sendmail($to, $replyer, $msg, $date) {
 			</head>
 			<body>
 				<h4> ${msg} </h4>
-				<p> posted by ${replyer} on ${date} </p>
+				<p> posted by ${replyer}s </p>
 			</body>
 		</html>
 EOT;

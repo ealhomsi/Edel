@@ -18,8 +18,8 @@ function registerBody() {
 
 function colorBlack() {
   if(selectedMenuButton)
-    selectedMenuButton.style.color = "#648ad1";
-	NavBarthing.style.backgroundColor = "black";
+    selectedMenuButton.style.color = "#eeeeee";
+	NavBarthing.style.backgroundColor = "#7f3ec2";
     NavBarthing.style.opacity = "0.99";
     NavBarthing.style.color = "white";
     if(userName) {
@@ -34,14 +34,14 @@ function colorBlack() {
 
 function update() {
     if(body.scrollTop > 355.45452880859375) {
-        NavBarthing.style.backgroundColor = "black";
+        NavBarthing.style.backgroundColor = "#7f3ec2";
         NavBarthing.style.opacity = "0.99";
         NavBarthing.style.color = "white";
         if(userName) {
           userName.style.color = "white";
         }
         if(selectedMenuButton) {
-          selectedMenuButton.style.color= "#648ad1";
+          selectedMenuButton.style.color= "#eeeeee";
         }
 
     	NavBarthing.style.borderWidth = '0em';
@@ -49,10 +49,10 @@ function update() {
        		colorBorderWhite(actionButtons[count]);
        	}
     } else {
-      NavBarthing.style.backgroundColor = nill;
-      NavBarthing.style.color = nill;
+      NavBarthing.style.backgroundColor = null;
+      NavBarthing.style.color = null;
       if(userName){
-        userName.style.color = nill;
+        userName.style.color = null;
       }
       if(selectedMenuButton) {
         selectedMenuButton.style.color = "white";

@@ -18,7 +18,6 @@ if(!isset($_SESSION['userID']))
     <style>
 
         body {
-          font-family: "Raleway";
         }
         
         #ui-id-1 {

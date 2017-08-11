@@ -39,7 +39,7 @@ w3-hide-small w3-hide-medium w3-hide-medium<?php
 
                     <li>
                     <a class='w3-bar-item w3-padding-large w3-hide-small w3-hide-medium w3-button col-sm-1 w3-hide-small w3-hide-medium' style="float:right;" href="profile.php">
-                        <p style="color:gray;"> hello  <span id="user-name-id" style="color: black;"> $userName </span> </p>
+                        <p style="color:white;"> hello  <span id="user-name-id" style="color: black;"> $userName </span> </p>
                     </a> </li>
 EOT;
 

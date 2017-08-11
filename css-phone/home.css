@@ -148,6 +148,11 @@ polygon {
 	height: 0px;
 }
 
+#deskforum{
+		visibility: hidden;
+		height: 0px;
+}
+
 .blackeader{
 	color: black;
 	text-align: center;

@@ -20,7 +20,7 @@ include  "php/functions.php";
 		}
 		
 		body {
-			font-family: "Raleway";
+			font-family: 'Raleway', sans-serif;
 		}
 
 		#navbar-background {
@@ -118,7 +118,7 @@ include  "php/functions.php";
 							</div>
 						</div>
 					</div>
-
+					<br>
 
 					<div class="w3-container w3-content w3-center w3-padding-64 maxWidth800" id="band">
 
@@ -129,7 +129,8 @@ include  "php/functions.php";
 								<h4 id="subSlogan2"> With this tool, you can get directed to the proper organisations that seek to help you.
 									To find out why NGO's recommend our service <a href="pages/aboutUs.php"> click here!</a> </h4>
 								</div>
-								<div class="col-sm-5 floatRight" id="boot1">
+								<div class="col-sm-7 floatRight" id="boot1">
+									<img src="images/forum.png" alt="forum" id="deskforum">
 
 								</div>
 						</div>

@@ -17,7 +17,6 @@
 
     <style>
     body {
-      font-family: "Raleway";
     }
   </style>
 </head>

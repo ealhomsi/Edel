@@ -9,6 +9,12 @@ include  "../php/functions.php";
 <head>
   <title>EDEL</title>
   <?php include '../template/includes-non-index.html' ?>
+
+  <style>
+    body {
+      font-family: "Raleway";
+    }
+  </style>
 </head>
 
 <body>

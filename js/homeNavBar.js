@@ -12,8 +12,8 @@ function registerBody() {
     actionButtons = document.getElementsByClassName("action-button");
 
     NavBarthing.style.borderWidth = '0';
-   	NavBarthing.style.backgroundColor = "rgba(255,255,255,0.5)";
-    NavBarthing.style.color = "black";
+   	NavBarthing.style.backgroundColor = "rgba(54, 83, 46, 0.1)";
+    NavBarthing.style.color = "white";
 }
 
 function colorBlack() {
@@ -44,15 +44,15 @@ function update() {
           selectedMenuButton.style.color= "#648ad1";
         }
 
-    	NavBarthing.style.borderWidth = '0';
+    	NavBarthing.style.borderWidth = '0em';
        	for(var count =0; count < actionButtons.length; count++) {
        		colorBorderWhite(actionButtons[count]);
        	}
     } else {
-      NavBarthing.style.backgroundColor = "rgba(255,255,255,0.5)";
-      NavBarthing.style.color = "black";
+      NavBarthing.style.backgroundColor = nill;
+      NavBarthing.style.color = nill;
       if(userName){
-        userName.style.color = "black";
+        userName.style.color = nill;
       }
       if(selectedMenuButton) {
         selectedMenuButton.style.color = "white";
@@ -69,9 +69,11 @@ function update() {
 
 
 function colorBorderWhite(item) {
+  item.style.borderWidth = "0px";
 	item.style.borderColor = "white";
 }
 
 function colorBorderBlack(item) {
-	item.style.borderColor = "black";
+  item.style.borderWidth = "0px";
+	item.style.borderColor = "white";
 }

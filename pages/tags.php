@@ -10,7 +10,12 @@
     <title>Tags</title>
     <!-- all required includes -->
     <?php include '../template/includes-non-index.html' ?>
-
+	<style>
+        body {
+          font-family: "Raleway";
+        }
+    </style>
+    
     <style>
 
 		@media screen and (max-width: 1000px){

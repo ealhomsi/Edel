@@ -27,13 +27,13 @@ w3-hide-small w3-hide-medium w3-hide-medium<?php
                     $userName = $_SESSION['userName'];
                     $result = <<< EOT
                     <li>
-                    <a class="w3-bar-item w3-button w3-padding-large col-sm-1  action-button w3-hide-small w3-hide-medium" href="../php/logout.php">
+                    <a class="w3-bar-item w3-button w3-padding-large col-sm-1  action-button w3-hide-small w3-hide-medium" href="../php/logout.php" style="border-width:0px;">
                         <span> Logout </span>
                     </a> </li>
 
 
                     <li>
-                    <a  href="profile.php" class="w3-bar-item w3-button w3-padding-large col-sm-1  w3-hide-small w3-hide-medium action-button">
+                    <a  href="profile.php" class="w3-bar-item w3-button w3-padding-large col-sm-1  w3-hide-small w3-hide-medium action-button" style="border-width:0px;">
                         <span> Profile </span>
                     </a> </li>
 
@@ -47,12 +47,12 @@ EOT;
                     $result = <<< EOT
 
                     <li>
-                    <a class="w3-bar-item w3-button w3-padding-large col-sm-1 w3-hide-small w3-hide-medium action-button" onclick="document.getElementById('id01').style.display='block'">
+                    <a class="w3-bar-item w3-button w3-padding-large col-sm-1 w3-hide-small w3-hide-medium action-button" onclick="document.getElementById('id01').style.display='block'" style="border-width:0px;">
                         <span> Login </span>
                     </a> </li>
 
                     <li>
-                    <a class="w3-bar-item w3-button w3-padding-large col-sm-1 w3-hide-small w3-hide-medium action-button" onclick="document.getElementById('id02').style.display='block'">
+                    <a class="w3-bar-item w3-button w3-padding-large col-sm-1 w3-hide-small w3-hide-medium action-button" onclick="document.getElementById('id02').style.display='block'" style="border-width:0px;">
                         <span> Sign up </span>
                     </a> </li>
 EOT;
@@ -62,7 +62,7 @@ EOT;
 
             <li>
             <div>
-                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-hide-medium col-sm-1   w3-hover-gray   w3-right"><i class="fa fa-search"></i></a>
+                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-hide-medium col-sm-1   w3-hover-gray   w3-right" style="color:white;"><i class="fa fa-search"></i></a>
             </div> </li>
 
         </ul>

@@ -77,13 +77,12 @@ echo 'text-content' | mail -s 'subject' 'destination@mail.ca'
 --------------------------------------------------------------------------------
 # Design and Colors
 
-* The color pallet chosen
-	* light green 89d475  
-    * pale green 69D4A0  
-    * cyan 75cad7 #####
-    * meduim blue 648ad1  #####
-    * navy 776bc9
-    * purple 7f3ec2
+* light green 89d475
+* pale green 69D4A0
+* cyan 75cad7
+* meduim blue 648ad1
+* navy 776bc9
+* purple 7f3ec2
 	
 --------------------------------------------------------------------------------
 # TO DO:

@@ -16,6 +16,11 @@ if(!isset($_SESSION['userID']))
 
     <!-- in document styling -->
     <style>
+
+        body {
+          font-family: "Raleway";
+        }
+        
         #ui-id-1 {
             display: inline;
             z-index: 3000;

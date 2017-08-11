@@ -76,8 +76,8 @@ include  "../php/functions.php";
 
         <div class="w3-row w3-padding-32">
 
-          <p id="quote"> <strong> "RELEVENT FANCY QUOTE" <strong></p>
-            <p class="quoter"><strong> <i> - Relevant person </i></strong></p>
+          <p id="quote"> <strong> "INSERT QUOTE" <strong></p>
+            <p class="quoter"><strong> <i> -INSERT NAME </i></strong></p>
 
 
 
@@ -93,13 +93,13 @@ include  "../php/functions.php";
       <br> <br>
       <h3 class="blackheader">Our goal </h3>
 
-      <h4 id="ABsubSlogan2"> Ask Jay if left/right split is better or above under. Lorem ipsum dolor sit amet,ADD LINK TO VIDEO!!!!<br>
-        Lorem ipsum dolor sit amet,ADD LINK TO VIDEO!!!!<br>
-        Lorem ipsum dolor sit amet,ADD LINK TO VIDEO!!!!<br>
-        Lorem ipsum dolor sit amet,ADD LINK TO VIDEO!!!!<br>
-        Lorem ipsum dolor sit amet,ADD LINK TO VIDEO!!!!<br>
-        Lorem ipsum dolor sit amet,ADD LINK TO VIDEO!!!!<br>
-        Lorem ipsum dolor sit amet,ADD LINK TO VIDEO!!!!<br> <br> <br>
+      <h4 id="ABsubSlogan2"> Lorem ipsum dolor sit amet,.<br>
+        Lorem ipsum dolor sit amet,.<br>
+        Lorem ipsum dolor sit amet,.<br>
+        Lorem ipsum dolor sit amet,.<br>
+        Lorem ipsum dolor sit amet,.<br>
+        Lorem ipsum dolor sit amet,.<br>
+        Lorem ipsum dolor sit amet,.<br> <br> <br>
       </h4>
     </div>
 

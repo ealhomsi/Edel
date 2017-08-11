@@ -17,17 +17,10 @@ include  "php/functions.php";
 
 	<!-- big screen -->
 	<div id="splashScreen">
-		<img src="https://storage.moqups.com/repo/iNXjFx1a/images/iPCgz6naJD.png" id="imgSplashScreen">
-
 		<h2 id="slogan"> Built for Refugees and Asylum Seekers </h2>
 
 		<h4 id="subSlogan"> Get the answers you need in a simple and efficient way </h4>
 
-	</div>
-
-	<!-- phone in hand -->
-	<div >
-		<img class="width100" src="images/phoneInHand.png">
 	</div>
 
 	<!-- Login -->
@@ -53,29 +46,30 @@ include  "php/functions.php";
 			<div class="w3-row w3-padding-32">
 
 				<div class="row">
+					<a href="tagPages.php?tagID=1">
 					<div class="col-sm-4 floatLeft width33">
-						<p class="centerText">Housing</p>
 						<img class="pic" src="images/home.png" alt="Random Name">
 						<svg height="100" width="100">
-							<circle cx="50" cy="50" r="40" stroke="white" stroke-width="2" fill="#7595cd" />
+							<circle cx="50" cy="50" r="40" stroke="white" stroke-width="2" fill="#648ad1" />
 						</svg>
-					</div>
+					</div> </a>
 
+
+					<a href="tagPages.php?tagID=2">
 					<div class="col-sm-4 floatLeft width33">
-						<p class="centerText"="text-align: center">Health Care</p>
 						<img class="pic" src="images/kit.png" alt="Random Name">
 						<svg height="100" width="100">
-							<circle cx="50" cy="50" r="41" stroke="white" stroke-width="2" fill="#7595cd" />
+							<circle cx="50" cy="50" r="41" stroke="white" stroke-width="2" fill="#648ad1" />
 						</svg>
-					</div>
+					</div></a>
 
+					<a href="tagPages.php?tagID=3">
 					<div class="col-sm-4 floatRight width33">
-						<p class="centerText"="text-align: center">Education</p>
 						<img class="pic" src="images/books.png" alt="Random Name">
 						<svg height="100" width="100">
-							<circle cx="50" cy="50" r="40" stroke="white" stroke-width="2" fill="#7595cd" />
+							<circle cx="50" cy="50" r="40" stroke="white" stroke-width="2" fill="#648ad1" />
 						</svg>
-					</div>
+					</div></a>
 
 				</div>
 			</div>

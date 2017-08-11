@@ -24,7 +24,7 @@ if(!isset($_SESSION['userID']))
         
         #new-post-btn {
             cursor: hand;
-            background-color: #2dd0c6;
+            background-color: #648ad1;
             color: white;
             margin-left: 3em;
             border-color: white;
@@ -247,8 +247,7 @@ EOT;
 
 
     autosize(document.querySelectorAll('textarea'));
-    //fixing colors
-    colorBlack();
+    
 
     //adding functions
     function cleanAndPost() {
@@ -309,6 +308,8 @@ EOT;
             input.firstElementChild.lastElementChild.addEventListener('click', close);
         }
     }
+    //fixing colors
+    colorBlack();
 </script>
 
 </html>

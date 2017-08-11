@@ -39,7 +39,7 @@
 
     	.tags {
     		display: inline-block;
-    		background-color: #2dd0c6;
+    		background-color: #648ad1;
     		color: white;
     		border-radius: 3em;
     		padding: 0.4em 3em;
@@ -73,39 +73,45 @@
 		<br><br><br>
         <div id="icons" style="margin: auto; width: 100%; display:absolute; text-align: center;">
 
-
-
-					<div style="float:left; width:20%"><img src="../images/home-icon.png">
+			<a href="tagPages.php?tagID=1">
+			<div style="float:left; width:20%"><img src="../images/home-icon.png">
         	<svg height="100" width="100">
   				<circle cx="50" cy="50" r="40" stroke="white" stroke-width="3" fill="white" />
 			</svg>
+			</a>
 		</div>
+			<a href="tagPages.php?tagID=6">
 			<div class="move" style="float:left; width:20%">
 			<img src="../images/business-affiliate-network.png">
         	<svg height="100" width="100">
   				<circle cx="50" cy="50" r="40" stroke="white" stroke-width="3" fill="white" />
 			</svg>
+			</ca>
 		</div>
+			<a href="tagPages.php?tagID=2">
 			<div style="float:left; width:20%">
 			<img src="../images/medical-kit.png">
         	<svg height="100" width="100">
   				<circle cx="50" cy="50" r="40" stroke="white" stroke-width="3" fill="white" />
 			</svg>
+			</a>
 		</div>
 
 			<div class="move" style="float:left; width:20%">
-
+			<a href="tagPages.php?tagID=4">
 			<img src="../images/map.png">
         	<svg height="100" width="100">
   				<circle cx="50" cy="50" r="40" stroke="white" stroke-width="3" fill="white" />
 			</svg>
+			</a>
 		</div>
 			<div style="float:left; width:20%">
-
+			<a href="tagPages.php?tagID=8">
 			<img src="../images/translation.png">
         	<svg height="100" width="100">
   				<circle cx="50" cy="50" r="40" stroke="white" stroke-width="2" fill="white" />
 			</svg>
+			</a>
 		</div>
 
         </div>

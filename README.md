@@ -78,11 +78,12 @@ echo 'text-content' | mail -s 'subject' 'destination@mail.ca'
 # Design and Colors
 
 * The color pallet chosen
-	a) #FAFAFA white
-	b) #292929 dark
-	c) #606C38  dark green
-	e) #3897F0 blue for buttons
-	d) #90FCF9 electric green
+	* light green 89d475  
+    * pale green 69D4A0  
+    * cyan 75cad7 #####
+    * meduim blue 648ad1  #####
+    * navy 776bc9
+    * purple 7f3ec2
 	
 --------------------------------------------------------------------------------
 # TO DO:

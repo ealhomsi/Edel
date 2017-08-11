@@ -1,149 +1,4 @@
-/*
-we wanted to do this however it might not be used\
-WARNING: DEPRICATED
-*/
 
-@media only screen and (max-width: 1085px) {
-	#navbar-container #menu-bar #last-menu {
-		float:left;
-		margin-left: -8em;
-		display:inline-block;
-		visibility: hidden;
-	}
-
-	#navbar-container #menu-bar {
-		float:left;
-		display:inline-block;
-	}
-
-	#navbar-container {
-		color: black;
-		min-width: 250px;
-		width: 100%;
-		max-height: 69px;
-	}
-
-	#navbar-container #navbar-background{
-		min-width: 250px;
-		width: 100%;
-		max-height: 69px;
-	}
-
-	#navbar-container, #menu-bar ul{
-		list-style-type: none;
-
-	}
-
-	#navbar-container #menu-bar li {
-		float:left;
-		margin-top:0.7em;
-		display:inline-block;
-	}
-
-
-	#navbar-container #logo {
-		float:left;
-		font-size: 1.5em;
-		padding: none;
-	}
-
-	#navbar-container .selectedMenu {
-		color: #456990;
-	}
-
-	#navbar-container .w3-button:hover {
-		text-decoration: none;
-	}
-	#navbar-container .action-button {
-		width:auto;
-		border-radius: 2em;
-		border: black solid 2px;
-		margin-right: 1.5em;
-	}
-
-}
-
-/*
-we wanted to do this however it might not be used\
-WARNING: DEPRICATED
-*/
-@media only screen and (max-width: 940px) {
-
-	#navbar-container #menu-bar #forth-menu
-	{
-		float:left;
-		margin-left: -7em;
-		display:inline-block;
-		visibility: hidden;
-	}
-
-	#navbar-container #menu-bar #last-menu {
-		float:left;
-		margin-left: -10em;
-		display:inline-block;
-	}
-
-	#navbar-container #menu-bar {
-		float:left;
-		margin-right: 7em;
-		display:inline-block;
-
-	}
-
-	#navbar-container #menu-bar li{
-		display:inline-block;
-		margin-top: -69px;
-	}
-
-
-	#navbar-container {
-		color: black;
-		min-width: 250px;
-		width: 100%;
-		max-height: 69px;
-	}
-
-	#navbar-container #navbar-background{
-		min-width: 250px;
-		width: 100%;
-		max-height: 69px;
-	}
-
-	#navbar-container, #menu-bar ul{
-		list-style-type: none;
-
-	}
-
-	#navbar-container #menu-bar {
-		margin-right: 1.5em;
-		float:right;
-	}
-
-
-	#navbar-container #logo {
-		float:left;
-		font-size: 1.5em;
-		padding: none;
-	}
-
-	#navbar-container .selectedMenu {
-		color: #456990;
-	}
-
-	#navbar-container .w3-button:hover {
-		text-decoration: none;
-	}
-	#navbar-container .action-button {
-		width:auto;
-		border-radius: 2em;
-		border: black solid 2px;
-		margin-right: 1.5em;
-	}
-}
-
-/*
-Good stuff mmmmm
-*/
 
 #navbar-container {
 	color: black;
@@ -182,7 +37,8 @@ Good stuff mmmmm
 }
 
 #navbar-container .selectedMenu {
-	color: #456990;
+	color: white;
+	font-weight:bolder;
 }
 
 #navbar-container #last-menu {
@@ -197,4 +53,8 @@ Good stuff mmmmm
 	border-radius: 2em;
 	border: black solid 2px;
 	margin-right: 1.5em;
+}
+
+#navbar-container .fa-search {
+	color:white;
 }

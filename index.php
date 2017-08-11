@@ -9,6 +9,29 @@ include  "php/functions.php";
 <head>
 	<title>EDEL</title>
 	<?php include './template/includes.html' ?>
+
+	<style>
+		#splashScreen {
+			background-color: #776bc9;
+		}
+
+		.w3-bar {
+			color: white;
+		}
+		
+		body {
+			font-family: "Raleway";
+		}
+
+		#navbar-background {
+			background-color: rgba(54, 83, 46, 0.1);
+			border-color: rgba(0,0,0,0);
+		}
+
+		.fa-search {
+			color:white;
+		}
+	</style>
 </head>
 
 <body>
@@ -17,7 +40,6 @@ include  "php/functions.php";
 
 	<!-- big screen -->
 	<div id="splashScreen">
-		<img src="https://storage.moqups.com/repo/iNXjFx1a/images/iPCgz6naJD.png" id="imgSplashScreen">
 
 		<h2 id="slogan"> Built for Refugees and Asylum Seekers </h2>
 

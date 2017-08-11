@@ -12,6 +12,11 @@
     <!-- all required includes -->
     <?php include '../template/includes-non-index.html' ?>
 
+    <style>
+    body {
+      font-family: "Raleway";
+    }
+  </style>
 </head>
 
 <body>

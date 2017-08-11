@@ -39,6 +39,6 @@
 #navbar-container .action-button {
 	width:auto;
 	border-radius: 2em;
-	border: black solid 2px;
+	border-width:0em;
 	margin-right: 1.5em;
 }

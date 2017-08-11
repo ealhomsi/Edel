@@ -1,8 +1,8 @@
 
 #navDemo{
-		margin-top:5em;
+	margin-top:5em;
 
-	}
+}
 
 
 body{
@@ -99,16 +99,10 @@ polygon {
 }
 
 #Background2{
-		position: absolute;
-		left:0;
-		width: 50em;
-		z-index: -1;
-}
-
-
-#deskcell{
-	visibility: hidden;
-	height: 0px;
+	position: absolute;
+	left:0;
+	width: 50em;
+	z-index: -1;
 }
 
 .blackheader{
@@ -130,122 +124,129 @@ polygon {
 	margin: 2em 0em 1em 2em;
 }
 
-	.floatRight {
-		float:right;
-	}
+.floatRight {
+	float:right;
+}
 
-	.floatLeft{
-		float: left;
-	}
+.floatLeft{
+	float: left;
+}
 
 
-	.centered{
-		text-align:center;
-	}
+.centered{
+	text-align:center;
+}
 
-	.contentBox{
-		width: 100%;
-		height: 18em;
-	}
+.contentBox{
+	width: 100%;
+	height: 18em;
+}
 
-	.fiftyto100{
-		width: 100%;
+.fiftyto100{
+	width: 100%;
 
-	}
-	.fortyto100{
-		width: 100%;
-	}
+}
 
-	.shape1{
+.width25to50{
+	width: 50%;
+}
 
-		width: 100%;
-		position: absolute;
-		left:0;
-		height:auto;
-		z-index: -1;
-	}
+.fortyto100{
+	width: 100%;
+}
 
-	.shape3{
-		fill:#7595cd;
-	}
+.shape1{
 
-	.quoter{
-		margin-left:4em;
-		color: white;
-		width: 75%;
-	}
+	width: 100%;
+	position: absolute;
+	left:0;
+	height:auto;
+	z-index: -1;
+}
 
-	.div2{
-		margin:0 0 0 0;
-		margin-left: 3em;
+.shape3{
+	fill:#7595cd;
+}
 
-	}
+.quoter{
+	margin-left:4em;
+	color: white;
+	width: 75%;
+}
 
-	.margin3em{
-		margin:-3em;
-	}
+.div2{
+	margin:0 0 0 0;
+	margin-left: 3em;
 
-	.p3{
-		color: white;
-		margin: auto 0;
-		font-weight: bold;
-	}
+}
 
-	.width30px{
-		width:30px
-	}
+.margin3em{
+	margin:-3em;
+}
 
-	.width50{
-		width: 50%
-	}
+.p3{
+	color: white;
+	margin: auto 0;
+	font-weight: bold;
+}
 
-	.maxWidth800{
-		max-width:800px;
-	}
-	#abBoot1{
-			width: 100%;
-		}
-	#abBoot2{
-			width: 100%;
-			height: 40em;
-			background-color: #7595cd;
-	}
+.width30px{
+	width:30px
+}
 
-	#abBand{
+.width50{
+	width: 50%
+}
 
-	}
+.maxWidth800{
+	max-width:800px;
+}
 
-	#quote{
-		color:white;
-		margin-left:3em;
-		font-size: 25px;
-	}
+#abBoot1{
+	width: 100%;
+}
 
-		#boot3{
-			color:white;
-			margin-left:3em;
-		}
-		.contactInfo{
-			margin-top: 0em;
-		}
+#abBoot2{
+	width: 100%;
+	height: 40em;
+	background-color: #7595cd;
+}
 
-	.name{
-			margin-top: -48px;
-			margin-left: -8px;
-			width: 50%;
-			float: left;
-		}
+#abBand{
 
-		.email{
-			margin-top: -48px;
-			margin-left: -8px;
-			width: 50%;
-			float: right;
-		}
+}
 
-	.message{
-		margin-top: 0px;
-		height:10em;
-		width: 396px
+#quote{
+	color:white;
+	margin-left:3em;
+	font-size: 25px;
+}
 
-	}
+#boot3{
+	color:white;
+	margin-left:3em;
+}
+.contactInfo{
+	margin-top: 0em;
+}
+
+.name{
+	margin-top: -48px;
+	margin-left: -8px;
+	width: 50%;
+	float: left;
+}
+
+.email{
+	margin-top: -48px;
+	margin-left: -8px;
+	width: 50%;
+	float: right;
+}
+
+.message{
+	margin-top: 0px;
+	height:10em;
+	width: 396px
+
+}

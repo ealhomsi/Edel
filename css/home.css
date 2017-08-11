@@ -167,6 +167,11 @@
 		margin-top:2em;
 	}
 
+	#deskforum{
+		width: 100%;
+		margin-left: 2em;
+	}
+
 	.blackeader{
 		color: black;
 		text-align: center;
@@ -438,6 +443,11 @@
 		width: 55%;
 		margin-left: 2em;
 		margin-top:2em;
+	}
+
+	#deskforum{
+		width: 100%;
+		margin-left: 2em;
 	}
 
 	.blackeader{
@@ -715,6 +725,11 @@
 		margin-left: 2em;
 		margin-top:2em;
 	}
+		#deskforum{
+			width: 100%;
+			margin-left: 2em;
+		}
+
 
 	.blackeader{
 		color: black;

@@ -55,10 +55,6 @@ include  "php/functions.php";
 	<!-- add script -->
 	<script src="js/register-modal.js"> </script>
 
-
-
-
-
 	<!-- Page content -->
 	<div class="w3-content" class="newStyle">
 		<!-- The Band Section -->

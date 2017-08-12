@@ -20,7 +20,9 @@
 * install mysql database using the following command
     apt-get install mysql-server
 
-* Configure mysql database to have a user with the password/username of boubou
+* Configure mysql database to have a user with the password/username of boubou4
+
+* Creating another user for the database would lead to fixing the code to reflect that.
 
 * Run the database.sql schema against your newly created database so that it will create the tables
 
